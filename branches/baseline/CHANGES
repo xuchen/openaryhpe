@@ -1,0 +1,9 @@
+Version 0.1.1
+-------------
+- Name space changed to 'info.ephyra'
+- Code cleaned up
+- Bug in 'build.xml' and other minor bugs fixed
+
+Version 0.1
+-----------
+Initial release
