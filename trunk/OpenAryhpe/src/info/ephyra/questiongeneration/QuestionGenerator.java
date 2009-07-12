@@ -387,8 +387,9 @@ public class QuestionGenerator {
 				while (ansIter.hasNext()) {
 					nQues++;
 					Answer ans= ansIter.next();
+					String po = (ans.getPoTerm()==null)?ans.getPo():ans.getPoTerm().toString();
 					MsgPrinter.printStatusMsg(
-							"\t\t"+nQues+". <TO>: "+ans.getTo()+"\t<PO>: "+ans.getPo());
+							"\t\t"+nQues+". <TO>: "+ans.getToTerm().toString()+"\t<PO>: "+po);
 				}
 
 			}

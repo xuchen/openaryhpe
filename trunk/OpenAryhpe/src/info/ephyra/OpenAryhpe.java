@@ -165,7 +165,7 @@ public class OpenAryhpe {
 		MsgPrinter.printStatusMsg("Creating NE taggers...");
 		NETagger.loadListTaggers(dir + "res/nlp/netagger/lists/");
 		NETagger.loadRegExTaggers(dir + "res/nlp/netagger/patterns.lst");
-		MsgPrinter.printStatusMsg("  ...loading models");
+		MsgPrinter.printStatusMsg("  ...loading Standford NETagger");
 //		if (!NETagger.loadNameFinders(dir + "res/nlp/netagger/opennlp/"))
 //			MsgPrinter.printErrorMsg("Could not create OpenNLP NE tagger.");
 		if (!StanfordNeTagger.isInitialized() && !StanfordNeTagger.init())

@@ -57,50 +57,69 @@ public class AnswerAnalyzer {
 		String[][][] nes = ans.getNes();
 		Term[][] terms = ans.getTerms();
 		if (terms == null) return null;
-		//Iterator<String> toItr = ans.getTo().iterator();
+		// looping through every term of every sentence
+		// every term of NE could potentially be a <TO>
 		for (int t=0; t<terms.length; t++){
 			for (Term term:terms[t]) {
+				// if term is not an NE, then continue
 				if (term.getNeTypes().length == 0) continue;
 				String to = term.getText();
-				for (int i = 0; i < sentences.length; i++) {
-					// prepare sentence for answer extraction
-					String sentence = prepSentence(sentences[i], to, cos, nes[i]);
-					if (sentence == null) continue;
-					Enumeration<String> ePattern = props.keys();
-					while (ePattern.hasMoreElements()) {
-						prop = ePattern.nextElement();
-						patterns = props.get(prop);
-						for (AnswerPattern pattern : patterns) {
-							// apply answer pattern
-							String[] pos = pattern.apply(sentence);
-												
-							// get NE types of PROPERTY objects
-							String[][] neTypes = new String[pos.length][];
-							for (int j = 0; j < pos.length; j++)
-								neTypes[j] = getNeTypes(pos[j], pattern);
+
+				// prepare sentence for answer extraction
+				String sentence = prepSentence(sentences[t], to, cos, nes[t]);
+				if (sentence == null) continue;
+				Enumeration<String> ePattern = props.keys();
+				while (ePattern.hasMoreElements()) {
+					prop = ePattern.nextElement();
+					patterns = props.get(prop);
+					for (AnswerPattern pattern : patterns) {
+						// apply answer pattern
+						String[] NEpos = pattern.apply(sentence);
+											
+						// get NE types of PROPERTY objects
+						String[][] neTypes = new String[NEpos.length][];
+						if (NEpos.length > 0) {
+							String[] pos = new String[NEpos.length];
+							Term[] poTerm = new Term[NEpos.length];
+							for (int j = 0; j < NEpos.length; j++)
+								neTypes[j] = getNeTypes(NEpos[j], pattern);
 							
 							// replace tags and untokenize PROPERTY objects
-							for (int j = 0; j < pos.length; j++) {
-								pos[j] = replaceTags(pos[j]);
-								pos[j] = OpenNLP.untokenize(pos[j], originalSentences[i]);
+							// poTerm may come out null in the following for loop
+							// there are generally 3 reasons:
+							// 1. pos[j] is with extra punctuations, such as "Washington DC.", which doesn't exactly match with term
+							// 2. pos[j] contains multiple terms, such as "August 28, 1958", which doesn't exist in terms
+							// 3. pos[j] contains prepositions, such as "in Washington".
+							// 1 and 3 don't matter too much. for 2 it's critical to retrieve the right NE types
+							// (TODO) it's better to modify the getTerms() function to return contiguous words with the same NE types as a term.
+							for (int j = 0; j < NEpos.length; j++) {
+								pos[j] = replaceTags(NEpos[j]);
+								pos[j] = OpenNLP.untokenize(pos[j], originalSentences[t]);
+								// find out pos's term
+								for (Term tm:terms[t]) {
+									if (tm.getText().equals(pos[j])) {
+										poTerm[j] = new Term(pos[j], tm.getPos(), tm.getNeTypes());
+										break;
+									}
+								}
 							}
-							
 							// store the PROPERTY objects, the sentences they were extracted
 							// from, the patterns used to extract them and the NE types
-							for (int j = 0; j < pos.length; j++) {
-								Answer p = new Answer(originalSentences[i],
-										prop, to, pos[j], pattern);
+							for (int j = 0; j < NEpos.length; j++) {
+								Answer p = new Answer(originalSentences[t],
+										prop, to, term, pos[j], poTerm[j], pattern);
 								if(!answerList.contains(p)) {
 									answerList.add(p);
 								}
 								extr.add(pos[j]);
 								types.add(neTypes[j]);
-								sents.add(originalSentences[i]);
+								sents.add(originalSentences[t]);
 								aps.add(pattern);
 							}
 						}
 					}
 				}
+
 			}
 		}
 		return answerList;

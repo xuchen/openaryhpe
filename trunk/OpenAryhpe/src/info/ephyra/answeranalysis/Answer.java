@@ -10,6 +10,7 @@ import info.ephyra.answerselection.AnswerPattern;
 import info.ephyra.io.MsgPrinter;
 import info.ephyra.nlp.NETagger;
 import info.ephyra.nlp.OpenNLP;
+import info.ephyra.questionanalysis.Term;
 import info.ephyra.util.RegexConverter;
 import info.ephyra.util.StringUtils;
 
@@ -19,6 +20,10 @@ public class Answer {
 	private String prop;
 	private String to;
 	private String po;
+	// Term for <TO>, containing more info, such as POS, NE
+	private Term toTerm = null;
+	// Term for <PO>, containing more info, such as POS, NE	
+	private Term poTerm = null;
 	private AnswerPattern pattern;
 
 	
@@ -30,6 +35,13 @@ public class Answer {
 		this.pattern = pattern;
 	}
 
+	public Answer(String sentence, String prop, String to, Term toTerm, String po, Term poTerm, AnswerPattern pattern) {
+		this(sentence, prop, to, po, pattern);
+		this.toTerm = toTerm;
+		this.poTerm = poTerm;
+	
+	}
+	
 	public String getSentence() {
 		return sentence;
 	}
@@ -68,6 +80,14 @@ public class Answer {
 
 	public void setPattern(AnswerPattern pattern) {
 		this.pattern = pattern;
+	}
+	
+	public Term getToTerm() {
+		return this.toTerm;
+	}
+	
+	public Term getPoTerm() {
+		return this.poTerm;
 	}
 	
 	public boolean equals(Object o)
