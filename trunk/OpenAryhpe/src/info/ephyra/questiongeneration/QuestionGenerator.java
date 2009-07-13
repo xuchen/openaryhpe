@@ -7,6 +7,7 @@ import info.ephyra.nlp.indices.FunctionWords;
 import info.ephyra.nlp.semantics.ontologies.WordNet;
 import info.ephyra.questionanalysis.QuestionInterpretation;
 import info.ephyra.questionanalysis.QuestionPattern;
+import info.ephyra.questionanalysis.Term;
 import info.ephyra.util.Dictionary;
 import info.ephyra.util.FileUtils;
 import info.ephyra.util.HashDictionary;
@@ -47,6 +48,12 @@ public class QuestionGenerator {
 	/** For each PROPERTY a template for an answer string. */
 	private static Hashtable<String, String> answerTemplates =
 		new Hashtable<String, String>();
+	/** For each PROPERTY a constraint for the named entity of the question target. */
+	private static Hashtable<String, ArrayList<String>> questionConstraint =
+		new Hashtable<String, ArrayList<String>>();
+	/** For each PROPERTY a constraint for the named entity of the answer string. */
+	private static Hashtable<String, ArrayList<String>> answerConstraint =
+		new Hashtable<String, ArrayList<String>>();	
 	
 	/**
 	 * Adds the keywords in a descriptor of a question pattern to the dictionary
@@ -93,6 +100,10 @@ public class QuestionGenerator {
 			
 			for (File file : files) {
 				prop = file.getName();
+				if (prop.startsWith(".")) {
+					//hidden file, probably a .swp file
+					continue;
+				}
 				in = new BufferedReader(new FileReader(file));
 				
 				ArrayList<QuestionPattern> qPatternsListOfProp = 
@@ -113,6 +124,22 @@ public class QuestionGenerator {
 						String[] tokens = line.split("\\s+", 2);
 						if (tokens.length > 1)
 							answerTemplates.put(prop, tokens[1]);
+					} else if (line.startsWith("QUESTION_CONSTRAINT")) {
+						// add question constraint
+						String[] tokens = line.split("\\s+", 2);
+						if (tokens.length > 1) {
+							tokens = tokens[1].split("_");
+							ArrayList<String> neArray = new ArrayList<String>(Arrays.asList(tokens));
+							questionConstraint.put(prop, neArray);
+						}
+					} else if (line.startsWith("ANSWER_CONSTRAINT")) {
+						// add question constraint
+						String[] tokens = line.split("\\s+", 2);
+						if (tokens.length > 1) {
+							tokens = tokens[1].split("_");
+							ArrayList<String> neArray = new ArrayList<String>(Arrays.asList(tokens));
+							answerConstraint.put(prop, neArray);
+						}
 					} else {
 						try {
 							// add question pattern
@@ -278,6 +305,7 @@ public class QuestionGenerator {
 		Iterator<Answer> ansIter = ansList.iterator();
 		String prop = null;
 		String sent = null;
+		int size_exempt = 0;
 		ArrayList<QAPair> qaPairList = new ArrayList<QAPair>();
 		ArrayList<Answer> ansListByProp = null;
 		Hashtable<String, ArrayList<Answer>> ansTable = null;
@@ -285,26 +313,25 @@ public class QuestionGenerator {
 		while (ansIter.hasNext()) {
 			Answer ans = ansIter.next();
 			if (sent != ans.getSentence()){
-				if (ansListByProp != null) {
+				// save ansListByProp of the last time
+				if (ansListByProp != null && !ansListByProp.isEmpty()) {
 					ansTable.put(prop, ansListByProp);
 					ansListByProp = new ArrayList<Answer>();
 				}
 				
-				
+				// a new sentence means a new QAPair
 				if (sent != null && ansTable !=null) {
 					QAPair pair = new QAPair(sent, ansTable);
 					qaPairList.add(pair);
 				}
 				
-//				if (ansTable != null) {
-//					ansListByProp = ansTable.get(ans.getProp());
-//				}
 				sent = ans.getSentence();
+				// a new ansTable for a new QAPair
 				ansTable = new Hashtable<String, ArrayList<Answer>>();
 			}
 			
 			if (prop != ans.getProp()) {
-				if (ansListByProp != null) {
+				if (ansListByProp != null && !ansListByProp.isEmpty()) {
 					ansTable.put(prop, ansListByProp);
 				}
 				prop = ans.getProp();
@@ -314,9 +341,55 @@ public class QuestionGenerator {
 				}
 			}
 			
-			ansListByProp.add(ans);
+			// match with constraint,if there is one
+			// if there's a constraint file in res/patternlearning/questionpattern,
+			// there must be a corresponding file in res/patternlearning/answerpattern
+			ArrayList<String> qCons = QuestionGenerator.questionConstraint.get(prop);
+			ArrayList<String> aCons = QuestionGenerator.answerConstraint.get(prop);
+			// toTerm couldn't be null since every <TO> must be a term
+			// poTerm could be null since <PO> might not be in the term list
+			//if ( ans.getPoTerm() == null ||
+			if ( qCons == null || aCons == null) {
+				ansListByProp.add(ans);
+			} else {
+				boolean to = false, po = false;
+				String[] neTypesTo = ans.getToTerm().getNeTypes();
+				Term poTerm = ans.getPoTerm();
+				// when poTerm is null, we don't add ans to the list. 
+				if (poTerm == null) {
+					po = false;
+				} else {
+					String[] neTypesPo = ans.getPoTerm().getNeTypes();
+					// poTerm must match answerConstraint
+					for (String s:neTypesPo) {
+						if (aCons.contains(s)) {
+							po = true;
+							break;
+						}
+					}					
+				}
+				
+
+				// toTerm must match questionConstraint
+				for (String s:neTypesTo) {
+					if (qCons.contains(s)) {
+						to = true;
+						break;
+					}
+				}
+
+				// add this answer to the list if both contraints are satisfied
+				if (to && po) {
+					ansListByProp.add(ans);
+				} else {
+					// this answer is not aaded to the list, count it for check later.
+					size_exempt++;
+				}
+			}
 		}
-		ansTable.put(prop, ansListByProp);
+		if (ansListByProp != null && !ansListByProp.isEmpty()) {
+			ansTable.put(prop, ansListByProp);
+		}
 		QAPair pair = new QAPair(sent, ansTable);
 		qaPairList.add(pair);
 		
@@ -332,7 +405,7 @@ public class QuestionGenerator {
 				size2 += list.size();
 			}
 		}
-		if (size1 != size2) {
+		if (size1 != size2+size_exempt) {
 			MsgPrinter.printStatusMsg("Error: please debug the source code!");
 			return null;
 		}
@@ -359,6 +432,7 @@ public class QuestionGenerator {
 	}
 	
 	public static void printQAlist (ArrayList<QAPair> qaPairList) {
+		if (qaPairList == null) return;
 		Iterator<QAPair> qaIter = qaPairList.iterator();
 		int nSent = 0, nProp = 0, nQues = 0;
 		while (qaIter.hasNext()) {
