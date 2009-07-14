@@ -31,9 +31,12 @@ public class TermExtractor {
 	 * @param nes named entities
 	 * @return types of matching entities
 	 */
+	// BUG fix. when a term such as "Gary, Indiana" (all single words are NElocation) comes,
+	// it will recognize it as a term and return NElocation.
 	private static String[] getNeTypes(String term, String[][] nes) {
 		List<String> neTypes = new ArrayList<String>();
 		Set<String> neTypesSet = new HashSet<String>();
+		int stanfordStart = NETagger.getStanfordStart();
 		
 		for (int neId = 0; neId < nes.length; neId++)
 			for (String ne : nes[neId])
@@ -44,6 +47,29 @@ public class TermExtractor {
 						neTypes.add(neType);
 					break;
 				}
+		
+		// NEs for stanford tagger. let's try again
+		// remove all punctuation since Stanford tagger doesn't contain any 
+		String[] termNoPunc = term.replaceAll("\\p{Punct}+", "").split("\\s+");
+		for (int neId = stanfordStart; neId < nes.length; neId++) {
+			boolean contain = false;
+			ArrayList<String> nesList = new ArrayList<String>(Arrays.asList(nes[neId]));
+			// check if every term in termNoPunc has the same NE type
+			for (String t: termNoPunc) {
+				if (nesList.contains(t)) {
+						contain = true;
+				} else {
+					contain = false;
+					break;
+				}
+			}
+			if (contain) {
+				String neType = NETagger.getNeType(neId);
+				if (neTypesSet.add(neType))
+					// there may be multiple taggers (IDs) for one type
+					neTypes.add(neType);
+			}
+		}
 		
 		return neTypes.toArray(new String[neTypes.size()]);
 	}
@@ -159,7 +185,9 @@ public class TermExtractor {
 				if (KeywordExtractor.getKeywords(text).length == 0) continue;
 				
 				// phrase is a named entity?
-				String[] neTypes = getNeTypes(text, nes);
+				// BUG fix: the RegEx tagger will recognize a NEdate, such as "August 29, 1958",
+				// as "August 29 , 1958", thus all tokens in the text should be concatenated with space
+				String[] neTypes = getNeTypes(StringUtils.concatWithSpaces(OpenNLP.tokenize(text)), nes);
 				if (neTypes.length > 0) {
 					// construct term
 					terms[id] = new Term(text, Term.COMPOUND, neTypes);
