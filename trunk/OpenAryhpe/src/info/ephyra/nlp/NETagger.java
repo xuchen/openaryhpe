@@ -984,4 +984,10 @@ public class NETagger {
 		
 		return results;
 	}
+	/** return the start position of named entities tagged
+	 * by the stanford tagger from the NE list
+	 */
+	public static int getStanfordStart() {
+		return finders.length + allPatternNames.length + lists.length;
+	}
 }
