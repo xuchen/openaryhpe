@@ -10,6 +10,7 @@ import info.ephyra.answerselection.AnswerPattern;
 import info.ephyra.io.MsgPrinter;
 import info.ephyra.nlp.NETagger;
 import info.ephyra.nlp.OpenNLP;
+import info.ephyra.nlp.StanfordParser;
 import info.ephyra.questionanalysis.QuestionNormalizer;
 import info.ephyra.questionanalysis.Term;
 import info.ephyra.questionanalysis.TermExtractor;
@@ -25,6 +26,7 @@ public class Answers {
 	private String[][] tokens;
 	private String[] sentences;
 	private String[][][] nes;
+	private String[] parses;
 	//private ArrayList<String>[] to;
 	private Term[][] terms;
 
@@ -63,9 +65,11 @@ public class Answers {
 		this.originalSentences = OpenNLP.sentDetect(this.answers);
 		this.countOfSents = this.originalSentences.length;
 		this.tokens = new String[this.countOfSents][];
+		this.parses = new String[this.countOfSents];
 		this.sentences = new String[this.countOfSents];
 		for (int i = 0; i < this.countOfSents; i++) {
 			tokens[i] = NETagger.tokenize(this.originalSentences[i]);
+			parses[i] = StanfordParser.parse(this.originalSentences[i]);
 			sentences[i] = StringUtils.concatWithSpaces(this.tokens[i]);
 		}
 		this.terms = new Term[this.countOfSents][];
