@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="lib/util/log4j.jar"/>
 	<classpathentry kind="lib" path="lib/util/trove.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/nlp/stanford-tregex-2008-05-08.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
