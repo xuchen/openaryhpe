@@ -123,6 +123,42 @@ public class StanfordParser
         
         return tree.toString().replaceAll(" \\[[\\S]+\\]","");
     }
+
+	   /**
+     * Parses a sentence and returns the parse tree.
+     * 
+     * @param sentence a sentence
+     * @return Tree
+     * character offsets in keys BEGIN_KEY and END_KEY
+     */
+	@SuppressWarnings("unchecked")
+    public static Tree parseTree(String sentence)
+    {
+        if (tlp == null || parser == null)
+            throw new RuntimeException("Parser has not been initialized");
+        
+        // parse the sentence to produce stanford Tree
+        log.debug("Parsing sentence");
+        Tree tree = null;
+        synchronized (parser) {
+            Tokenizer tokenizer = tlp.getTokenizerFactory().getTokenizer(new StringReader(sentence));
+            List<Word> words = tokenizer.tokenize();
+            log.debug("Tokenization: "+words);
+            parser.parse(new Sentence(words));
+            tree = parser.getBestParse();
+        }
+        
+        // label tree with character extents
+        //log.debug("Setting character extents");
+        //updateTreeLabels(tree, tree, new MutableInteger(), new MutableInteger(-1));
+        //log.debug("Creating offset mapping");
+        //List<RangeMap> mapping = createMapping(sentence);
+        //log.debug(mapping.toString());
+        //log.debug("Applying offset mapping");
+        //mapOffsets(tree, mapping);
+        
+        return tree;
+    }
 	
 	/**
 	 * Parses a sentence and returns the PCFG score as a confidence measure.

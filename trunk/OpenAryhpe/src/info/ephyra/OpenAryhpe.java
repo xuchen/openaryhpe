@@ -49,6 +49,9 @@ import info.ephyra.search.Result;
 import info.ephyra.search.Search;
 import info.ephyra.search.searchers.IndriKM;
 import info.ephyra.search.searchers.YahooKM;
+import info.ephyra.treeansweranalysis.TreeAnswerAnalyzer;
+import info.ephyra.treeansweranalysis.TreeAnswers;
+import info.ephyra.treeansweranalysis.UnmovableTreeMarker;
 
 import java.util.ArrayList;
 
@@ -233,6 +236,11 @@ public class OpenAryhpe {
 		if (!AnswerAnalyzer.loadPatterns(dir +
 				"res/patternlearning/answerpatternsTest/"))
 			MsgPrinter.printErrorMsg("Could not load answer patterns.");
+		
+		// load Tregex patterns for unmovable phrases 
+		MsgPrinter.printStatusMsg("Loading Tregex patterns for unmovable phrases...");
+		if (!UnmovableTreeMarker.loadUnmvRegex("res/nlp/treetransform/unmovable"))
+			MsgPrinter.printErrorMsg("Could not Tregex patterns for unmovable phrases.");		
 	}
 	
 	/**
@@ -352,6 +360,7 @@ public class OpenAryhpe {
 			// query the user for a question, quit if the user types in "exit"
 			MsgPrinter.printQuestionPrompt();
 			String question = readLine().trim();
+			if (question.length() == 0) continue;
 			if (question.equalsIgnoreCase("exit")) System.exit(0);
 			
 			// ask the question
@@ -367,12 +376,13 @@ public class OpenAryhpe {
 //				results = askFactoid(question, FACTOID_MAX_ANSWERS,
 //									 FACTOID_ABS_THRESH);
 				//AnalyzedQuestion aq = QuestionAnalysis.analyze(question);
-				Answers answers = new Answers(question);
-				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
+				TreeAnswers answers = new TreeAnswers(question);
+				TreeAnswerAnalyzer.analyze(answers);
+				//ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
 				//ArrayList<QuestionAnswerPair> qaPairList = QuestionGenerator.makeQApairs(ansList);
 				//ArrayList<QuestionAnswerPair> lessList = QuestionGenerator.shrinkByTo(qaPairList);
-				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
-				QuestionGenerator.printQAlist(qaPairList);
+				//ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
+				//QuestionGenerator.printQAlist(qaPairList);
 				//QuestionGenerator.generate(ansList);
 				Logger.logResults(results);
 				Logger.logFactoidEnd();
