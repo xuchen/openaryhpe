@@ -6,102 +6,58 @@ import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import edu.stanford.nlp.trees.Tree;
+
 import info.ephyra.answerselection.AnswerPattern;
 import info.ephyra.io.MsgPrinter;
 import info.ephyra.nlp.NETagger;
 import info.ephyra.nlp.OpenNLP;
 import info.ephyra.questionanalysis.Term;
+import info.ephyra.treequestiongeneration.QAPhrasePair;
 import info.ephyra.util.RegexConverter;
 import info.ephyra.util.StringUtils;
 
+// a class for an answer organized as a tree
 public class TreeAnswer {
-	
+	// the original answer sentence
 	private String sentence;
-	private String prop;
-	private String to;
-	private String po;
-	// Term for <TO>, containing more info, such as POS, NE
-	private Term toTerm = null;
-	// Term for <PO>, containing more info, such as POS, NE	
-	private Term poTerm = null;
-	private AnswerPattern pattern;
-
+	// all the terms this sentence contains
+	private Term[] terms = null;
+	// the tree structure of this sentence
+	private Tree tree = null;
+	// the tree structure marked with UNMV component
+	private Tree unmvTree = null;
+	// lists of possible qa phrase pairs
+	private ArrayList<QAPhrasePair> qaPhraseList = null;
 	
-	public TreeAnswer(String sentence, String prop, String to, String po, AnswerPattern pattern) {
-		this.sentence = sentence;
-		this.prop = prop;
-		this.to = to;
-		this.po = po;
-		this.pattern = pattern;
-	}
-
-	public TreeAnswer(String sentence, String prop, String to, Term toTerm, String po, Term poTerm, AnswerPattern pattern) {
-		this(sentence, prop, to, po, pattern);
-		this.toTerm = toTerm;
-		this.poTerm = poTerm;
-	
+	public TreeAnswer(String sent, Term[] terms, Tree tree) {
+		this.sentence = sent;
+		this.terms = terms;
+		this.tree = tree;
 	}
 	
+	public TreeAnswer(String sent, Term[] terms, Tree tree, Tree unmvTree) {
+		this(sent, terms, tree);
+		this.unmvTree = unmvTree;
+	}
+	
+	public void setQAPhraseList(ArrayList<QAPhrasePair> qaPhraseList) {
+		this.qaPhraseList = qaPhraseList;
+	}
+
 	public String getSentence() {
 		return sentence;
 	}
-
-	public void setSentence(String sentence) {
-		this.sentence = sentence;
-	}
-
-	public String getProp() {
-		return prop;
-	}
-
-	public void setProp(String prop) {
-		this.prop = prop;
-	}
-
-	public String getTo() {
-		return to;
-	}
-
-	public void setTo(String To) {
-		this.to = To;
-	}
-
-	public String getPo() {
-		return po;
-	}
-
-	public void setPo(String po) {
-		this.po = po;
-	}
-
-	public AnswerPattern getPattern() {
-		return pattern;
-	}
-
-	public void setPattern(AnswerPattern pattern) {
-		this.pattern = pattern;
+	
+	public Term[] getTerms() {
+		return terms;
 	}
 	
-	public Term getToTerm() {
-		return this.toTerm;
+	public Tree getUnmvTree() {
+		return unmvTree;
 	}
 	
-	public Term getPoTerm() {
-		return this.poTerm;
-	}
-	
-	public boolean equals(Object o)
-	{
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		final TreeAnswer p = (TreeAnswer) o;
-		if (this.po.equals(p.po) && this.prop.equals(p.prop)
-				&& this.sentence.equals(p.sentence) && this.to.equals(p.to)) {
-			return true;
-		} else {
-			return false;
-		}
+	public ArrayList<QAPhrasePair> getQAPhraseList() {
+		return qaPhraseList;
 	}
 }
