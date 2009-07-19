@@ -29,13 +29,14 @@ SBAR <, IN|DT < (S < (NP=unmv !$,, VP))
 @UNMV << NP|ADJP|VP|ADVP|PP=unmv
 
 # Any nodes under an otherwise movable phrase. This encodes the constraint that noun phrases are islands to movement.
-# too general?
-NP|PP|ADJP|ADVP << NP|ADJP|VP|ADVP|PP=unmv
+# too general? maybe we should remove PP from the list
+# NP|PP|ADJP|ADVP << NP|ADJP|VP|ADVP|PP=unmv
 
 # OPTIONAL #
 
 # Prepositional phrases that do not have a noun phrase object (e.g., on seeing an old friend).
-PP=unmv !< NP
+# This could also wrongly mark (e.g.1, on August 29, 1958, e.g.2, in Gary, Indiana)
+#PP=unmv !< NP
 
 # Both of a pair of noun phrases that are siblings in the tree (e.g., to avoid *Who did John give a book? from John gave Mary a book.).
 S < (NP=unmv $ NP|UNMV-NP)

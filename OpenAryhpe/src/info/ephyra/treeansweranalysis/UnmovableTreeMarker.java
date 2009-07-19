@@ -12,8 +12,8 @@ import java.util.Iterator;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
-import edu.stanford.nlp.trees.tregex.tsurgeon.Tsurgeon;
-import edu.stanford.nlp.trees.tregex.tsurgeon.TsurgeonPattern;
+//import edu.stanford.nlp.trees.tregex.tsurgeon.Tsurgeon;
+//import edu.stanford.nlp.trees.tregex.tsurgeon.TsurgeonPattern;
 
 // this class marks phrases which may not undergo WH-movement
 public class UnmovableTreeMarker {
@@ -84,6 +84,7 @@ public class UnmovableTreeMarker {
 		
 			tregexMatcher = tregexPattern.matcher(outTree); 
 			while (tregexMatcher.find()) {
+				MsgPrinter.printStatusMsg("UNMV: "+tregexPattern.toString());
 				Tree matchedTreeWithName = tregexMatcher.getNode("unmv");
 				// get the matched root label
 				lab = matchedTreeWithName.label().toString();

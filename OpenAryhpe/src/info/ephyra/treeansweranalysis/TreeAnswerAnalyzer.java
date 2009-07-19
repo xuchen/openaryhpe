@@ -6,6 +6,8 @@ import info.ephyra.io.MsgPrinter;
 import info.ephyra.nlp.NETagger;
 import info.ephyra.nlp.OpenNLP;
 import info.ephyra.questionanalysis.Term;
+import info.ephyra.treequestiongeneration.QAPhraseGenerator;
+import info.ephyra.treequestiongeneration.QAPhrasePair;
 import info.ephyra.util.Dictionary;
 import info.ephyra.util.FileUtils;
 import info.ephyra.util.RegexConverter;
@@ -16,14 +18,19 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import edu.stanford.nlp.ling.Label;
+import edu.stanford.nlp.ling.LabeledWord;
+import edu.stanford.nlp.trees.CollinsHeadFinder;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
@@ -48,8 +55,8 @@ public class TreeAnswerAnalyzer {
 	/** <code>Dictionaries</code> for term extraction. */
 	private static ArrayList<Dictionary> dicts = new ArrayList<Dictionary>();
 	
-	public static ArrayList<Answer> analyze (TreeAnswers ans) {
-		ArrayList<Answer> answerList = new ArrayList<Answer>();
+	public static ArrayList<TreeAnswer> analyze (TreeAnswers ans) {
+		ArrayList<TreeAnswer> answerList = new ArrayList<TreeAnswer>();
 		extr = new ArrayList<String>();
 		types = new ArrayList<String[]>();
 		sents = new ArrayList<String>();
@@ -67,9 +74,14 @@ public class TreeAnswerAnalyzer {
 		
 		if (terms == null) return null;
 		for (int i=0; i<sentences.length; i++) {
-			String sent = sentences[i];
-			Tree tree = trees[i];
-			Tree outTree = UnmovableTreeMarker.mark(tree);
+			Tree unmvMarkedTree = UnmovableTreeMarker.mark(trees[i]);
+			TreeAnswer treeAnswer = new TreeAnswer(sentences[i], terms[i], trees[i], unmvMarkedTree);
+			ArrayList<QAPhrasePair> pPairList = QAPhraseGenerator.generate(treeAnswer);
+			if (pPairList != null) {
+				treeAnswer.setQAPhraseList(pPairList);
+				answerList.add(treeAnswer);
+			}
+
 		}
 
 		return answerList;
