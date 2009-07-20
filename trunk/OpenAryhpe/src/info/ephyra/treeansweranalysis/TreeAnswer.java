@@ -27,6 +27,10 @@ public class TreeAnswer {
 	private Tree tree = null;
 	// the tree structure marked with UNMV component
 	private Tree unmvTree = null;
+	// the tree with inserted auxiliary
+	private Tree auxTree = null;
+	// the tree with auxiliary inversion
+	private Tree invTree = null;
 	// lists of possible qa phrase pairs
 	private ArrayList<QAPhrasePair> qaPhraseList = null;
 	
@@ -59,6 +63,14 @@ public class TreeAnswer {
 
 	public Tree getTree() {
 		return tree;
+	}
+	
+	public void setAuxTree (Tree tree) {
+		auxTree = tree;
+	}
+	
+	public void setInvTree (Tree tree) {
+		invTree = tree;
 	}
 	
 	public ArrayList<QAPhrasePair> getQAPhraseList() {
