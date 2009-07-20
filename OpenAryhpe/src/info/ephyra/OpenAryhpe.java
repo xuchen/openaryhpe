@@ -49,6 +49,7 @@ import info.ephyra.search.Result;
 import info.ephyra.search.Search;
 import info.ephyra.search.searchers.IndriKM;
 import info.ephyra.search.searchers.YahooKM;
+import info.ephyra.treeansweranalysis.TreeAnswer;
 import info.ephyra.treeansweranalysis.TreeAnswerAnalyzer;
 import info.ephyra.treeansweranalysis.TreeAnswers;
 import info.ephyra.treeansweranalysis.UnmovableTreeMarker;
@@ -387,7 +388,7 @@ public class OpenAryhpe {
 //									 FACTOID_ABS_THRESH);
 				//AnalyzedQuestion aq = QuestionAnalysis.analyze(question);
 				TreeAnswers answers = new TreeAnswers(question);
-				TreeAnswerAnalyzer.analyze(answers);
+				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(answers);
 				//ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
 				//ArrayList<QuestionAnswerPair> qaPairList = QuestionGenerator.makeQApairs(ansList);
 				//ArrayList<QuestionAnswerPair> lessList = QuestionGenerator.shrinkByTo(qaPairList);

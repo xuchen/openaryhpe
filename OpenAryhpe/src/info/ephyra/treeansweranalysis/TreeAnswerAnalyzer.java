@@ -75,15 +75,17 @@ public class TreeAnswerAnalyzer {
 		
 		if (terms == null) return null;
 		for (int i=0; i<sentences.length; i++) {
+			// mark unmovable structures
 			Tree unmvMarkedTree = UnmovableTreeMarker.mark(trees[i]);
 			TreeAnswer treeAnswer = new TreeAnswer(sentences[i], terms[i], trees[i], unmvMarkedTree);
+			// generate qa phrase pair
 			ArrayList<QAPhrasePair> pPairList = QAPhraseGenerator.generate(treeAnswer);
-			VerbDecomposer.decompose(treeAnswer);
 			if (pPairList != null) {
 				treeAnswer.setQAPhraseList(pPairList);
 				answerList.add(treeAnswer);
 			}
-
+			// decompose the main verb
+			VerbDecomposer.decompose(treeAnswer);
 		}
 
 		return answerList;
