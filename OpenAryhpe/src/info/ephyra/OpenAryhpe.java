@@ -52,6 +52,7 @@ import info.ephyra.search.searchers.YahooKM;
 import info.ephyra.treeansweranalysis.TreeAnswerAnalyzer;
 import info.ephyra.treeansweranalysis.TreeAnswers;
 import info.ephyra.treeansweranalysis.UnmovableTreeMarker;
+import info.ephyra.treequestiongeneration.VerbDecomposer;
 
 import java.util.ArrayList;
 
@@ -240,7 +241,16 @@ public class OpenAryhpe {
 		// load Tregex patterns for unmovable phrases 
 		MsgPrinter.printStatusMsg("Loading Tregex patterns for unmovable phrases...");
 		if (!UnmovableTreeMarker.loadUnmvRegex("res/nlp/treetransform/unmovable"))
-			MsgPrinter.printErrorMsg("Could not Tregex patterns for unmovable phrases.");		
+			MsgPrinter.printErrorMsg("Could not Tregex patterns for unmovable phrases.");
+		
+		// Initialize VerbDecomposer 
+		MsgPrinter.printStatusMsg("Initialize VerbDecomposer...");
+		if (!VerbDecomposer.initialize()) {
+			MsgPrinter.printErrorMsg("failed.");
+			System.exit(-1);
+		}
+		else
+			MsgPrinter.printStatusMsg("Done");
 	}
 	
 	/**
