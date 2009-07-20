@@ -8,6 +8,7 @@ import info.ephyra.nlp.OpenNLP;
 import info.ephyra.questionanalysis.Term;
 import info.ephyra.treequestiongeneration.QAPhraseGenerator;
 import info.ephyra.treequestiongeneration.QAPhrasePair;
+import info.ephyra.treequestiongeneration.VerbDecomposer;
 import info.ephyra.util.Dictionary;
 import info.ephyra.util.FileUtils;
 import info.ephyra.util.RegexConverter;
@@ -77,6 +78,7 @@ public class TreeAnswerAnalyzer {
 			Tree unmvMarkedTree = UnmovableTreeMarker.mark(trees[i]);
 			TreeAnswer treeAnswer = new TreeAnswer(sentences[i], terms[i], trees[i], unmvMarkedTree);
 			ArrayList<QAPhrasePair> pPairList = QAPhraseGenerator.generate(treeAnswer);
+			VerbDecomposer.decompose(treeAnswer);
 			if (pPairList != null) {
 				treeAnswer.setQAPhraseList(pPairList);
 				answerList.add(treeAnswer);

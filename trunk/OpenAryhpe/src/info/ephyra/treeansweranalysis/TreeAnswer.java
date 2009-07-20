@@ -56,6 +56,10 @@ public class TreeAnswer {
 	public Tree getUnmvTree() {
 		return unmvTree;
 	}
+
+	public Tree getTree() {
+		return tree;
+	}
 	
 	public ArrayList<QAPhrasePair> getQAPhraseList() {
 		return qaPhraseList;
