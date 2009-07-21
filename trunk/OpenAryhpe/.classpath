@@ -9,7 +9,6 @@
 	<classpathentry kind="lib" path="lib/nlp/plingstemmer.jar"/>
 	<classpathentry kind="lib" path="lib/nlp/snowball.jar"/>
 	<classpathentry kind="lib" path="lib/nlp/stanford-ner.jar"/>
-	<classpathentry kind="lib" path="lib/nlp/stanford-parser.jar"/>
 	<classpathentry kind="lib" path="lib/nlp/stanford-postagger.jar"/>
 	<classpathentry kind="lib" path="lib/qa/javelin.jar"/>
 	<classpathentry kind="lib" path="lib/search/googleapi.jar"/>
@@ -20,6 +19,7 @@
 	<classpathentry kind="lib" path="lib/util/log4j.jar"/>
 	<classpathentry kind="lib" path="lib/util/trove.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/nlp/stanford-parser.jar"/>
 	<classpathentry kind="lib" path="lib/nlp/stanford-tregex-2008-05-08.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,9 +24,13 @@ import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.Word;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.process.Tokenizer;
+import edu.stanford.nlp.trees.GrammaticalRelation;
+import edu.stanford.nlp.trees.GrammaticalStructure;
+import edu.stanford.nlp.trees.GrammaticalStructureFactory;
 import edu.stanford.nlp.trees.PennTreebankLanguagePack;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreebankLanguagePack;
+import edu.stanford.nlp.trees.TypedDependency;
 
 /**
  * Wrapper for the Stanford parser.
@@ -42,7 +48,7 @@ public class StanfordParser
 
     public static final String BEGIN_KEY = "begin";
     public static final String END_KEY = "end";
-    
+
     protected static class MutableInteger {
         public int value;
         public MutableInteger() { value = 0; }
@@ -54,7 +60,8 @@ public class StanfordParser
 
     protected static TreebankLanguagePack tlp = null;
     protected static LexicalizedParser parser = null;
-
+    protected static GrammaticalStructureFactory gsf = null;
+    
     /**
      * Hide default ctor.
      */
@@ -70,6 +77,7 @@ public class StanfordParser
         if (parser != null) return;
         Properties properties = Properties.loadFromClassName(StanfordParser.class.getName());
         tlp = new PennTreebankLanguagePack();
+        gsf = tlp.grammaticalStructureFactory();
         String modelFile = properties.getProperty("modelFile");
         if (modelFile == null)
             throw new Exception("Required property '" 
@@ -160,6 +168,23 @@ public class StanfordParser
         return tree;
     }
 	
+	// TODO: written in a hurry, need to return a list?
+	public static String getSubject(Tree parse) {
+		GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
+		Collection<TypedDependency> tdl = gs.typedDependenciesCollapsed();
+		Iterator<TypedDependency> ite = tdl.iterator();
+		TypedDependency t;
+		String sub=null;
+		while (ite.hasNext()) {
+			t = ite.next();
+			if (t.reln().getShortName().equals("nsubj")) {
+				sub = t.dep().toString();
+				sub = sub.replaceAll("-\\d+$", "");
+				break;
+			};
+		}
+		return sub;
+	}
 	/**
 	 * Parses a sentence and returns the PCFG score as a confidence measure.
 	 * 
@@ -184,7 +209,8 @@ public class StanfordParser
         
         return score;
 	}
-    
+
+
     protected static void updateTreeLabels(Tree root, Tree tree, MutableInteger offset, MutableInteger leafIndex)
     {
         if (tree.isLeaf()) {

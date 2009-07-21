@@ -53,9 +53,11 @@ import info.ephyra.treeansweranalysis.TreeAnswer;
 import info.ephyra.treeansweranalysis.TreeAnswerAnalyzer;
 import info.ephyra.treeansweranalysis.TreeAnswers;
 import info.ephyra.treeansweranalysis.UnmovableTreeMarker;
+import info.ephyra.treequestiongeneration.TreeQuestionGenerator;
 import info.ephyra.treequestiongeneration.VerbDecomposer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * <code>OpenAryhpe</code> is an open framework for question generation (QG).
@@ -163,7 +165,7 @@ public class OpenAryhpe {
 		try {
 			StanfordParser.initialize();
 		} catch (Exception e) {
-			MsgPrinter.printErrorMsg("Could not create Stanford parser.");
+			MsgPrinter.printErrorMsg("Could not create Stanford parser."+e.toString());
 		}
 		
 		// create named entity taggers
@@ -389,6 +391,11 @@ public class OpenAryhpe {
 				//AnalyzedQuestion aq = QuestionAnalysis.analyze(question);
 				TreeAnswers answers = new TreeAnswers(question);
 				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(answers);
+				Iterator<TreeAnswer> tAnsIter = treeAnsList.iterator();
+				while (tAnsIter.hasNext()) {
+					TreeAnswer treeAnswer = tAnsIter.next();
+					TreeQuestionGenerator.generate(treeAnswer);
+				}
 				//ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
 				//ArrayList<QuestionAnswerPair> qaPairList = QuestionGenerator.makeQApairs(ansList);
 				//ArrayList<QuestionAnswerPair> lessList = QuestionGenerator.shrinkByTo(qaPairList);
