@@ -45,6 +45,7 @@ public class TreeQuestionGenerator {
 			}
 			// remove the punctuation at the end and append with a question mark
 			quesSent = quesSent.replaceAll("(\\.|\\?|!)$", "").trim()+"?";
+			quesSent = quesSent.replaceAll("\\s{2,}", " ");
 			pPair.setQuesSentence(quesSent);
 			// generate another y/n question here, which should be invSent with the first capitalized
 			//TODO: post-processing here

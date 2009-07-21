@@ -29,7 +29,7 @@ public class QAPhraseGenerator {
 		Term[] terms = treeAnswer.getTerms();
 		// only deal with NP now
 		// TODO: PP
-		String tregex = "NP";
+		String tregex = "NP !> PP";
 		TregexPattern tPattern = null;
 		// TODO: consider SemanticHeadFinder
 		CollinsHeadFinder headFinder = new CollinsHeadFinder();
@@ -51,19 +51,9 @@ public class QAPhraseGenerator {
 			Tree npHeadTree = headFinder.determineHead(npTree);
 			
 			// find out the lexical labels
-			List<LabeledWord> labelNPWord = npTree.labeledYield();
-			List<LabeledWord> labelNPheadWord = npHeadTree.labeledYield();
+			String npWord = getTightLabel(npTree);
+			String npHeadWord = getTightLabel(npHeadTree);
 			
-			String npWord = "";
-			String npHeadWord = "";
-			Iterator<LabeledWord> npIter = labelNPWord.iterator();
-			while (npIter.hasNext()) {
-				npWord += npIter.next().value();
-			}
-			Iterator<LabeledWord> headIter = labelNPheadWord.iterator();
-			while (headIter.hasNext()) {
-				npHeadWord += headIter.next().value();
-			}
 			Tree termNPtree = null;
 			String ansPhrase = "";
 			Term ansTerm = null;
@@ -98,7 +88,66 @@ public class QAPhraseGenerator {
 			}
 		}
 		
-		
+		tregex = "PP=pp < IN=in < NP=np";
+
+		try {
+			tPattern = TregexPattern.compile(tregex);
+		} catch (edu.stanford.nlp.trees.tregex.ParseException e) {
+			MsgPrinter.printErrorMsg("Error parsing regex pattern.");
+		}
+		tregexMatcher = tPattern.matcher(tree);
+		while (tregexMatcher.find()) {
+			Tree ppTree = tregexMatcher.getNode("pp");
+			Tree inTree = tregexMatcher.getNode("in");
+			Tree npTree = tregexMatcher.getNode("np");
+			
+			// unmovable phrases can't construct WH-movement
+			String checkUnmv = ppTree.labels().toString();
+			if (checkUnmv.contains("UNMV-")) {
+				continue;
+			}
+			
+			Tree npHeadTree = headFinder.determineHead(npTree);
+			
+			// find out the lexical labels
+			String ppWord = getTightLabel(ppTree);
+			String inWord = getTightLabel(inTree);
+			String npWord = getTightLabel(npTree);
+			String npHeadWord = getTightLabel(npHeadTree);
+
+			Tree termNPtree = null;
+			String ansPhrase = "";
+			Term ansTerm = null;
+			// if either npWord or npHeadWord is a term with a NE type
+			for (Term term:terms) {
+				if (term.getNeTypes().length == 0) continue;
+				String termStr = term.getText().replaceAll("\\s+", "");
+				if(termStr.equals(npWord)) {
+					termNPtree = npTree;
+					ansPhrase = inWord + " " + term.getText().toString();
+					ansTerm = term;
+					break;
+				}
+				if(termStr.equals(npHeadWord)) {
+					termNPtree = npHeadTree;
+					ansPhrase = inWord + " " + term.getText().toString();
+					ansTerm = term;
+					break;
+				}
+			}
+			// then put it as an answer candidate
+			if (termNPtree != null) {
+				// construct QAphrasePair
+				QAPhrasePair pair = new QAPhrasePair(inWord, ansPhrase, termNPtree, ansTerm);
+				// TODO: return multiple question types here
+				String qType = determineQuesType(pair);
+				pair.setQuesType(qType);
+				String qPhrase = constructQuesPhrase(pair);
+				pair.setQuesPhrase(qPhrase);
+				// add to qaList
+				qaList.add(pair);
+			}
+		}
 		// the following tries to find out NPs that match terms
 		// this constraint is too tight and thus discarded
 //		// each term of the i-th sentence
@@ -134,6 +183,18 @@ public class QAPhraseGenerator {
 		return qaList;
 	}
 	
+	// return the label of a tree, without any spaces
+	private static String getTightLabel(Tree tree) {
+		List<LabeledWord> labelList = tree.labeledYield();
+		
+		String label = "";
+		Iterator<LabeledWord> labelIter = labelList.iterator();
+		while (labelIter.hasNext()) {
+			label += labelIter.next().value();
+		}
+		
+		return label;
+	}
 	// given a QA phrase pair, determine what kind of questions can be asked
 	// TODO: add more QA types according to other NE tagger (currently only Stanford is used)
 	private static String determineQuesType(QAPhrasePair pair) {
