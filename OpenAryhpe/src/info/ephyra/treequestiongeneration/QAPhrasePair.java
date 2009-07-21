@@ -63,4 +63,8 @@ public class QAPhrasePair {
 	public void setQuesSentence(String quesSentence) {
 		this.quesSentence = quesSentence;
 	}
+	
+	public String getQuesSentence() {
+		return this.quesSentence;
+	}
 }

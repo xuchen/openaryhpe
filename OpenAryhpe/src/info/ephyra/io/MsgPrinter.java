@@ -452,4 +452,16 @@ public class MsgPrinter {
 			logWriter = null;
 		}
 	}
+	
+	/** flush system.out
+	 */
+	public static void flushStatus() {
+		System.out.flush();
+	}
+	
+	/** flush system.err
+	 */
+	public static void flushErr() {
+		System.err.flush();
+	}
 }
