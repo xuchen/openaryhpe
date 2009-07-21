@@ -3,9 +3,12 @@ package info.ephyra.treeansweranalysis;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import edu.stanford.nlp.ling.LabeledWord;
 import edu.stanford.nlp.trees.Tree;
 
 import info.ephyra.answerselection.AnswerPattern;
@@ -21,6 +24,8 @@ import info.ephyra.util.StringUtils;
 public class TreeAnswer {
 	// the original answer sentence
 	private String sentence;
+	// the subject phrase
+	private String subject = null;
 	// all the terms this sentence contains
 	private Term[] terms = null;
 	// the tree structure of this sentence
@@ -29,6 +34,10 @@ public class TreeAnswer {
 	private Tree unmvTree = null;
 	// the tree with inserted auxiliary
 	private Tree auxTree = null;
+	// the sentence of auxTree
+	private String auxSentence = "";
+	// the sentence of invTree
+	private String invSentence = "";
 	// the tree with auxiliary inversion
 	private Tree invTree = null;
 	// lists of possible qa phrase pairs
@@ -73,7 +82,54 @@ public class TreeAnswer {
 		invTree = tree;
 	}
 	
+	public Tree getAuxTree () {
+		return auxTree;
+	}
+	
+	public Tree getInvTree() {
+		return invTree;
+	}
+	
 	public ArrayList<QAPhrasePair> getQAPhraseList() {
 		return qaPhraseList;
+	}
+	
+	public void setAuxSentence(String auxSent) {
+		this.auxSentence = auxSent;
+	}
+	
+	public void setInvSentence(String invSent) {
+		this.invSentence = invSent;
+	}
+	
+	public String getAuxSentence() {
+		return this.auxSentence;
+	}
+	
+	public String getInvSentence() {
+		return this.invSentence;
+	}
+	
+	public String getSubject() {
+		return this.subject;
+	}
+	
+	public void setSubject(String sub) {
+		this.subject = sub;
+	}
+	
+	// return the sentence the tree contains, concatenate with spaces
+	// I know it's weird to put this method here...
+	public static String getSentFromTree(Tree tree) {
+		if (tree == null) return null;
+		String sent = "";
+		// find out the lexical labels
+		List<LabeledWord> labelWord = tree.labeledYield();
+				
+		Iterator<LabeledWord> npIter = labelWord.iterator();
+		while (npIter.hasNext()) {
+			sent += npIter.next().value()+" ";
+		}
+		return sent.trim();
 	}
 }

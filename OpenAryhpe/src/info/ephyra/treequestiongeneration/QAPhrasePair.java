@@ -10,6 +10,8 @@ public class QAPhrasePair {
 	private String quesPhrase;
 	// answer phrase
 	private String ansPhrase;
+	// the whole question sentence
+	private String quesSentence;
 	// the tree containing the answer phrase
 	private Tree ansTree;
 	// term for the answer phrase
@@ -56,5 +58,9 @@ public class QAPhrasePair {
 
 	public void setQuesPhrase(String qPhrase) {
 		this.quesPhrase = qPhrase;
+	}
+	
+	public void setQuesSentence(String quesSentence) {
+		this.quesSentence = quesSentence;
 	}
 }

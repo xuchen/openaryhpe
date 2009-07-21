@@ -1,6 +1,7 @@
 package info.ephyra.treequestiongeneration;
 
 import info.ephyra.io.MsgPrinter;
+import info.ephyra.nlp.StanfordParser;
 import info.ephyra.questionanalysis.Term;
 import info.ephyra.treeansweranalysis.TreeAnswer;
 
@@ -23,6 +24,8 @@ public class QAPhraseGenerator {
 		ArrayList<QAPhrasePair> qaList = new ArrayList<QAPhrasePair>();
 		
 		Tree tree = treeAnswer.getUnmvTree();
+		Tree t = treeAnswer.getTree();
+		treeAnswer.setSubject(StanfordParser.getSubject(t));
 		Term[] terms = treeAnswer.getTerms();
 		// only deal with NP now
 		// TODO: PP

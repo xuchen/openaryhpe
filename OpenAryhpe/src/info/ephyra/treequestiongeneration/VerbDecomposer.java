@@ -1,8 +1,12 @@
 package info.ephyra.treequestiongeneration;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import edu.stanford.nlp.ling.LabeledWord;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
@@ -214,11 +218,14 @@ public class VerbDecomposer {
 		
 		treeAnswer.setAuxTree(auxiliarizedTree);
 		treeAnswer.setInvTree(invertedTree);
+		treeAnswer.setAuxSentence(TreeAnswer.getSentFromTree(auxiliarizedTree));
+		treeAnswer.setInvSentence(TreeAnswer.getSentFromTree(invertedTree));
 		//log.debug(auxiliarizedTree.toString());
 		//log.debug(invertedTree.toString());
-		System.out.println(auxiliarizedTree.toString());
-		System.out.println(invertedTree.toString());
+		//System.out.println(auxiliarizedTree.toString());
+		//System.out.println(invertedTree.toString());
 		return;
 	}
+
 
 }
