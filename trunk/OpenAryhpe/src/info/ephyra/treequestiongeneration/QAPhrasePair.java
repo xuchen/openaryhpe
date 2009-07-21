@@ -12,6 +12,8 @@ public class QAPhrasePair {
 	private String ansPhrase;
 	// the whole question sentence
 	private String quesSentence;
+	// preposition/subordinating conjunction in a PP
+	private String inPhrase;
 	// the tree containing the answer phrase
 	private Tree ansTree;
 	// term for the answer phrase
@@ -21,15 +23,21 @@ public class QAPhrasePair {
 		this.ansPhrase = ansPhrase;
 		this.ansTree = ansTree;
 		this.ansTerm = ansTerm;
+		this.inPhrase = "";
+	}
+	
+	public QAPhrasePair(String inPhrase, String ansPhrase, Tree ansTree, Term ansTerm) {
+		this.ansPhrase = ansPhrase;
+		this.ansTree = ansTree;
+		this.ansTerm = ansTerm;
+		this.inPhrase = inPhrase;
 	}
 	
 	public QAPhrasePair(String quesType, String quesPhrase, 
 			String ansPhrase, Tree ansTree, Term ansTerm) {
+		this(ansPhrase, ansTree, ansTerm);
 		this.quesType = quesType;
 		this.quesPhrase = quesPhrase;
-		this.ansPhrase = ansPhrase;
-		this.ansTree = ansTree;
-		this.ansTerm = ansTerm;
 	}
 	
 	public String getQuesType() {
@@ -66,5 +74,17 @@ public class QAPhrasePair {
 	
 	public String getQuesSentence() {
 		return this.quesSentence;
+	}
+	
+	public String getInPhrase() {
+		return this.inPhrase;
+	}
+	
+	// whether the answer phrase is a PP
+	public boolean isPP() {
+		if (this.inPhrase.length()!=0)
+			return true;
+		else
+			return false;
 	}
 }
