@@ -396,6 +396,7 @@ public class OpenAryhpe {
 					TreeAnswer treeAnswer = tAnsIter.next();
 					TreeQuestionGenerator.generate(treeAnswer);
 				}
+				TreeQuestionGenerator.print(treeAnsList);
 				//ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
 				//ArrayList<QuestionAnswerPair> qaPairList = QuestionGenerator.makeQApairs(ansList);
 				//ArrayList<QuestionAnswerPair> lessList = QuestionGenerator.shrinkByTo(qaPairList);
