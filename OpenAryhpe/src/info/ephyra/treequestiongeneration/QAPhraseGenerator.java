@@ -122,6 +122,7 @@ public class QAPhraseGenerator {
 			String ansPhrase = "";
 			Term ansTerm = null;
 			// if either npWord or npHeadWord is a term with a NE type
+			// TODO: maybe we should trace back to the root PP phrase and let it be the ansPhrase
 			for (Term term:terms) {
 				if (term.getNeTypes().length == 0) continue;
 				String termStr = term.getText().replaceAll("\\s+", "");
@@ -211,11 +212,11 @@ public class QAPhraseGenerator {
 		String qPhrase = "";
 		String qType = pair.getQuesType();
 		if (qType.equals("WHO")) {
-			qPhrase = "Who";
+			qPhrase = "who";
 		} else if (qType.equals("WHERE")) {
-			qPhrase = "Where";
+			qPhrase = "where";
 		} else if (qType.equals("WHEN")) {
-			qPhrase = "When";
+			qPhrase = "when";
 		}
 		
 		return qPhrase;

@@ -41,10 +41,11 @@ public class TreeQuestionGenerator {
 					// answer phrase is the subject
 					quesSent = idxSent.replaceFirst(subject, quesPhrase);
 				} else {
-					quesSent = quesPhrase+" "+invSent.replaceFirst(OpenNLP.tokenizeWithSpaces(ansPhrase), "");
+					quesSent = invSent.replaceFirst(OpenNLP.tokenizeWithSpaces(ansPhrase), "");
+					quesSent = quesSent.replaceFirst("<quesPhrase>", quesPhrase);
 				}
 			} else {
-				quesSent = invSent.substring(0,1).toUpperCase() + invSent.substring(1);
+				quesSent = invSent;
 			}
 			// remove the index
 			quesSent = quesSent.replaceAll("-\\d+\\b", "");
@@ -52,6 +53,7 @@ public class TreeQuestionGenerator {
 			quesSent = quesSent.replaceAll("(\\.|\\?|!)$", "").trim()+"?";
 			// remove extra spaces
 			quesSent = quesSent.replaceAll("\\s{2,}", " ");
+			quesSent = quesSent.substring(0,1).toUpperCase() + quesSent.substring(1);
 			pPair.setQuesSentence(quesSent);
 			// generate another y/n question here, which should be invSent with the first capitalized
 			//TODO: post-processing here
