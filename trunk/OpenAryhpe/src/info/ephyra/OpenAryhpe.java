@@ -74,6 +74,8 @@ public class OpenAryhpe {
 	protected static final float FACTOID_ABS_THRESH = 0;
 	/** Relative threshold for list question scores (fraction of top score). */
 	protected static final float LIST_REL_THRESH = 0.1f;
+	/** Apache logger */
+	private static org.apache.log4j.Logger log;
 	
 	/** Serialized classifier for score normalization. */
 	public static final String NORMALIZER =
@@ -101,10 +103,6 @@ public class OpenAryhpe {
 		//Logger.setLogfile("log/OpenEphyra");
 		Logger.enableLogging(false);
 		
-		// get logging working
-		PropertyConfigurator.configure("conf/log4j.properties");
-		org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(OpenAryhpe.class);
-		log.info("OpenAryhpe started at "+MsgPrinter.getTimestamp());
 		// initialize Ephyra and start command line interface
 		(new OpenAryhpe()).commandLine();
 	}
@@ -127,6 +125,11 @@ public class OpenAryhpe {
 	 */
 	public OpenAryhpe(String dir) {
 		this.dir = dir;
+		
+		// get logging working
+		PropertyConfigurator.configure("conf/log4j.properties");
+		log = org.apache.log4j.Logger.getLogger(OpenAryhpe.class);
+		log.info("OpenAryhpe started at "+MsgPrinter.getTimestamp());
 		
 		MsgPrinter.printInitializing();
 		
@@ -380,7 +383,10 @@ public class OpenAryhpe {
 			MsgPrinter.printQuestionPrompt();
 			String question = readLine().trim();
 			if (question.length() == 0) continue;
-			if (question.equalsIgnoreCase("exit")) System.exit(0);
+			if (question.equalsIgnoreCase("exit")) {
+				log.info("OpenAryhpe ended at "+MsgPrinter.getTimestamp());
+				System.exit(0);
+			}
 			
 			// ask the question
 			Result[] results = new Result[0];

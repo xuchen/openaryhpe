@@ -7,6 +7,7 @@ import edu.stanford.nlp.trees.Tree;
 
 import info.ephyra.io.MsgPrinter;
 import info.ephyra.nlp.OpenNLP;
+import info.ephyra.nlp.TreeUtil;
 import info.ephyra.questionanalysis.Term;
 import info.ephyra.treeansweranalysis.TreeAnswer;
 
@@ -16,15 +17,17 @@ public class TreeQuestionGenerator {
 	public static void generate(TreeAnswer treeAnswer) {
 		ArrayList<QAPhrasePair> qaPhraseList = treeAnswer.getQAPhraseList();
 		QAPhrasePair pPair;
-		Tree ansTree, auxTree, invTree;
+		Tree ansTree, auxTree, invTree, sentTree;
 		Term ansTerm;
-		String ansPhrase, quesPhrase, quesSent, auxSent, invSent, subject, oriSent;
+		String ansPhrase, quesPhrase, quesSent, auxSent, invSent, subject, oriSent, idxSent;
 		auxTree = treeAnswer.getAuxTree();
 		invTree = treeAnswer.getInvTree();
 		auxSent = treeAnswer.getAuxSentence();
 		invSent = treeAnswer.getInvSentence();
 		subject = treeAnswer.getSubject();
 		oriSent = treeAnswer.getSentence();
+		sentTree = treeAnswer.getTree();
+		idxSent = TreeUtil.getLabel(sentTree);
 		Iterator<QAPhrasePair> iter = qaPhraseList.iterator();
 		while (iter.hasNext()) {
 			pPair = iter.next();
@@ -36,15 +39,18 @@ public class TreeQuestionGenerator {
 			if (!pPair.getQuesType().equals("Y/N")) {
 				if (ansPhrase.equals(subject)) {
 					// answer phrase is the subject
-					quesSent = oriSent.replaceFirst(subject, quesPhrase);
+					quesSent = idxSent.replaceFirst(subject, quesPhrase);
 				} else {
 					quesSent = quesPhrase+" "+invSent.replaceFirst(OpenNLP.tokenizeWithSpaces(ansPhrase), "");
 				}
 			} else {
 				quesSent = invSent.substring(0,1).toUpperCase() + invSent.substring(1);
 			}
+			// remove the index
+			quesSent = quesSent.replaceAll("-\\d+\\b", "");
 			// remove the punctuation at the end and append with a question mark
 			quesSent = quesSent.replaceAll("(\\.|\\?|!)$", "").trim()+"?";
+			// remove extra spaces
 			quesSent = quesSent.replaceAll("\\s{2,}", " ");
 			pPair.setQuesSentence(quesSent);
 			// generate another y/n question here, which should be invSent with the first capitalized
@@ -73,7 +79,7 @@ public class TreeQuestionGenerator {
 				pPair = pPairIter.next();
 				MsgPrinter.printStatusMsg("\t"+quesCount+". Q type: "+pPair.getQuesType());
 				MsgPrinter.printStatusMsg("\t\tQuestion:"+pPair.getQuesSentence());
-				MsgPrinter.printStatusMsg("\t\tAnswer:"+pPair.getAnsPhrase());
+				MsgPrinter.printStatusMsg("\t\tAnswer:"+pPair.getAnsPhrase().replaceAll("-\\d+\\b", ""));
 			}
 			
 		}
