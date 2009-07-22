@@ -12,6 +12,7 @@ import info.ephyra.io.MsgPrinter;
 import info.ephyra.nlp.NETagger;
 import info.ephyra.nlp.OpenNLP;
 import info.ephyra.nlp.StanfordParser;
+import info.ephyra.nlp.TreeUtil;
 import info.ephyra.questionanalysis.QuestionNormalizer;
 import info.ephyra.questionanalysis.Term;
 import info.ephyra.questionanalysis.TermExtractor;
@@ -76,6 +77,8 @@ public class TreeAnswers {
 			tokens[i] = NETagger.tokenize(this.originalSentences[i]);
 			//parses[i] = StanfordParser.parse(this.originalSentences[i]);
 			trees[i] = StanfordParser.parseTree(this.originalSentences[i]);
+			//give every leave a unique index
+			trees[i] = TreeUtil.indexLeaves(trees[i]);
 			sentences[i] = StringUtils.concatWithSpaces(this.tokens[i]);
 		}
 		this.terms = new Term[this.countOfSents][];

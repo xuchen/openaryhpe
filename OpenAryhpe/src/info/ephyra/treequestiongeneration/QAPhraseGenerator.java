@@ -2,6 +2,7 @@ package info.ephyra.treequestiongeneration;
 
 import info.ephyra.io.MsgPrinter;
 import info.ephyra.nlp.StanfordParser;
+import info.ephyra.nlp.TreeUtil;
 import info.ephyra.questionanalysis.Term;
 import info.ephyra.treeansweranalysis.TreeAnswer;
 
@@ -27,8 +28,8 @@ public class QAPhraseGenerator {
 		Tree t = treeAnswer.getTree();
 		treeAnswer.setSubject(StanfordParser.getSubject(t));
 		Term[] terms = treeAnswer.getTerms();
-		// only deal with NP now
-		// TODO: PP
+		
+		// first deal with NP who's not under a PP
 		String tregex = "NP !> PP";
 		TregexPattern tPattern = null;
 		// TODO: consider SemanticHeadFinder
@@ -51,8 +52,8 @@ public class QAPhraseGenerator {
 			Tree npHeadTree = headFinder.determineHead(npTree);
 			
 			// find out the lexical labels
-			String npWord = getTightLabel(npTree);
-			String npHeadWord = getTightLabel(npHeadTree);
+			String npWord = TreeUtil.getTightLabelNoIndex(npTree);
+			String npHeadWord = TreeUtil.getTightLabelNoIndex(npHeadTree);
 			
 			Tree termNPtree = null;
 			String ansPhrase = "";
@@ -63,13 +64,14 @@ public class QAPhraseGenerator {
 				String termStr = term.getText().replaceAll("\\s+", "");
 				if(termStr.equals(npWord)) {
 					termNPtree = npTree;
-					ansPhrase = term.getText().toString();
+					ansPhrase = TreeUtil.getLabel(npTree);
 					ansTerm = term;
 					break;
 				}
 				if(termStr.equals(npHeadWord)) {
 					termNPtree = npHeadTree;
-					ansPhrase = term.getText().toString();
+					//TODO: maybe the whole NP should be the answer, rather than only the head of NP
+					ansPhrase = TreeUtil.getLabel(npHeadTree);
 					ansTerm = term;
 					break;
 				}
@@ -88,6 +90,7 @@ public class QAPhraseGenerator {
 			}
 		}
 		
+		// then deal with PP who's child is a NP
 		tregex = "PP=pp < IN=in < NP=np";
 
 		try {
@@ -110,10 +113,10 @@ public class QAPhraseGenerator {
 			Tree npHeadTree = headFinder.determineHead(npTree);
 			
 			// find out the lexical labels
-			String ppWord = getTightLabel(ppTree);
-			String inWord = getTightLabel(inTree);
-			String npWord = getTightLabel(npTree);
-			String npHeadWord = getTightLabel(npHeadTree);
+			String ppWord = TreeUtil.getTightLabelNoIndex(ppTree);
+			String inWord = TreeUtil.getTightLabelNoIndex(inTree);
+			String npWord = TreeUtil.getTightLabelNoIndex(npTree);
+			String npHeadWord = TreeUtil.getTightLabelNoIndex(npHeadTree);
 
 			Tree termNPtree = null;
 			String ansPhrase = "";
@@ -124,13 +127,14 @@ public class QAPhraseGenerator {
 				String termStr = term.getText().replaceAll("\\s+", "");
 				if(termStr.equals(npWord)) {
 					termNPtree = npTree;
-					ansPhrase = inWord + " " + term.getText().toString();
+					ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npTree);
 					ansTerm = term;
 					break;
 				}
 				if(termStr.equals(npHeadWord)) {
 					termNPtree = npHeadTree;
-					ansPhrase = inWord + " " + term.getText().toString();
+					//TODO: maybe the whole NP should be the answer, rather than only the head of NP
+					ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npHeadTree);
 					ansTerm = term;
 					break;
 				}
@@ -183,18 +187,6 @@ public class QAPhraseGenerator {
 		return qaList;
 	}
 	
-	// return the label of a tree, without any spaces
-	private static String getTightLabel(Tree tree) {
-		List<LabeledWord> labelList = tree.labeledYield();
-		
-		String label = "";
-		Iterator<LabeledWord> labelIter = labelList.iterator();
-		while (labelIter.hasNext()) {
-			label += labelIter.next().value();
-		}
-		
-		return label;
-	}
 	// given a QA phrase pair, determine what kind of questions can be asked
 	// TODO: add more QA types according to other NE tagger (currently only Stanford is used)
 	private static String determineQuesType(QAPhrasePair pair) {

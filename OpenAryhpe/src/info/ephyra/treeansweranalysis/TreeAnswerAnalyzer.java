@@ -65,7 +65,6 @@ public class TreeAnswerAnalyzer {
 		String prop;
 		
 		String[] cos = new String[0];  // CONTEXT objects are ignored
-		//String prop = "PLACEOFBIRTH";
 		HashSet<AnswerPattern> patterns;
 		String[] sentences = ans.getSentences();
 		String[] originalSentences = ans.getOriginalSentences();
