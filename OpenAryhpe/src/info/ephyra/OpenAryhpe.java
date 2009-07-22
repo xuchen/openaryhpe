@@ -59,6 +59,8 @@ import info.ephyra.treequestiongeneration.VerbDecomposer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.log4j.PropertyConfigurator;
+
 /**
  * <code>OpenAryhpe</code> is an open framework for question generation (QG).
  * 
@@ -96,9 +98,13 @@ public class OpenAryhpe {
 		MsgPrinter.enableErrorMsgs(true);
 		
 		// set log file and enable logging
-		Logger.setLogfile("log/OpenEphyra");
-		Logger.enableLogging(true);
+		//Logger.setLogfile("log/OpenEphyra");
+		Logger.enableLogging(false);
 		
+		// get logging working
+		PropertyConfigurator.configure("conf/log4j.properties");
+		org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(OpenAryhpe.class);
+		log.info("OpenAryhpe started at "+MsgPrinter.getTimestamp());
 		// initialize Ephyra and start command line interface
 		(new OpenAryhpe()).commandLine();
 	}
@@ -385,7 +391,7 @@ public class OpenAryhpe {
 				Logger.logResults(results);
 				Logger.logListEnd();
 			} else {
-				Logger.logFactoidStart(question);
+				//Logger.logFactoidStart(question);
 //				results = askFactoid(question, FACTOID_MAX_ANSWERS,
 //									 FACTOID_ABS_THRESH);
 				//AnalyzedQuestion aq = QuestionAnalysis.analyze(question);
@@ -403,8 +409,8 @@ public class OpenAryhpe {
 				//ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
 				//QuestionGenerator.printQAlist(qaPairList);
 				//QuestionGenerator.generate(ansList);
-				Logger.logResults(results);
-				Logger.logFactoidEnd();
+				//Logger.logResults(results);
+				//Logger.logFactoidEnd();
 			}
 			
 			// print answers

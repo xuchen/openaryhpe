@@ -220,8 +220,8 @@ public class VerbDecomposer {
 		treeAnswer.setInvTree(invertedTree);
 		treeAnswer.setAuxSentence(TreeAnswer.getSentFromTree(auxiliarizedTree));
 		treeAnswer.setInvSentence(TreeAnswer.getSentFromTree(invertedTree));
-		//log.debug(auxiliarizedTree.toString());
-		//log.debug(invertedTree.toString());
+		log.debug(auxiliarizedTree.toString());
+		log.debug(invertedTree.toString());
 		//System.out.println(auxiliarizedTree.toString());
 		//System.out.println(invertedTree.toString());
 		return;
