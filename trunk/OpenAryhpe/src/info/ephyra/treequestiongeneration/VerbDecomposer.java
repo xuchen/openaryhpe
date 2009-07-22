@@ -52,19 +52,27 @@ public class VerbDecomposer {
 	private static TregexPattern tregexPatternMatchVb1;
 	
 	// match auxiliary in the auxiliarized tree
-	private static String tregexMatchAux = "ROOT < (S=clause < (VP=mainvp < /(AUX.*)/=vb1))";
+	private static String tregexMatchAux = "ROOT < (S=clause < (VP=mainvp < /(Q-AUX)/=vb1))";
 	private static TregexPattern tregexPatternMatchAux;
 	
 	// almost the same as tregexMatchVb1, used to invert aux to an auxlirized tree. 
 	// should have a negation ! to avoid looping when performing an insertion
-	private static String tregexNoLoopInsAux = "ROOT < (S=clause < (VP=mainvp < (/^VB.?/=vb1 !$- /^AUX-VB.?/ )!< (VP < /VB.?/)))";
+	private static String tregexNoLoopInsAux = "ROOT < (S=clause < (VP=mainvp < (/^VB.?/=vb1 !$- /^AUX-VB.?/ !$- /Q-AUX/ )!< (VP < /VB.?/)))";
 	private static TregexPattern tregexPatternNoLoopInsAux;
 
 	// change the main clause from "S" to "SQ"
 	private static String tregexStoSQ = "ROOT < S=clause";
-	private static String operationRelabel = "relabel clause SQ";
 	private static TregexPattern tregexPatternStoSQ;
+	private static String operationRelabel = "relabel clause SQ";
 	private static TsurgeonPattern tsurgeonPatternStoSQ;
+	
+	// match any PP adjunct after Q-AUX (quesPhrase+auxiliary)
+	// http://www.ucl.ac.uk/internet-grammar/phfunc/adjuncts.htm
+	private static String tregexAdjunct = "ROOT < (SQ=clause <1 /Q-AUX/=qaux <2 ((/PP/=pp . /,/=comma)) )";
+	private static TregexPattern tregexPatternAdjunct;
+	// move Q-AUX to be the rifht sister of comma
+	private static String operationMoveAdjunct= "move qaux $- comma";
+	private static TsurgeonPattern tsurgeonPatternMoveAdjunct;
 	
 	// almost the same as tregexMatchVb1, used to invert aux to an inverted tree. 
 	// should have a negation ! to avoid looping when performing an insertion
@@ -85,6 +93,8 @@ public class VerbDecomposer {
 			tsurgeonPatternMoveAux = Tsurgeon.parseOperation(operationMoveAux);
 			tregexPatternStoSQ = TregexPattern.compile(tregexStoSQ);
 			tsurgeonPatternStoSQ = Tsurgeon.parseOperation(operationRelabel);
+			tregexPatternAdjunct = TregexPattern.compile(tregexAdjunct);
+			tsurgeonPatternMoveAdjunct = Tsurgeon.parseOperation(operationMoveAdjunct);
 			initialized = true;
 		} catch (edu.stanford.nlp.trees.tregex.ParseException e) {
 			MsgPrinter.printErrorMsg("Error parsing regex pattern.");
@@ -182,6 +192,8 @@ public class VerbDecomposer {
 						// VBN verb, past participle, "taken" 
 						MsgPrinter.printErrorMsg(lab+" found as the main verb.");
 					}
+					// construct a tree with the question phrase and auxiliary verb
+					auxTree = "(Q-AUX (Q <quesPhrase>)" + auxTree + " )";
 					// John does that -> (AuxTree) John does do that -> (InvTree) Does John do that
 					// John sees that -> (AuxTree) John does see that -> (InvTree)Does John see that
 					// change vb1 tree to its lemma's format (VB lemma)
@@ -206,7 +218,7 @@ public class VerbDecomposer {
 		}
 		
 		invertedTree = auxiliarizedTree.deeperCopy();
-		// move the vb1 tree to the first child of the main clause
+		// move the Q-AUX tree to the first child of the main clause
 		// TODO: negation case, such as "does not do sth", should move "not" also (really?)
 		// TODO: make the original first word lower case
 		// WARNING: invertedTree isn't grammatical after the move operation.
@@ -214,7 +226,12 @@ public class VerbDecomposer {
 		if (invertedTree.equals(auxiliarizedTree)) {
 			MsgPrinter.printErrorMsg("Auxiliary inversion operation failed.");
 		}
+		// relabel S as SQ
 		invertedTree = Tsurgeon.processPattern(tregexPatternStoSQ, tsurgeonPatternStoSQ, invertedTree);
+		// Move PP adjuct to the front, if any
+		// such as: <quesPhrase> in 2009, did Jackson die
+		// becomes: in 2009, <questionPhrase> did Jackson die
+		invertedTree = Tsurgeon.processPattern(tregexPatternAdjunct, tsurgeonPatternMoveAdjunct, invertedTree);
 		
 		treeAnswer.setAuxTree(auxiliarizedTree);
 		treeAnswer.setInvTree(invertedTree);
