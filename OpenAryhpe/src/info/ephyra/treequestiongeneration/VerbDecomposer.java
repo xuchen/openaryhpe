@@ -52,12 +52,12 @@ public class VerbDecomposer {
 	private static TregexPattern tregexPatternMatchVb1;
 	
 	// match auxiliary in the auxiliarized tree
-	private static String tregexMatchAux = "ROOT < (S=clause < (VP=mainvp < /(Q-AUX|AUX-VB.?)/=vb1))";
+	private static String tregexMatchAux = "ROOT < (S=clause < (VP=mainvp < /(Q-AUX|AUX-.?)/=vb1))";
 	private static TregexPattern tregexPatternMatchAux;
 	
 	// almost the same as tregexMatchVb1, used to invert aux to an auxlirized tree. 
 	// should have a negation ! to avoid looping when performing an insertion
-	private static String tregexNoLoopInsAux = "ROOT < (S=clause < (VP=mainvp < (/^VB.?/=vb1 !$- /^AUX-VB.?/ !$- /Q-AUX/ )!< (VP < /VB.?/)))";
+	private static String tregexNoLoopInsAux = "ROOT < (S=clause < (VP=mainvp < (/(^VB.?|AUX-.?)/=vb1 !$- /^AUX-.?/ !$- /Q-AUX/ )!< (VP < /VB.?/)))";
 	private static TregexPattern tregexPatternNoLoopInsAux;
 
 	// change the main clause from "S" to "SQ"
@@ -68,12 +68,17 @@ public class VerbDecomposer {
 	
 	// match any PP adjunct after Q-AUX (quesPhrase+auxiliary)
 	// http://www.ucl.ac.uk/internet-grammar/phfunc/adjuncts.htm
-	private static String tregexAdjunct = "ROOT < (SQ=clause <1 /Q-AUX|AUX-VB.?/=qaux <2 ((/PP/=pp . /,/=comma)) )";
+	private static String tregexAdjunct = "ROOT < (SQ=clause <1 /Q-AUX|AUX-.?/=qaux <2 ((/PP/=pp . /,/=comma)) )";
 	private static TregexPattern tregexPatternAdjunct;
-	// move Q-AUX to be the rifht sister of comma
+	// move Q-AUX to be the right sister of comma
 	private static String operationMoveAdjunct= "move qaux $- comma";
 	private static TsurgeonPattern tsurgeonPatternMoveAdjunct;
 	
+	// match aux in "MD VB" or "be" form to adjoin with Q-AUX
+	private static String tregexAdjoinNoLoop = "/^AUX-/=aux !> /Q-AUX/";
+	private static TregexPattern tregexPatternAdjoin;
+	private static String operationAdjoin = "adjoin (Q-AUX (Q <quesPhrase>) AUX@) aux";
+	private static TsurgeonPattern tsurgeonPatternAdjoin;
 	// almost the same as tregexMatchVb1, used to invert aux to an inverted tree. 
 	// should have a negation ! to avoid looping when performing an insertion
 	//private static String tregexNoLoopInsInv = "ROOT < (S=clause !< /^AUX-.?/ < (VP=mainvp < /^VB.?/=vb1 !< (VP < /VB.?/)))";
@@ -95,6 +100,8 @@ public class VerbDecomposer {
 			tsurgeonPatternStoSQ = Tsurgeon.parseOperation(operationRelabel);
 			tregexPatternAdjunct = TregexPattern.compile(tregexAdjunct);
 			tsurgeonPatternMoveAdjunct = Tsurgeon.parseOperation(operationMoveAdjunct);
+			tregexPatternAdjoin = TregexPattern.compile(tregexAdjoinNoLoop);
+			tsurgeonPatternAdjoin = Tsurgeon.parseOperation(operationAdjoin);
 			initialized = true;
 		} catch (edu.stanford.nlp.trees.tregex.ParseException e) {
 			MsgPrinter.printErrorMsg("Error parsing regex pattern.");
@@ -143,6 +150,7 @@ public class VerbDecomposer {
 			// this changes the auxiliarizedTree
 			lab = "AUX-"+lab;
 			vbTree.label().setValue(lab);
+			auxiliarizedTree = Tsurgeon.processPattern(tregexPatternAdjoin, tsurgeonPatternAdjoin, auxiliarizedTree);
 		} else {
 
 			// the main verb of the main clause is only one verb
@@ -177,6 +185,8 @@ public class VerbDecomposer {
 					// rename vb with prefix "AUX-"
 					lab = "AUX-"+lab;
 					vbTree.label().setValue(lab);
+					// WARNING: auxiliarizedTree isn't grammatical after insertion.
+					auxiliarizedTree = Tsurgeon.processPattern(tregexPatternAdjoin, tsurgeonPatternAdjoin, auxiliarizedTree);
 				} else if (lemma != null) {
 					if (lab.equals("VBZ")) {
 						//VBZ verb, 3rd person sing. present, "takes"

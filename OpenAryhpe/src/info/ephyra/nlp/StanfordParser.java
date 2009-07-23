@@ -177,7 +177,8 @@ public class StanfordParser
 		String sub=null;
 		while (ite.hasNext()) {
 			t = ite.next();
-			if (t.reln().getShortName().equals("nsubj")) {
+			// two cases here: nsubjpass and nsubj.
+			if (t.reln().getShortName().contains("nsubj")) {
 				sub = t.dep().toString();
 				sub = sub.replaceAll("-\\d+$", "");
 				break;

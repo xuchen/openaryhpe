@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import cern.colt.Arrays;
 
 import edu.stanford.nlp.ling.LabeledWord;
@@ -19,6 +21,11 @@ import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
 
 public class QAPhraseGenerator {
+	
+	private static Logger log = Logger.getLogger(QAPhraseGenerator.class);
+	
+	public QAPhraseGenerator () {
+	}
 	
 	// generate a list of possible QA phrase pairs
 	public static ArrayList<QAPhrasePair> generate(TreeAnswer treeAnswer) {
