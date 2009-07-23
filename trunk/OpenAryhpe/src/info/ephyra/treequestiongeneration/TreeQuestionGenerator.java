@@ -36,7 +36,9 @@ public class TreeQuestionGenerator {
 			//ansPhrase = OpenNLP.tokenizeWithSpaces(pPair.getAnsPhrase());
 			ansPhrase = pPair.getAnsPhrase();
 			quesPhrase = pPair.getQuesPhrase();
-			if (!pPair.getQuesType().equals("Y/N")) {
+			if (pPair.getQuesType().equals("Y/N")) {
+				quesSent = invSent.replaceFirst("<quesPhrase>", "");;
+			} else {
 				if (ansPhrase.equals(subject)) {
 					// answer phrase is the subject
 					quesSent = idxSent.replaceFirst(subject, quesPhrase);
@@ -44,8 +46,6 @@ public class TreeQuestionGenerator {
 					quesSent = invSent.replaceFirst(OpenNLP.tokenizeWithSpaces(ansPhrase), "");
 					quesSent = quesSent.replaceFirst("<quesPhrase>", quesPhrase);
 				}
-			} else {
-				quesSent = invSent;
 			}
 			// remove the index
 			quesSent = quesSent.replaceAll("-\\d+\\b", "");

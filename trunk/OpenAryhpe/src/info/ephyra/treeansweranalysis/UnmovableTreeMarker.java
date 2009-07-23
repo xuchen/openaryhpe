@@ -1,6 +1,7 @@
 package info.ephyra.treeansweranalysis;
 
 import info.ephyra.io.MsgPrinter;
+import info.ephyra.treequestiongeneration.VerbDecomposer;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import org.apache.log4j.Logger;
 
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
@@ -20,6 +23,7 @@ public class UnmovableTreeMarker {
 	
 	private static ArrayList<String> regexList = new ArrayList<String>();
 	private static ArrayList<TregexPattern> regexPatternList= new ArrayList<TregexPattern>();
+	private static Logger log = Logger.getLogger(UnmovableTreeMarker.class);
 
 	UnmovableTreeMarker() {
 //		regexList = new ArrayList<String>();
@@ -84,7 +88,7 @@ public class UnmovableTreeMarker {
 		
 			tregexMatcher = tregexPattern.matcher(outTree); 
 			while (tregexMatcher.find()) {
-				MsgPrinter.printStatusMsg("UNMV: "+tregexPattern.toString());
+				log.debug("UNMV: "+tregexPattern.toString()+"\n");
 				Tree matchedTreeWithName = tregexMatcher.getNode("unmv");
 				// get the matched root label
 				lab = matchedTreeWithName.label().toString();
@@ -94,6 +98,7 @@ public class UnmovableTreeMarker {
 				matchedTreeWithName.label().setValue(newlab);
 				// reset() invokes recursive mathcing, still needs test here.
 				tregexMatcher.reset();
+				log.debug(outTree.pennString());
 				// in cases NP|PP=unwm, a Tsurgeon operation will rename every 
 				// match with UNMV-NP or UNMV-PP, so we can't use it.
 				//operation = "relabel unmv "+newlab;
@@ -102,7 +107,7 @@ public class UnmovableTreeMarker {
 				//Tsurgeon.processPattern(tregexPattern, tsurgeonPattern, matchedTreeWithName);
 			}
 		}
-		
+		log.debug("After UNMV: "+outTree.pennString());
 		return outTree;
 	}
 }
