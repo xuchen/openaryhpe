@@ -5,6 +5,7 @@ import info.ephyra.nlp.semantics.ontologies.WordNet;
 import info.ephyra.util.StringUtils;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Map;
@@ -86,6 +87,15 @@ public class Term implements Serializable {
 		this.neTypes = neTypes;
 	}
 	
+	/**
+	 * Construct a term from another term but set neTypes with an extra neTypes
+	 */
+	public Term(Term term, String[] neTypes) {
+		this.text = term.getText();
+		this.pos = term.getPos();
+		this.lemma = term.getLemma();
+		this.neTypes = neTypes;
+	}
 	/**
 	 * Generates the lemma of the term.
 	 */

@@ -168,7 +168,8 @@ public class StanfordParser
         return tree;
     }
 	
-	// TODO: written in a hurry, need to return a list?
+	// https://mailman.stanford.edu/pipermail/parser-user/2009-July/000246.html
+	// let's not be dead sure...
 	public static String getSubject(Tree parse) {
 		GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
 		Collection<TypedDependency> tdl = gs.typedDependenciesCollapsed();

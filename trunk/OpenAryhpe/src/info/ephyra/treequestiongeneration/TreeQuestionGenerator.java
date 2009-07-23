@@ -49,6 +49,9 @@ public class TreeQuestionGenerator {
 			}
 			// remove the index
 			quesSent = quesSent.replaceAll("-\\d+\\b", "");
+			// recover ()
+			quesSent = quesSent.replaceAll("-LRB-", "(");
+			quesSent = quesSent.replaceAll("-RRB-", ")");
 			// remove the punctuation at the end and append with a question mark
 			quesSent = quesSent.replaceAll("(\\.|\\?|!)$", "").trim()+"?";
 			// remove extra spaces
