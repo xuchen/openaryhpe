@@ -25,8 +25,8 @@ public class QAPhraseGenerator {
 		ArrayList<QAPhrasePair> qaList = new ArrayList<QAPhrasePair>();
 		
 		Tree tree = treeAnswer.getUnmvTree();
-		Tree t = treeAnswer.getTree();
-		treeAnswer.setSubject(StanfordParser.getSubject(t));
+		Tree oriTree = treeAnswer.getTree();
+		treeAnswer.setSubject(StanfordParser.getSubject(oriTree));
 		Term[] terms = treeAnswer.getTerms();
 		
 		// first deal with NP who's not under a PP
@@ -153,38 +153,26 @@ public class QAPhraseGenerator {
 				qaList.add(pair);
 			}
 		}
-		// the following tries to find out NPs that match terms
-		// this constraint is too tight and thus discarded
-//		// each term of the i-th sentence
-//		for (Term term:terms[i]) {
-//			if (term.getNeTypes().length == 0)
-//				continue;
-//			String to = term.getText();
-//			String[] tokens = OpenNLP.tokenize(to);
-//			int j=tokens.length-1;
-//			// form Tregex expressions to query trees
-//			String tregex = "/"+tokens[j]+"/";
-//			// this term contains multiple terms, such as "August 28, 1958"
-//			// construct a Tregex query expression such as:
-//			// (/August/ . (/28/ . (/,/ . /1958/)))
-//			if (j > 0) {
-//				j--;
-//				for (; j>=0; j--) {
-//					tregex = "(/" + tokens[j] + "/ . " + tregex + ")";
-//				}
-//			}
-//			tregex = "@NP << " + tregex;
-//			TregexPattern tPattern = null;
-//			try {
-//				 tPattern = TregexPattern.compile(tregex);
-//			} catch (edu.stanford.nlp.trees.tregex.ParseException e) {
-//				MsgPrinter.printErrorMsg("Error parsing regex pattern.");
-//			}
-//			TregexMatcher tregexMatcher = tPattern.matcher(trees[i]);
-//			while (tregexMatcher.find()) {
-//				Tree termTree = tregexMatcher.getMatch();
-//			}
-//		}
+
+		// generate an extra Y/N question
+		QAPhrasePair pair = new QAPhrasePair("", null, null);
+		pair.setQuesType("Y/N");
+		// dont forget the index -\\d+ when matching!
+		String matchNOT = "ROOT < (S < (VP < /VB.?/ < (/RB/ < /(^not-\\d+$)|(^n't-\\d+$)/) ))";
+		TregexPattern tregexPattern;
+		try {
+			tregexPattern = TregexPattern.compile(matchNOT);
+		} catch (edu.stanford.nlp.trees.tregex.ParseException e) {
+			MsgPrinter.printErrorMsg("Error parsing regex pattern.");
+			return qaList;
+		}
+		tregexMatcher = tregexPattern.matcher(oriTree);
+		if (tregexMatcher.find()) {
+			pair.setAnsPhrase("no");
+		} else {
+			pair.setAnsPhrase("yes");
+		}
+		qaList.add(pair);
 		return qaList;
 	}
 	
@@ -202,6 +190,8 @@ public class QAPhraseGenerator {
 			qType = "WHERE";
 		} else if (neType.contains("NEdate")) {
 			qType = "WHEN";
+		} else {
+			qType = "WHAT";
 		}
 		return qType;
 	}
@@ -217,6 +207,8 @@ public class QAPhraseGenerator {
 			qPhrase = "where";
 		} else if (qType.equals("WHEN")) {
 			qPhrase = "when";
+		} else {
+			qPhrase = "what";
 		}
 		
 		return qPhrase;

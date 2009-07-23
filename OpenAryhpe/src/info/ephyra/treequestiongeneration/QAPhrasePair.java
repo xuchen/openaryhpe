@@ -52,6 +52,10 @@ public class QAPhrasePair {
 		return ansPhrase;
 	}
 	
+	public void setAnsPhrase(String ans) {
+		this.ansPhrase = ans;
+	}
+	
 	public Tree getAnsTree() {
 		return ansTree;
 	}

@@ -52,7 +52,7 @@ public class VerbDecomposer {
 	private static TregexPattern tregexPatternMatchVb1;
 	
 	// match auxiliary in the auxiliarized tree
-	private static String tregexMatchAux = "ROOT < (S=clause < (VP=mainvp < /(Q-AUX)/=vb1))";
+	private static String tregexMatchAux = "ROOT < (S=clause < (VP=mainvp < /(Q-AUX|AUX-VB.?)/=vb1))";
 	private static TregexPattern tregexPatternMatchAux;
 	
 	// almost the same as tregexMatchVb1, used to invert aux to an auxlirized tree. 
@@ -68,7 +68,7 @@ public class VerbDecomposer {
 	
 	// match any PP adjunct after Q-AUX (quesPhrase+auxiliary)
 	// http://www.ucl.ac.uk/internet-grammar/phfunc/adjuncts.htm
-	private static String tregexAdjunct = "ROOT < (SQ=clause <1 /Q-AUX/=qaux <2 ((/PP/=pp . /,/=comma)) )";
+	private static String tregexAdjunct = "ROOT < (SQ=clause <1 /Q-AUX|AUX-VB.?/=qaux <2 ((/PP/=pp . /,/=comma)) )";
 	private static TregexPattern tregexPatternAdjunct;
 	// move Q-AUX to be the rifht sister of comma
 	private static String operationMoveAdjunct= "move qaux $- comma";
@@ -131,7 +131,10 @@ public class VerbDecomposer {
 		// must match auxiliarizedTree here, otherwise the original tree is changed
 		tregexMatcher = tregexPatternMatchVb1Vb2.matcher(auxiliarizedTree);
 
+		log.debug("Decomposing the verb\n");
+		
 		if (tregexMatcher.find()) {
+			log.debug("VPs with two or more verbs.\n");
 			vpTree = tregexMatcher.getNode("mainvp");
 			vbTree = tregexMatcher.getNode("vb1");
 			// vbTree contains the "auxiliary"
@@ -215,34 +218,44 @@ public class VerbDecomposer {
 
 		if (vpTree == null || vbTree == null) {
 			MsgPrinter.printErrorMsg("No verb found here, interesting case.");
+			log.warn("No verb found here, interesting case.");
+			return;
 		}
 		
+		log.debug("Auxiliarized Tree:\n"+auxiliarizedTree.pennString());
 		invertedTree = auxiliarizedTree.deeperCopy();
 		// move the Q-AUX tree to the first child of the main clause
 		// TODO: negation case, such as "does not do sth", should move "not" also (really?)
 		// TODO: make the original first word lower case
 		// WARNING: invertedTree isn't grammatical after the move operation.
+		log.debug("Moving the AUX tree to the first child of the main clause:\n");
 		invertedTree = Tsurgeon.processPattern(tregexPatternMatchAux, tsurgeonPatternMoveAux, invertedTree);
+		log.debug(invertedTree.pennString());
 		if (invertedTree.equals(auxiliarizedTree)) {
 			MsgPrinter.printErrorMsg("Auxiliary inversion operation failed.");
+			log.warn("Auxiliary inversion operation failed.");
 		}
 		// relabel S as SQ
 		invertedTree = Tsurgeon.processPattern(tregexPatternStoSQ, tsurgeonPatternStoSQ, invertedTree);
-		// Move PP adjuct to the front, if any
-		// such as: <quesPhrase> in 2009, did Jackson die
-		// becomes: in 2009, <questionPhrase> did Jackson die
-		invertedTree = Tsurgeon.processPattern(tregexPatternAdjunct, tsurgeonPatternMoveAdjunct, invertedTree);
+		
+		tregexMatcher = tregexPatternAdjunct.matcher(invertedTree);
+		if (tregexMatcher.find()) {
+			// Move PP adjunct to the front, if any
+			//such as: <quesPhrase> in 2009, did Jackson die
+			//becomes: in 2009, <questionPhrase> did Jackson die
+			log.debug("Moving PP adjunct to the front:\n");
+			invertedTree = Tsurgeon.processPattern(tregexPatternAdjunct, tsurgeonPatternMoveAdjunct, invertedTree);
+			log.debug(invertedTree.pennString());
+		}
 		
 		treeAnswer.setAuxTree(auxiliarizedTree);
 		treeAnswer.setInvTree(invertedTree);
 		treeAnswer.setAuxSentence(TreeAnswer.getSentFromTree(auxiliarizedTree));
 		treeAnswer.setInvSentence(TreeAnswer.getSentFromTree(invertedTree));
-		log.debug(auxiliarizedTree.toString());
-		log.debug(invertedTree.toString());
+		log.debug("Inverted Tree:\n"+invertedTree.pennString());
 		//System.out.println(auxiliarizedTree.toString());
 		//System.out.println(invertedTree.toString());
 		return;
 	}
-
 
 }
