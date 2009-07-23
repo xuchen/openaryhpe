@@ -40,6 +40,13 @@ public class QAPhrasePair {
 		this.quesPhrase = quesPhrase;
 	}
 	
+	public QAPhrasePair(String quesType, String quesPhrase, String inPhrase, 
+			String ansPhrase, Tree ansTree, Term ansTerm) {
+		this(inPhrase, ansPhrase, ansTree, ansTerm);
+		this.quesType = quesType;
+		this.quesPhrase = quesPhrase;
+	}
+	
 	public String getQuesType() {
 		return quesType;
 	}

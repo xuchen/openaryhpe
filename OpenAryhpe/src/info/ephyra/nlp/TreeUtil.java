@@ -12,6 +12,7 @@ public class TreeUtil {
      * "dash-index", such as -1, -2, -3, ..., to the leaves
      * @param tree the Tree whose leaves need to be indexed
      * @return the tree whose leaves are indexed
+     * @ref another way to do this: https://mailman.stanford.edu/pipermail/parser-user/2009-July/000247.html
      */
     public static Tree indexLeaves (Tree tree) {
     	if (tree == null) return null;

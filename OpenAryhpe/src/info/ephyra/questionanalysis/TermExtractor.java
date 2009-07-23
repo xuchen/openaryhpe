@@ -71,6 +71,18 @@ public class TermExtractor {
 			}
 		}
 		
+		// disambiguate with the priority of stanford NE tagger
+		// if Jackson is a person, then the following removes NEprovince, NEcapital from neTypes
+		if (neTypes.contains("NEperson")) {
+			String[] persons = {"NEactor", "NEauthor", "NEdirector", "NEfirstName", "NEscientist", "NEusPresident", "NEperson"};
+			ArrayList<String> list = new ArrayList<String>(Arrays.asList(persons));
+			String[] types = neTypes.toArray(new String[neTypes.size()]);
+			for (String type:types) {
+				if (!list.contains(type)) {
+					neTypes.remove(type);
+				}
+			}
+		}
 		return neTypes.toArray(new String[neTypes.size()]);
 	}
 	

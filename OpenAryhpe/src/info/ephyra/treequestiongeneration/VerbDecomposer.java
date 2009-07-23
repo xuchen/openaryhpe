@@ -119,10 +119,10 @@ public class VerbDecomposer {
 	//private static TsurgeonPattern tsurgeonPatternMoveAuxToInv = Tsurgeon.parseOperation(operationInsertAuxToInv);
 	
 	// decomose the verb in the tree and returned the decomposed VP tree
-	public static void decompose(TreeAnswer treeAnswer) {
+	public static TreeAnswer decompose(TreeAnswer treeAnswer) {
 		if (!initialized) {
 			MsgPrinter.printErrorMsg("Must initialize VerbDecomposer first. Returning null");
-			return;
+			return null;
 		}
 		Tree tree = treeAnswer.getTree();
 		Tree auxiliarizedTree = null, invertedTree = null;
@@ -227,9 +227,9 @@ public class VerbDecomposer {
 		}
 
 		if (vpTree == null || vbTree == null) {
-			MsgPrinter.printErrorMsg("No verb found here, interesting case.");
-			log.warn("No verb found here, interesting case.");
-			return;
+			log.warn("No verb found here, returning null.");
+			log.debug("Tree: "+auxiliarizedTree.pennString());
+			return null;
 		}
 		
 		log.debug("Auxiliarized Tree:\n"+auxiliarizedTree.pennString());
@@ -265,7 +265,7 @@ public class VerbDecomposer {
 		log.debug("Inverted Tree:\n"+invertedTree.pennString());
 		//System.out.println(auxiliarizedTree.toString());
 		//System.out.println(invertedTree.toString());
-		return;
+		return treeAnswer;
 	}
 
 }
