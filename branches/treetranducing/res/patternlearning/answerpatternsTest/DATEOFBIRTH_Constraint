@@ -1,0 +1,1589 @@
+#passages: 10996
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEperson> )?(?:<NEprofession> )?[^<]*?<TO>
+#correct: 213
+#incorrect: 110
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEperson> )?[^<]*?(?:<NEprofession> )?[^<]*?<TO>
+#correct: 213
+#incorrect: 110
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEperson> )?(?:<NEperson> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NEreligion> )?[^<]*?<TO>
+#correct: 213
+#incorrect: 110
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NEriver_NEwater> )?[^<]*?<TO>
+#correct: 211
+#incorrect: 111
+
+<TO> [^<]*?(?:<NEperson> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 210
+#incorrect: 475
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEmilitaryRank_NEprofession> )?[^<]*?(?:<NEprofession> )?<TO>
+#correct: 209
+#incorrect: 112
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEmilitaryRank_NEprofession> )?[^<]*?<TO>
+#correct: 209
+#incorrect: 112
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?<TO>
+#correct: 209
+#incorrect: 110
+
+<TO> [^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NElanguage> )?[^<]*?(?:<NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 207
+#incorrect: 3259
+
+\( <PO> - (?:<NEnumber> )?[^<]*?(?:<NEperson> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?<TO>
+#correct: 205
+#incorrect: 110
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEperson> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEstyle> )?[^<]*?(?:<NEperson> )?[^<]*?<TO>
+#correct: 201
+#incorrect: 111
+
+<TO> [^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NElanguage_NEethnicGroup> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 198
+#incorrect: 3257
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEstyle> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEnumber> )?[^<]*?<TO>
+#correct: 196
+#incorrect: 113
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEriver_NEwater> )?(?:<NEnumber> )?[^<]*?<TO>
+#correct: 196
+#incorrect: 112
+
+\( <PO> - (?:<NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?<TO>
+#correct: 195
+#incorrect: 111
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEperson_NEfirstName> )?[^<]*?(?:<NEperson> )?[^<]*?<TO>
+#correct: 195
+#incorrect: 106
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?<TO>
+#correct: 195
+#incorrect: 111
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEorganization> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?<TO>
+#correct: 195
+#incorrect: 111
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEnumber> )?[^<]*?<TO>
+#correct: 195
+#incorrect: 111
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEperson> )?[^<]*?<TO>
+#correct: 195
+#incorrect: 106
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEmusicalInstrument> )?(?:<NEstyle> )?[^<]*?(?:<NEnumber> )?[^<]*?<TO>
+#correct: 195
+#incorrect: 112
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEacronym> )?(?:<NEacronym> )?(?:<NEacronym> )?[^<]*?<TO>
+#correct: 194
+#incorrect: 110
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 193
+#incorrect: 449
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 192
+#incorrect: 466
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEfirstName> )?[^<]*?<TO>
+#correct: 191
+#incorrect: 106
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?<TO>
+#correct: 191
+#incorrect: 108
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<TO>
+#correct: 191
+#incorrect: 109
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEacronym> )?[^<]*?<TO>
+#correct: 191
+#incorrect: 110
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEnationality_NEethnicGroup_NEriver_NEwater> )?(?:<NEprofession> )?<TO>
+#correct: 191
+#incorrect: 108
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEnationality> )?(?:<NEprofession> )?<TO>
+#correct: 191
+#incorrect: 108
+
+\( <PO> - (?:<NEmonth> )?(?:<NEnumber> )?[^<]*?<TO>
+#correct: 191
+#incorrect: 108
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NErelation> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 106
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?<TO>
+#correct: 190
+#incorrect: 107
+
+\( <PO> - (?:<NEdate> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 102
+
+\( <PO> - (?:<NEnumber> )?[^<]*?(?:<NElocation> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 109
+
+\( <PO> - (?:<NEnumber> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 106
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 109
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEcountry> )?<TO>
+#correct: 190
+#incorrect: 106
+
+\( <PO> - (?:<NEnumber> )?[^<]*?(?:<NEmusicalInstrument> )?(?:<NEstyle> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 106
+
+\( <PO> - [^<]*?(?:<NEacronym> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 107
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEacronym> )?(?:<NEacronym> )?<TO>
+#correct: 190
+#incorrect: 107
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?<TO>
+#correct: 190
+#incorrect: 106
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 188
+#incorrect: 468
+
+<TO> [^<]*?(?:<NEnationality_NEethnicGroup> )?(?:<NEmilitaryRank_NEprofession> )?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 165
+#incorrect: 411
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 165
+#incorrect: 412
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 165
+#incorrect: 410
+
+<TO> [^<]*?(?:<NEacronym> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 159
+#incorrect: 485
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 158
+#incorrect: 484
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEprofession> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 158
+#incorrect: 484
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?(?:<NEmonth> )?(?:<NEnumber> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 157
+#incorrect: 497
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEmonth> )?(?:<NEnumber> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 157
+#incorrect: 498
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 157
+#incorrect: 505
+
+<TO> [^<]*?born (?:<NEdisease> )?[^<]*?(?:<NElocation_NEprofession> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 156
+#incorrect: 130
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 156
+#incorrect: 138
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?<PO_NEdate>
+#correct: 155
+#incorrect: 21
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEdate> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 155
+#incorrect: 129
+
+<TO> [^<]*?born (?:<NEperson> )?[^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 154
+#incorrect: 486
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 154
+#incorrect: 484
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 154
+#incorrect: 485
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 152
+#incorrect: 132
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?(?:<NElanguage> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 151
+#incorrect: 132
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<PO_NEdate>
+#correct: 151
+#incorrect: 21
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<PO_NEnumber>
+#correct: 151
+#incorrect: 113
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 151
+#incorrect: 129
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEplanet> )?[^<]*?<PO_NEnumber>
+#correct: 151
+#incorrect: 113
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NElocation> )?[^<]*?<PO_NEnumber>
+#correct: 151
+#incorrect: 113
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 149
+#incorrect: 385
+
+<TO> [^<]*?born [^<]*?(?:<NEorganization_NEnumber> )?[^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 149
+#incorrect: 386
+
+<TO> [^<]*?(?:<NErelation> )?[^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 149
+#incorrect: 386
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEcountry> )?[^<]*?(?:<NEweekday> )?(?:<NEtime> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 142
+#incorrect: 121
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEcountry> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 142
+#incorrect: 118
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 141
+#incorrect: 431
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 140
+#incorrect: 390
+
+<TO> [^<]*?born [^<]*?(?:<NEethnicGroup> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 140
+#incorrect: 390
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 138
+#incorrect: 442
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?born [^<]*?(?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 138
+#incorrect: 407
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 136
+#incorrect: 394
+
+<TO> [^<]*?(?:<NErelation> )?[^<]*?born [^<]*?(?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 136
+#incorrect: 395
+
+<TO> [^<]*?born [^<]*?(?:<NEperson> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 135
+#incorrect: 442
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 135
+#incorrect: 426
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEacronym> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 135
+#incorrect: 434
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 135
+#incorrect: 440
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEstyle> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 135
+#incorrect: 426
+
+<TO> [^<]*?(?:<NEnationality_NEethnicGroup_NEriver_NEwater> )?(?:<NEprofession> )?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 135
+#incorrect: 427
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEorganization> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 135
+#incorrect: 440
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 135
+#incorrect: 426
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEnationality> )?[^<]*?(?:<NElocation> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 135
+#incorrect: 440
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?(?:<NEprofession> )?[^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 135
+#incorrect: 113
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 135
+#incorrect: 440
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcapital> )?[^<]*?(?:<NElocation_NEstate> )?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 135
+#incorrect: 426
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 135
+#incorrect: 112
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEacronym> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 111
+
+<TO> [^<]*?born [^<]*?(?:<NEriver_NEwater> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEdate> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry> )?[^<]*?<PO_NEnumber>
+#correct: 134
+#incorrect: 95
+
+<TO> [^<]*?born [^<]*?(?:<NEfirstName> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<PO_NEnumber>
+#correct: 134
+#incorrect: 95
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<PO_NEnumber>
+#correct: 134
+#incorrect: 95
+
+<TO> [^<]*?born (?:<NEethnicGroup> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NEperson_NEfirstName> )?[^<]*?(?:<NEfirstName> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEdate> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 110
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NEfirstName> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<PO_NEdate>
+#correct: 134
+#incorrect: 17
+
+<TO> [^<]*?(?:<NElocation_NElanguage> )?[^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 111
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?(?:<NEfirstName> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEstate> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 134
+#incorrect: 109
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEriver_NEwater> )?[^<]*?(?:<NEmonth> )?(?:<NEnumber> )?[^<]*?<PO_NEnumber>
+#correct: 130
+#incorrect: 446
+
+<TO> [^<]*?born (?:<NEnumber> )?[^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 119
+#incorrect: 415
+
+<TO> [^<]*?born (?:<NEnumber> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 117
+#incorrect: 413
+
+<PO_NEdate_NEyear_NEnumber> - <NEnumber> \) <TO>
+#correct: 116
+#incorrect: 39
+
+<PO_NEdate> - <NEdate> \) <TO>
+#correct: 116
+#incorrect: 38
+
+<PO_NEdate_NEyear_NEnumber> - <NEdate_NEyear_NEnumber> \) <TO>
+#correct: 116
+#incorrect: 39
+
+<TO> [^<]*?(?:<NEperson> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 115
+#incorrect: 420
+
+<TO> [^<]*?born [^<]*?(?:<NEweekday> )?[^<]*?(?:<NEmonth> )?(?:<NEnumber> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 115
+#incorrect: 432
+
+<TO> [^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEperson> )?(?:<NEprofession> )?[^<]*?born [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 115
+#incorrect: 105
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 114
+#incorrect: 412
+
+<TO> [^<]*?born [^<]*?(?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 114
+#incorrect: 420
+
+<PO_NEnumber> [^<]*?(?:<NElanguage_NEethnicGroup> )?(?:<NErelation> )?[^<]*?(?:<NEnationality_NEethnicGroup> )?(?:<NErelation> )?[^<]*?<TO>
+#correct: 114
+#incorrect: 1098
+
+<TO> [^<]*?born [^<]*?(?:<NEmonth> )?[^<]*?(?:<NEorganization> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 114
+#incorrect: 420
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NEacronym_NEcountry_NEriver_NEwater> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 114
+#incorrect: 417
+
+<TO> [^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?[^<]*?(?:<NEprofession> )?born [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 113
+#incorrect: 108
+
+<TO> [^<]*?born (?:<NEduration> )?[^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 113
+#incorrect: 419
+
+<TO> [^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?[^<]*?(?:<NEprofession> )?born [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 113
+#incorrect: 109
+
+<TO> [^<]*?(?:<NEacronym> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 113
+#incorrect: 406
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 113
+#incorrect: 409
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?(?:<NErelation> )?[^<]*?(?:<NEfirstName> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 408
+
+<TO> [^<]*?(?:<NEnationality_NEethnicGroup> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 407
+
+<TO> [^<]*?born (?:<NEfirstName> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 405
+
+<TO> [^<]*?born (?:<NEperson> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 405
+
+\( <PO> <NEnumber> \) <TO>
+#correct: 112
+#incorrect: 73
+
+<TO> [^<]*?born (?:<NEacronym> )?(?:<NElocation> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 405
+
+<PO_NEnumber> [^<]*?(?:<NErelation> )?[^<]*?<TO>
+#correct: 112
+#incorrect: 1083
+
+<TO> [^<]*?born (?:<NEdisease> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 408
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?born (?:<NEperson> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 407
+
+<TO> [^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 405
+
+\( <PO> - <NEnumber> \) <TO>
+#correct: 112
+#incorrect: 49
+
+<TO> [^<]*?born [^<]*?(?:<NEfirstName> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 405
+
+<TO> [^<]*?born [^<]*?(?:<NEperson> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 405
+
+<TO> [^<]*?born [^<]*?(?:<NEorganization> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 112
+#incorrect: 418
+
+<PO_NEnumber> [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEfirstName> )?[^<]*?<TO>
+#correct: 112
+#incorrect: 1151
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 407
+
+<TO> [^<]*?born [^<]*?(?:<NEtime> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 112
+#incorrect: 408
+
+\( <PO> - <NEdate_NEyear_NEnumber> \) <TO>
+#correct: 112
+#incorrect: 49
+
+<TO> [^<]*?born [^<]*?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 112
+#incorrect: 418
+
+<TO> [^<]*?(?:<NErelation> )?[^<]*?born [^<]*?<PO_NEnumber>
+#correct: 111
+#incorrect: 88
+
+<TO> [^<]*?born (?:<NEperson> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 102
+
+<TO> [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?born [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 102
+
+<TO> [^<]*?born [^<]*?<PO_NEdate>
+#correct: 111
+#incorrect: 15
+
+<TO> [^<]*?born [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 101
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?(?:<NEacronym> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 101
+
+<PO_NEdate_NEyear_NEnumber> [^<]*?(?:<NEnumber> )?<TO>
+#correct: 111
+#incorrect: 1095
+
+<TO> [^<]*?born [^<]*?(?:<NEdate> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 101
+
+<PO_NEdate_NEyear_NEnumber> [^<]*?(?:<NElocation_NEcountry> )?[^<]*?<TO>
+#correct: 111
+#incorrect: 1126
+
+<TO> [^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?born [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 102
+
+<TO> [^<]*?born (?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 101
+
+<TO> [^<]*?born (?:<NEmonth> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 111
+#incorrect: 185
+
+<PO_NEdate_NEyear_NEnumber> [^<]*?(?:<NEdate_NEyear_NEnumber> )?<TO>
+#correct: 111
+#incorrect: 1095
+
+<TO> [^<]*?born [^<]*?<PO_NEnumber>
+#correct: 111
+#incorrect: 88
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born (?:<NEnumber> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 110
+#incorrect: 106
+
+<TO> [^<]*?born [^<]*?(?:<NEcolor> )?(?:<NEriver_NEwater> )?[^<]*?(?:<NEcolor> )?(?:<NErelation> )?[^<]*?(?:<NEnumber> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 103
+#incorrect: 111
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 101
+#incorrect: 111
+
+<TO> [^<]*?born [^<]*?(?:<NEdate> )?[^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 100
+#incorrect: 112
+
+<TO> was born in <PO_NEdate_NEyear_NEnumber>
+#correct: 68
+#incorrect: 0
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?born on <PO> in
+#correct: 34
+#incorrect: 178
+
+<TO> [^<]*?born [^<]*?on <PO> in
+#correct: 34
+#incorrect: 182
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?(?:<NEprofession> )?[^<]*?born on <PO> in
+#correct: 34
+#incorrect: 175
+
+<TO> [^<]*?born in <PO> in
+#correct: 33
+#incorrect: 92
+
+<TO> [^<]*?born on <PO> in
+#correct: 33
+#incorrect: 174
+
+<TO> [^<]*?born [^<]*?in <PO> in
+#correct: 33
+#incorrect: 94
+
+# <PO> <NEnumber> [^<]*?<TO>
+#correct: 32
+#incorrect: 888
+
+<TO> was born in <PO> in
+#correct: 31
+#incorrect: 78
+
+<TO> was born on <PO> in
+#correct: 30
+#incorrect: 158
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?on <PO> \.
+#correct: 21
+#incorrect: 144
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> \.
+#correct: 21
+#incorrect: 143
+
+<TO> [^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?[^<]*?(?:<NEnationality_NEethnicGroup_NEriver_NEwater> )?(?:<NEprofession> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?on <PO> ,
+#correct: 21
+#incorrect: 171
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?on <PO> ,
+#correct: 21
+#incorrect: 167
+
+, <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEreligion> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NEprofession> )?[^<]*?<TO>
+#correct: 21
+#incorrect: 101
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?on <PO> \.
+#correct: 21
+#incorrect: 142
+
+<TO> [^<]*?born [^<]*?(?:<NEriver_NEwater> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?on <PO> \.
+#correct: 21
+#incorrect: 142
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?on <PO> ,
+#correct: 20
+#incorrect: 160
+
+<TO> [^<]*?(?:<NElocation_NEcountry> )?[^<]*?born on <PO> ,
+#correct: 20
+#incorrect: 153
+
+<TO> [^<]*?born [^<]*?on <PO> ,
+#correct: 20
+#incorrect: 159
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> ,
+#correct: 20
+#incorrect: 166
+
+<TO> [^<]*?born [^<]*?(?:<NEscore_NEtime> )?[^<]*?on <PO> ,
+#correct: 20
+#incorrect: 165
+
+, <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEreligion> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NEprofession> )?<TO>
+#correct: 20
+#incorrect: 100
+
+<TO> [^<]*?born on <PO> ,
+#correct: 20
+#incorrect: 152
+
+<TO> [^<]*?born [^<]*?(?:<NEriver_NEwater> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?on <PO> ,
+#correct: 20
+#incorrect: 163
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?(?:<NEfirstName> )?in <PO> ,
+#correct: 19
+#incorrect: 222
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?in <PO> ,
+#correct: 19
+#incorrect: 229
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEriver_NEwater> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> \.
+#correct: 19
+#incorrect: 127
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> ,
+#correct: 19
+#incorrect: 222
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry> )?in <PO> ,
+#correct: 19
+#incorrect: 222
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?in <PO> ,
+#correct: 19
+#incorrect: 222
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?on <PO> \.
+#correct: 19
+#incorrect: 127
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEcountry> )?[^<]*?in <PO> ,
+#correct: 19
+#incorrect: 222
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> \.
+#correct: 19
+#incorrect: 127
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEnumber> )?[^<]*?<NEmonth> <PO> \.
+#correct: 18
+#incorrect: 122
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEnumber> )?<NEmonth> <PO> \.
+#correct: 18
+#incorrect: 144
+
+<TO> [^<]*?born [^<]*?(?:<NEtime> )?on <PO> \.
+#correct: 17
+#incorrect: 97
+
+<TO> [^<]*?born (?:<NEdisease> )?[^<]*?(?:<NEreligion> )?[^<]*?on <PO> \.
+#correct: 17
+#incorrect: 96
+
+<TO> [^<]*?born (?:<NEweekday> )?(?:<NEnumber> )?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 17
+#incorrect: 87
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?on <PO> \.
+#correct: 17
+#incorrect: 112
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry> )?on <PO> \.
+#correct: 17
+#incorrect: 108
+
+<TO> [^<]*?born (?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 17
+#incorrect: 88
+
+<TO> [^<]*?born (?:<NEethnicGroup> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> \.
+#correct: 17
+#incorrect: 108
+
+<TO> [^<]*?born [^<]*?(?:<NEcountry> )?on <PO> \.
+#correct: 17
+#incorrect: 96
+
+on <PO> , [^<]*?(?:<NErelation> )?[^<]*?<TO>
+#correct: 17
+#incorrect: 242
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?on <PO> \.
+#correct: 17
+#incorrect: 108
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?born (?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 17
+#incorrect: 89
+
+<TO> [^<]*?born [^<]*?(?:<NEriver_NEwater> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> \.
+#correct: 17
+#incorrect: 109
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born (?:<NEnumber> )?(?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 17
+#incorrect: 88
+
+<TO> [^<]*?(?:<NElocation_NElanguage> )?[^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> \.
+#correct: 16
+#incorrect: 142
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEcountry> )?[^<]*?(?:<NEweekday> )?(?:<NEtime> )?in <PO> \.
+#correct: 16
+#incorrect: 143
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> \.
+#correct: 16
+#incorrect: 141
+
+<TO> [^<]*?born (?:<NEdisease> )?[^<]*?(?:<NElocation_NEprofession> )?[^<]*?(?:<NElocation_NEstate> )?in <PO> \.
+#correct: 16
+#incorrect: 143
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?in <PO> \.
+#correct: 16
+#incorrect: 141
+
+<TO> [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?born in <PO> ,
+#correct: 16
+#incorrect: 217
+
+<TO> [^<]*?born (?:<NEethnicGroup> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> \.
+#correct: 16
+#incorrect: 141
+
+<TO> [^<]*?\. <PO> ,
+#correct: 16
+#incorrect: 57
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?in <PO> \.
+#correct: 16
+#incorrect: 142
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?in <PO> \.
+#correct: 16
+#incorrect: 142
+
+<TO> [^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?born in <PO> ,
+#correct: 16
+#incorrect: 217
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?in <PO> \.
+#correct: 16
+#incorrect: 143
+
+<TO> [^<]*?born in <PO> ,
+#correct: 16
+#incorrect: 217
+
+<TO> was born on <PO> ,
+#correct: 16
+#incorrect: 132
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?in <PO> \.
+#correct: 16
+#incorrect: 144
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEacronym> )?in <PO> \.
+#correct: 16
+#incorrect: 142
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEstate> )?in <PO> \.
+#correct: 16
+#incorrect: 141
+
+<TO> [^<]*?born [^<]*?(?:<NEfirstName> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> \.
+#correct: 16
+#incorrect: 141
+
+<TO> [^<]*?born [^<]*?in <PO> \.
+#correct: 16
+#incorrect: 140
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?(?:<NElanguage> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> \.
+#correct: 16
+#incorrect: 142
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> \.
+#correct: 16
+#incorrect: 142
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry> )?in <PO> \.
+#correct: 16
+#incorrect: 141
+
+<TO> was born in <NElocation_NEcountry_NEcurrency_NEfirstName> in <PO_NEdate_NEyear_NEnumber>
+#correct: 15
+#incorrect: 1
+
+<TO> was born in <NElocation> in <PO_NEdate_NEyear_NEnumber>
+#correct: 15
+#incorrect: 1
+
+<TO> [^<]*?born on <PO> \.
+#correct: 15
+#incorrect: 89
+
+<TO> was born in <NElocation_NEstate> in <PO_NEdate_NEyear_NEnumber>
+#correct: 15
+#incorrect: 1
+
+<TO> was born in <NElocation_NEcountry> in <PO_NEdate_NEyear_NEnumber>
+#correct: 15
+#incorrect: 1
+
+<TO> was born on <PO> \.
+#correct: 15
+#incorrect: 79
+
+<TO> [^<]*?(?:<NErelation> )?[^<]*?born on <PO> \.
+#correct: 15
+#incorrect: 90
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEnumber> )?<NEmonth> <PO> \.
+#correct: 14
+#incorrect: 118
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?<NEmonth> <PO> in
+#correct: 14
+#incorrect: 213
+
+<TO> [^<]*?(?:<NEnationality_NEethnicGroup> )?(?:<NEmilitaryRank_NEprofession> )?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEnumber> )?<NEmonth> <PO> \.
+#correct: 14
+#incorrect: 117
+
+<TO> was born on <NEnumber> <NEmonth> <PO_NEdate_NEyear_NEnumber>
+#correct: 13
+#incorrect: 0
+
+<TO> [^<]*?born [^<]*?(?:<NEethnicGroup> )?[^<]*?(?:<NEnumber> )?[^<]*?<NEmonth> <PO> \.
+#correct: 13
+#incorrect: 111
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?<NEmonth> <PO> \.
+#correct: 13
+#incorrect: 111
+
+<TO> [^<]*?born <PO> in
+#correct: 12
+#incorrect: 442
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEnumber> )?[^<]*?<NEmonth> <PO> ,
+#correct: 12
+#incorrect: 204
+
+<TO> [^<]*?born in <PO> \.
+#correct: 12
+#incorrect: 137
+
+<TO> [^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?born in <PO> \.
+#correct: 12
+#incorrect: 137
+
+<TO> [^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?[^<]*?(?:<NEprofession> )?born in <PO> \.
+#correct: 12
+#incorrect: 138
+
+<TO> [^<]*?born <PO_NEdate>
+#correct: 11
+#incorrect: 1
+
+<TO> [^<]*?born <PO_NEdate_NEyear_NEnumber>
+#correct: 11
+#incorrect: 10
+
+<TO> [^<]*?born (?:<NEmonth> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 11
+#incorrect: 94
+
+<TO> [^<]*?(?:<NElocation_NEcountry> )?[^<]*?born <PO_NEdate>
+#correct: 11
+#incorrect: 1
+
+<TO> [^<]*?born (?:<NEdate> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 11
+#incorrect: 10
+
+<TO> [^<]*?(?:<NEnationality_NEethnicGroup> )?(?:<NEstyle> )?(?:<NEmilitaryRank_NEprofession> )?[^<]*?born (?:<NEmonth> )?<PO_NEnumber>
+#correct: 11
+#incorrect: 93
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?born <PO_NEdate_NEyear_NEnumber>
+#correct: 11
+#incorrect: 10
+
+<TO> [^<]*?in <PO> and
+#correct: 11
+#incorrect: 107
+
+<TO> [^<]*?born (?:<NEmonth> )?<PO_NEnumber>
+#correct: 11
+#incorrect: 93
+
+<TO> [^<]*?(?:<NEperson> )?[^<]*?born (?:<NEmonth> )?<PO_NEnumber>
+#correct: 11
+#incorrect: 97
+
+<TO> was born in <PO> \.
+#correct: 11
+#incorrect: 118
+
+<TO> was born in <PO> ,
+#correct: 11
+#incorrect: 174
+
+<TO> [^<]*?(?:<NEacronym> )?[^<]*?born (?:<NEmonth> )?<PO_NEnumber>
+#correct: 11
+#incorrect: 93
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?<NEmonth> <PO> ,
+#correct: 10
+#incorrect: 200
+
+<PO_NEdate_NEyear_NEnumber> [^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<TO>
+#correct: 10
+#incorrect: 14
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?in <PO> and
+#correct: 10
+#incorrect: 45
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry> )?in <PO> and
+#correct: 10
+#incorrect: 45
+
+<PO_NEdate_NEyear_NEnumber> [^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NErelation> )?[^<]*?(?:<NEprofession> )?[^<]*?<TO>
+#correct: 10
+#incorrect: 14
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?in <PO> and
+#correct: 10
+#incorrect: 45
+
+<TO> [^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEperson> )?(?:<NEprofession> )?[^<]*?born in <PO> and
+#correct: 10
+#incorrect: 45
+
+<PO_NEdate_NEyear_NEnumber> [^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?<TO>
+#correct: 10
+#incorrect: 14
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?in <PO> and
+#correct: 10
+#incorrect: 45
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?in <PO> and
+#correct: 10
+#incorrect: 45
+
+<TO> [^<]*?born <PO> ,
+#correct: 9
+#incorrect: 538
+
+<TO> [^<]*?born in <PO> and
+#correct: 9
+#incorrect: 44
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?born <PO> ,
+#correct: 9
+#incorrect: 543
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?<NEmonth> <PO> \.
+#correct: 9
+#incorrect: 106
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?<NEmonth> <PO> ,
+#correct: 8
+#incorrect: 196
+
+<TO> was born in <PO> and
+#correct: 8
+#incorrect: 35
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<TO>
+#correct: 8
+#incorrect: 1
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEprofession> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?born [^<]*?(?:<NEnumber> )?<NEmonth> <PO> in
+#correct: 8
+#incorrect: 215
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?<TO>
+#correct: 8
+#incorrect: 1
+
+\( <PO> - (?:<NEdate_NEyear_NEnumber> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NErelation> )?[^<]*?(?:<NEprofession> )?[^<]*?<TO>
+#correct: 8
+#incorrect: 1
+
+<TO> was born on <NEnumber> <NEmonth> <PO> in
+#correct: 8
+#incorrect: 1
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?<NEmonth> <PO> in
+#correct: 8
+#incorrect: 211
+
+<TO> born [^<]*?(?:<NEdate> )?<PO_NEdate_NEyear_NEnumber>
+#correct: 7
+#incorrect: 6
+
+<TO> born [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 7
+#incorrect: 12
+
+<TO> born [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 7
+#incorrect: 6
+
+<TO> born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 7
+#incorrect: 12
+
+<TO> \] , <PO> -
+#correct: 7
+#incorrect: 0
+
+<TO> was born <PO> in
+#correct: 7
+#incorrect: 378
+
+<TO> was born in <NElocation_NEcountry_NEcurrency_NEfirstName> in <PO> \.
+#correct: 7
+#incorrect: 2
+
+<TO> was born in <NElocation> in <PO> \.
+#correct: 7
+#incorrect: 2
+
+<TO> was born in <NElocation_NEstate> in <PO> \.
+#correct: 7
+#incorrect: 2
+
+<TO> born [^<]*?<PO_NEnumber>
+#correct: 7
+#incorrect: 4
+
+<TO> (?:<NEstyle> )?(?:<NEprofession> )?born [^<]*?<PO_NEdate>
+#correct: 7
+#incorrect: 2
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> , in <PO_NEdate_NEyear_NEnumber>
+#correct: 7
+#incorrect: 0
+
+<TO> was born in <NElocation_NEcountry> in <PO> \.
+#correct: 7
+#incorrect: 2
+
+<TO> was born in <NElocation> in <PO> ,
+#correct: 6
+#incorrect: 2
+
+<TO> was born in <NElocation_NEcountry> in <PO> ,
+#correct: 6
+#incorrect: 2
+
+<TO> [^<]*?born <PO> \.
+#correct: 6
+#incorrect: 330
+
+<NEmonth> <PO> , [^<]*?(?:<NEfirstName> )?[^<]*?<TO>
+#correct: 6
+#incorrect: 191
+
+<TO> , born in <PO_NEdate_NEyear_NEnumber>
+#correct: 6
+#incorrect: 1
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> , in <PO> \.
+#correct: 6
+#incorrect: 2
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?in <PO> to
+#correct: 6
+#incorrect: 39
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> in <PO_NEdate_NEyear_NEnumber>
+#correct: 6
+#incorrect: 1
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?in <PO> to
+#correct: 6
+#incorrect: 39
+
+born <PO> , <TO>
+#correct: 5
+#incorrect: 76
+
+<TO> [^<]*?born in <PO> to
+#correct: 5
+#incorrect: 39
+
+<TO> was born on <NEnumber> <NEmonth> <PO> \.
+#correct: 5
+#incorrect: 1
+
+<TO> \( born <PO_NEdate_NEyear_NEnumber>
+#correct: 4
+#incorrect: 0
+
+<TO> [^<]*?born (?:<NEperson> )?[^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?<NEmonth> <PO> \.
+#correct: 4
+#incorrect: 143
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> to
+#correct: 4
+#incorrect: 19
+
+<TO> , born <PO> in
+#correct: 4
+#incorrect: 10
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> in <PO> \.
+#correct: 4
+#incorrect: 1
+
+<TO> , born <NEnumber> <NEmonth> <PO_NEdate_NEyear_NEnumber>
+#correct: 4
+#incorrect: 1
+
+<TO> born <PO> \.
+#correct: 4
+#incorrect: 11
+
+<TO> [^<]*?born [^<]*?day [^<]*?<PO_NEdate_NEyear_NEnumber>
+#correct: 4
+#incorrect: 0
+
+<TO> lived from <PO> to
+#correct: 4
+#incorrect: 0
+
+<PO_NEdate_NEyear_NEnumber> - <NEdate_NEyear_NEnumber> \) , also known as <TO>
+#correct: 4
+#incorrect: 0
+
+<TO> lived from <PO_NEdate_NEyear_NEnumber>
+#correct: 4
+#incorrect: 0
+
+<TO> , born <NEnumber> <NEmonth> <PO> ,
+#correct: 4
+#incorrect: 0
+
+<TO> [^<]*?(?:<NEacronym> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?<NEmonth> <PO> \.
+#correct: 4
+#incorrect: 142
+
+<TO> was born in <NElocation> , <NEcountry> , in <PO_NEdate_NEyear_NEnumber>
+#correct: 4
+#incorrect: 0
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?<NEmonth> <PO> \.
+#correct: 4
+#incorrect: 142
+
+<TO> was born on <NEnumber> th <NEmonth> <PO_NEdate_NEyear_NEnumber>
+#correct: 4
+#incorrect: 0
+
+<TO> [^<]*?born (?:<NEnumber> )?<NEmonth> <PO> ,
+#correct: 4
+#incorrect: 51
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?<NEmonth> <PO> \.
+#correct: 4
+#incorrect: 142
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born (?:<NEnumber> )?<NEmonth> <PO> ,
+#correct: 4
+#incorrect: 51
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<NEmonth> <PO> \.
+#correct: 4
+#incorrect: 142
+
+<TO> was born in <NElocation> in <PO> and
+#correct: 3
+#incorrect: 1
+
+<TO> [^<]*?(?:<NEperson> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?, <PO> \.
+#correct: 3
+#incorrect: 96
+
+<TO> was born in <NElocation_NEcountry> in <PO> and
+#correct: 3
+#incorrect: 1
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> on <PO> to
+#correct: 3
+#incorrect: 0
+
+<TO> [^<]*?(?:<NEfirstName> )?[^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?(?:<NEmonth> )?, <PO> \.
+#correct: 3
+#incorrect: 86
+
+<TO> [^<]*?born [^<]*?(?:<NEriver_NEwater> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?on <PO> and
+#correct: 3
+#incorrect: 28
+
+<TO> [^<]*?born [^<]*?(?:<NEorganization_NEnumber> )?[^<]*?(?:<NEmonth> )?, <PO> in
+#correct: 3
+#incorrect: 11
+
+<TO> [^<]*?born <PO> \)
+#correct: 3
+#incorrect: 37
+
+<TO> (?:<NElanguage_NEnationality_NEethnicGroup> )?(?:<NEprofession> )?born <PO_NEdate_NEyear_NEnumber>
+#correct: 3
+#incorrect: 1
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> in <PO> and
+#correct: 3
+#incorrect: 0
+
+<TO> was born in <PO> to
+#correct: 3
+#incorrect: 27
+
+<TO> born (?:<NEmonth> )?<PO_NEnumber>
+#correct: 3
+#incorrect: 8
+
+<TO> born <PO_NEdate_NEyear_NEnumber>
+#correct: 3
+#incorrect: 1
+
+<TO> \( born <PO> ,
+#correct: 3
+#incorrect: 1
+
+<TO> \( born <PO> \)
+#correct: 3
+#incorrect: 12
+
+<TO> [^<]*?born [^<]*?(?:<NEnumber> )?[^<]*?(?:<NEmonth> )?, <PO> in
+#correct: 3
+#incorrect: 11
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEriver_NEwater> )?[^<]*?(?:<NElocation_NEcountry> )?on <PO> and
+#correct: 3
+#incorrect: 34
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> on <PO> \.
+#correct: 2
+#incorrect: 11
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEacronym> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 189
+
+<PO_NEdate> [^<]*?born [^<]*?(?:<NEperson_NEfirstName> )?[^<]*?<TO>
+#correct: 2
+#incorrect: 8
+
+<TO> [^<]*?born (?:<NElocation> )?[^<]*?<NElocation_NEcountry> <PO> -
+#correct: 2
+#incorrect: 16
+
+<TO> was born on <NEnumber> th <NEmonth> <PO> in
+#correct: 2
+#incorrect: 0
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<NEmonth> <PO> \.
+#correct: 2
+#incorrect: 115
+
+<TO> [^<]*?(?:<NEnationality_NEethnicGroup> )?[^<]*?born [^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 188
+
+<TO> [^<]*?born [^<]*?(?:<NEweekday> )?[^<]*?(?:<NEmonth> )?<NEnumber> <PO> in
+#correct: 2
+#incorrect: 178
+
+<PO_NEdate> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<TO>
+#correct: 2
+#incorrect: 8
+
+<TO> was born on <NEnumber> <NEmonth> <PO> ,
+#correct: 2
+#incorrect: 2
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 191
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 188
+
+<TO> was born on the <NEnumber> th <NEmonth> <PO_NEdate_NEyear_NEnumber>
+#correct: 2
+#incorrect: 0
+
+<TO> was born on <PO> at
+#correct: 2
+#incorrect: 16
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 191
+
+<TO> was born on the <NEnumber> th of <NEmonth> <PO_NEdate_NEyear_NEnumber>
+#correct: 2
+#incorrect: 0
+
+<TO> , was born on <PO> in
+#correct: 2
+#incorrect: 9
+
+<TO> , born in <PO> ,
+#correct: 2
+#incorrect: 7
+
+<TO> [^<]*?(?:<NEnationality_NEethnicGroup_NEriver_NEwater> )?(?:<NEprofession> )?born [^<]*?(?:<NElocation> )?[^<]*?<NEmonth> <PO> \.
+#correct: 2
+#incorrect: 115
+
+<TO> [^<]*?born [^<]*?(?:<NEmonth> )?[^<]*?(?:<NEorganization> )?, <PO> \.
+#correct: 2
+#incorrect: 2
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEcountry> )?, <PO> \.
+#correct: 2
+#incorrect: 81
+
+<TO> [^<]*?born [^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 187
+
+<TO> [^<]*?born (?:<NEperson> )?[^<]*?(?:<NElocation> )?(?:<NEfirstName> )?[^<]*?(?:<NElocation_NEcountry_NEcurrency_NEfirstName> )?[^<]*?(?:<NEtime> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 194
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElanguage_NEnationality_NEethnicGroup> )?[^<]*?<NEmonth> <PO> \.
+#correct: 2
+#incorrect: 117
+
+<TO> was born in <NElocation> , <NElocation_NEstate> on <PO> \.
+#correct: 2
+#incorrect: 11
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEprofession> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 188
+
+<TO> [^<]*?born [^<]*?(?:<NEscore_NEtime> )?(?:<NEacronym> )?on <PO> at
+#correct: 2
+#incorrect: 22
+
+<TO> [^<]*?born (?:<NEperson> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 187
+
+<PO_NEnumber> [^<]*?born [^<]*?<TO>
+#correct: 2
+#incorrect: 11
+
+<TO> [^<]*?(?:<NEnumber> )?[^<]*?born (?:<NEperson> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 187
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NElocation_NEcountry> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 191
+
+<TO> [^<]*?(?:<NErelation> )?[^<]*?born [^<]*?(?:<NEnumber> )?<NEmonth> <PO> at
+#correct: 2
+#incorrect: 12
+
+<TO> , born <PO> ,
+#correct: 2
+#incorrect: 29
+
+<TO> was born <NEnumber> <NEmonth> <PO_NEdate_NEyear_NEnumber>
+#correct: 2
+#incorrect: 0
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEprofession> )?[^<]*?<NEmonth> <PO> \.
+#correct: 2
+#incorrect: 115
+
+<TO> was born in <NElocation> , <NElocation_NEcountry> , on <PO> \.
+#correct: 2
+#incorrect: 10
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEstyle> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 188
+
+<TO> [^<]*?born on <PO> and
+#correct: 2
+#incorrect: 25
+
+<TO> [^<]*?(?:<NEprofession> )?[^<]*?born [^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 188
+
+<TO> [^<]*?born (?:<NEduration> )?[^<]*?(?:<NElocation_NEcountry> )?, <PO> \.
+#correct: 2
+#incorrect: 81
+
+<TO> was born on <PO> and
+#correct: 2
+#incorrect: 24
+
+<TO> [^<]*?(?:<NEacronym> )?[^<]*?born [^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 187
+
+<TO> , was born on <PO> ,
+#correct: 2
+#incorrect: 9
+
+<TO> [^<]*?born [^<]*?(?:<NElocation_NEprofession> )?[^<]*?(?:<NElocation_NEstate> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 191
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?(?:<NEorganization> )?<NEmonth> <PO> \.
+#correct: 2
+#incorrect: 115
+
+<TO> [^<]*?born on <PO> at
+#correct: 2
+#incorrect: 16
+
+<TO> [^<]*?born [^<]*?(?:<NEriver_NEwater> )?(?:<NEnumber> )?, <PO> \.
+#correct: 2
+#incorrect: 7
+
+<TO> [^<]*?born [^<]*?(?:<NElocation> )?[^<]*?<NEmonth> <PO> ,
+#correct: 2
+#incorrect: 188
+
+<TO> [^<]*?birthday [^<]*?(?:<NEmonth> )?<PO_NEnumber>
+#correct: 2
+#incorrect: 20
