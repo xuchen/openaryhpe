@@ -40,6 +40,7 @@ public class VerbDecomposer {
 	// match the auxiliary word, could be model word, such as "should", "will",
 	// or could be the first verb of two verbs, such as "has been"
 	// one exception: "stopped doing(VBG)"
+	// TODO: the following doesn't match: "A large male can be 2 metres (6 ft 7 in) tall and weigh 90 kg (200 lb)."
 	private static String tregexMatchVb1Vb2 = "ROOT < (S=clause < (VP=mainvp < /(AUX.*|MD|VB.?)/=vb1 < (VP < /VB[^G]?/=vb2)))";
 	private static TregexPattern tregexPatternMatchVb1Vb2;
 	// move the auxiliary word to the be the first child of the main clause

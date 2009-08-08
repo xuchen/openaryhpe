@@ -74,9 +74,11 @@ public class TreeAnswerAnalyzer {
 		
 		if (terms == null) return null;
 		for (int i=0; i<sentences.length; i++) {
+			// compress trees by removingsentence-initial conjunctions, appositives.
+			Tree compressedTree = TreeCompressor.compress(trees[i]);
 			// mark unmovable structures
-			Tree unmvMarkedTree = UnmovableTreeMarker.mark(trees[i]);
-			TreeAnswer treeAnswer = new TreeAnswer(sentences[i], terms[i], trees[i], unmvMarkedTree);
+			Tree unmvMarkedTree = UnmovableTreeMarker.mark(compressedTree);
+			TreeAnswer treeAnswer = new TreeAnswer(sentences[i], terms[i], compressedTree, unmvMarkedTree);
 			// decompose the main verb
 			treeAnswer = VerbDecomposer.decompose(treeAnswer);
 			if (treeAnswer == null) continue;
