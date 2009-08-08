@@ -53,7 +53,7 @@ public class UnmovableTreeMarker {
 			return false;
 		}
 		
-		MsgPrinter.printStatusMsg("Building Tregex patterns...");
+		//MsgPrinter.printStatusMsg("Building Tregex patterns...");
 		Iterator<String> iter = regexList.iterator();
 		TregexPattern tPattern = null;
 		try {

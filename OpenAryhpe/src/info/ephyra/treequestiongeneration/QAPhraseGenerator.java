@@ -37,6 +37,7 @@ public class QAPhraseGenerator {
 		treeAnswer.setSubject(StanfordParser.getSubject(oriTree));
 		Term[] terms = treeAnswer.getTerms();
 		
+		log.debug("Terms: "+Arrays.toString(terms));
 		// first deal with NP who's not under a PP
 		String tregex = "NP !> PP";
 		TregexPattern tPattern = null;
