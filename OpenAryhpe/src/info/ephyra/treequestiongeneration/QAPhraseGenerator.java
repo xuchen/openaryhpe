@@ -240,6 +240,17 @@ public class QAPhraseGenerator {
 		for (String neType:neTypes) {
 			String[] types = {neType};
 			Term t = new Term(ansTerm, types);
+			// Stanford NE tagger
+			if (neType.equals("NEperson")) {
+				qType = "WHO";
+				qPhrase = "who";
+			} else if (neType.equals("NElocation")) {
+				qType = "WHERE";
+				qPhrase = "where";
+			} else if (neType.equals("NEorganization")) {
+				qType = "WHAT";
+				qPhrase = "what organization";
+			} else
 			//allPatternNames String[48]
 			if (neType.equals("NEdate")) {
 				qType = "WHEN";
@@ -577,7 +588,7 @@ public class QAPhraseGenerator {
 				qPhrase = "what TV channel";
 			} else if (neType.equals("NEusPresident")) {
 				qType = "WHAT";
-				qPhrase = "what US president";
+				qPhrase = "which US president";
 			} else if (neType.equals("NEvaccine")) {
 				qType = "WHAT";
 				qPhrase = "what vaccine";
@@ -587,16 +598,6 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEzodiacSign")) {
 				qType = "WHAT";
 				qPhrase = "what zodiacSign";
-			} 			// Stanford NE tagger
-			else if (neType.equals("NEperson")) {
-				qType = "WHO";
-				qPhrase = "who";
-			} else if (neType.equals("NElocation")) {
-				qType = "WHERE";
-				qPhrase = "where";
-			} else if (neType.equals("NEorganization")) {
-				qType = "WHAT";
-				qPhrase = "what organization";
 			} else {
 				qType = "WHAT";
 				qPhrase = "what";

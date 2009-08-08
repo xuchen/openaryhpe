@@ -39,9 +39,12 @@ public class TreeQuestionGenerator {
 			if (pPair.getQuesType().equals("Y/N")) {
 				quesSent = invSent.replaceFirst("<quesPhrase>", "");;
 			} else {
-				if (ansPhrase.equals(subject)) {
+				// here we use "contains", not "equals" to include the following case:
+				// In "The New York Times wrote that.", the subject is "Times-4",
+				// but the answer phrase is "The-1 New-2 York-3 Times-4".
+				if (ansPhrase.contains(subject)) {
 					// answer phrase is the subject
-					quesSent = idxSent.replaceFirst(subject, quesPhrase);
+					quesSent = idxSent.replaceFirst(ansPhrase, quesPhrase);
 				} else {
 					quesSent = invSent.replaceFirst(OpenNLP.tokenizeWithSpaces(ansPhrase), "");
 					quesSent = quesSent.replaceFirst("<quesPhrase>", quesPhrase);
