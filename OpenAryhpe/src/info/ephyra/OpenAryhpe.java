@@ -411,19 +411,21 @@ public class OpenAryhpe {
 //				results = askFactoid(question, FACTOID_MAX_ANSWERS,
 //									 FACTOID_ABS_THRESH);
 				//AnalyzedQuestion aq = QuestionAnalysis.analyze(question);
-				TreeAnswers answers = new TreeAnswers(question);
-				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(answers);
+				TreeAnswers treeAnswers = new TreeAnswers(question);
+				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(treeAnswers);
 				Iterator<TreeAnswer> tAnsIter = treeAnsList.iterator();
 				while (tAnsIter.hasNext()) {
 					TreeAnswer treeAnswer = tAnsIter.next();
 					TreeQuestionGenerator.generate(treeAnswer);
 				}
 				TreeQuestionGenerator.print(treeAnsList);
-				//ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
+				
+				Answers answers = new Answers(question);
+				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
 				//ArrayList<QuestionAnswerPair> qaPairList = QuestionGenerator.makeQApairs(ansList);
 				//ArrayList<QuestionAnswerPair> lessList = QuestionGenerator.shrinkByTo(qaPairList);
-				//ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
-				//QuestionGenerator.printQAlist(qaPairList);
+				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
+				QuestionGenerator.printQAlist(qaPairList);
 				//QuestionGenerator.generate(ansList);
 				//Logger.logResults(results);
 				//Logger.logFactoidEnd();

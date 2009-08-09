@@ -302,6 +302,9 @@ public class QuestionGenerator {
 
 	// Making this pairs could consume a lot of memory
 	public static ArrayList<QAPair> makeQApair(ArrayList<Answer> ansList) {
+		if (ansList.isEmpty()) {
+			return null;
+		}
 		Iterator<Answer> ansIter = ansList.iterator();
 		String prop = null;
 		String sent = null;
