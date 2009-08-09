@@ -1,0 +1,9 @@
+QUESTION_TEMPLATE: Who does <TO> marry?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Spouse: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+what be <TO>'s wife
+what be the wife of <TO>
+(who|whom) do <TO> marry
+to whom be <TO> marry

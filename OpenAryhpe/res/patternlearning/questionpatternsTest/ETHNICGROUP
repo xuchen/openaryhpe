@@ -1,0 +1,9 @@
+QUESTION_TEMPLATE: What ethnic group is <TO>?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Ethnic group: <PO>
+ANSWER_CONSTRAINT: NEethnicGroup
+
+what be <TO>'s ethnic background
+what be (an|the) ethnic background of <TO>
+what tribe do <TO> belong to
+what (ethnic group|race) be <TO>

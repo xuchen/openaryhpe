@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: who is the coach of <TO>?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Coach: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+who be <TO>'s (coach|trainer)
+who be (a|the) (coach|trainer) of <TO>

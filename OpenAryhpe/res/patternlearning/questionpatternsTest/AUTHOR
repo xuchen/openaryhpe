@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: Who wrote <TO>?
+QUESTION_CONSTRAINT: NEbook_NEfilm
+ANSWER_TEMPLATE: Author: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+who (be (the |an )?author of|write) (the (article|book|paper|song) )?<TO>
+who (be (the |an )?author of|write) the (article|book|paper|song) about <CO> call <TO>

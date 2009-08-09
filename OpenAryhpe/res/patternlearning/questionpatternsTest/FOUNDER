@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: Who founded <TO>?
+ANSWER_TEMPLATE: Founded by: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+who (found|start) <TO>
+who be (the |a )?founder of <TO>
+by whom be <TO> (found|start)

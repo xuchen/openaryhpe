@@ -1,0 +1,4 @@
+QUESTION_TEMPLATE: what does the name <TO> come from
+ANSWER_TEMPLATE: <PO>
+
+what do (the name |the term)?<TO> (come from|mean)

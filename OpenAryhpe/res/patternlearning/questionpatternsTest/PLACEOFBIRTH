@@ -1,5 +1,7 @@
 QUESTION_TEMPLATE: Where was <TO> born?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
 ANSWER_TEMPLATE: Born in: <PO>
+ANSWER_CONSTRAINT: NElocation_NEprovince_NEstate
 
 where be <TO> bear
 (where|what) be( the location of)? <TO>'s (birthplace|place of birth)

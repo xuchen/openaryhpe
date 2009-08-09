@@ -1,0 +1,5 @@
+QUESTION_TEMPLATE: How many children does <TO> have?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Number: <PO>
+
+how many children do <TO> have
