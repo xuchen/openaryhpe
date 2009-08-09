@@ -146,6 +146,10 @@ public class AnswerAnalyzer {
 			HashSet<AnswerPattern> patterns;
 			
 			for (File file : files) {
+				if (file.getName().startsWith(".")) {
+					//hidden file, probably a .swp file
+					continue;
+				}
 				MsgPrinter.printStatusMsg("  ...for " + file.getName());
 				
 				prop = file.getName();
@@ -165,13 +169,16 @@ public class AnswerAnalyzer {
 					// number of wrong applications
 					wrong = Integer.parseInt(in.readLine().split(" ")[1]);
 					
-					try {
-						patterns.add(new AnswerPattern(expr, prop,
-													   correct, wrong));
-					} catch (PatternSyntaxException pse) {
-						MsgPrinter.printErrorMsg("Problem loading pattern:\n" +
-												 prop + " " + expr);
-						MsgPrinter.printErrorMsg(pse.getMessage());
+					// strict constraint on the number of correct and wrong
+					if (wrong < 20 && (wrong == 0 || correct*1.0/wrong > 8)) {
+						try {
+							patterns.add(new AnswerPattern(expr, prop,
+														   correct, wrong));
+						} catch (PatternSyntaxException pse) {
+							MsgPrinter.printErrorMsg("Problem loading pattern:\n" +
+													 prop + " " + expr);
+							MsgPrinter.printErrorMsg(pse.getMessage());
+						}
 					}
 				}
 				props.put(prop, patterns);

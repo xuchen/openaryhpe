@@ -257,7 +257,7 @@ public class OpenAryhpe {
 			MsgPrinter.printErrorMsg("Could not Tregex patterns for unmovable phrases.");
 		
 		// Initialize TreeCompressor
-		MsgPrinter.printStatusMsg("Initialize VerbDecomposer...");
+		MsgPrinter.printStatusMsg("Initialize TreeCompressor...");
 		if (!TreeCompressor.initialize()) {
 			MsgPrinter.printErrorMsg("failed.");
 			System.exit(-1);

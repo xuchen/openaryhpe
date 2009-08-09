@@ -2632,6 +2632,10 @@ of <PO> , <NElocation_NEprofession> , <TO>
 #correct: 4
 #incorrect: 0
 
+<TO> was born on <NEdate> in <PO>
+#correct: 4
+#incorrect: 0
+
 in <PO> , <NElocation> , to <TO>
 #correct: 4
 #incorrect: 0
@@ -3204,6 +3208,10 @@ in <PO> , <NElocation_NEcountry> in <NEdate_NEyear_NEnumber> , <TO>
 #correct: 2
 #incorrect: 0
 
+<TO> was born on <NEdate> in <PO_NElocation> \.
+#correct: 2
+#incorrect: 0
+
 <TO> , born on <NEmonth> <NEnumber> in <PO> ,
 #correct: 2
 #incorrect: 0
@@ -3219,3 +3227,7 @@ in <PO> , <NElocation_NEcountry> in <NEdate_NEyear_NEnumber> , <TO>
 <PO_NElocation> [^<]*?(?:<NElocation> )?[^<]*?birthplace [^<]*?(?:<NEprofession> )?<TO>
 #correct: 2
 #incorrect: 2
+
+<TO> was born on (?:<NEdate_NEyear_NEnumber> )?[^<]*?(?:<NEdate_NEyear_NEnumber> )?[^<]*?in <PO> \.
+#correct: 1
+#incorrect: 0

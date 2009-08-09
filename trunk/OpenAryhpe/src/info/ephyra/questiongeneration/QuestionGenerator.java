@@ -345,14 +345,15 @@ public class QuestionGenerator {
 			}
 			
 			// match with constraint,if there is one
-			// if there's a constraint file in res/patternlearning/questionpattern,
-			// there must be a corresponding file in res/patternlearning/answerpattern
+			// if there's a constraint file in res/patternlearning/questionpatternTest,
+			// there must be a corresponding file in res/patternlearning/answerpatternTest
 			ArrayList<String> qCons = QuestionGenerator.questionConstraint.get(prop);
 			ArrayList<String> aCons = QuestionGenerator.answerConstraint.get(prop);
 			// toTerm couldn't be null since every <TO> must be a term
 			// poTerm could be null since <PO> might not be in the term list
 			//if ( ans.getPoTerm() == null ||
-			if ( qCons == null || aCons == null) {
+			if ( qCons == null && aCons == null && 
+					ans.getToTerm() != null && ans.getPoTerm() != null) {
 				ansListByProp.add(ans);
 			} else {
 				boolean to = false, po = false;
@@ -364,24 +365,28 @@ public class QuestionGenerator {
 				} else {
 					String[] neTypesPo = ans.getPoTerm().getNeTypes();
 					// poTerm must match answerConstraint
-					for (String s:neTypesPo) {
-						if (aCons.contains(s)) {
-							po = true;
-							break;
-						}
-					}					
+					if (aCons!=null) {
+						for (String s:neTypesPo) {
+							if (aCons.contains(s)) {
+								po = true;
+								break;
+							}
+						}			
+					}
 				}
 				
 
 				// toTerm must match questionConstraint
-				for (String s:neTypesTo) {
-					if (qCons.contains(s)) {
-						to = true;
-						break;
+				if (qCons!=null) {
+					for (String s:neTypesTo) {
+						if (qCons.contains(s)) {
+							to = true;
+							break;
+						}
 					}
 				}
 
-				// add this answer to the list if both contraints are satisfied
+				// add this answer to the list if both constraints are satisfied
 				if (to && po) {
 					ansListByProp.add(ans);
 				} else {
