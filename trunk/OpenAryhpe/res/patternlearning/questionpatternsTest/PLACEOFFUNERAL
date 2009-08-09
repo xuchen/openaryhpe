@@ -1,0 +1,10 @@
+QUESTION_TEMPLATE: Where is <TO> buried?
+ANSWER_TEMPLATE: Buried in: <PO>
+ANSWER_CONSTRAINT: NElocation_NEprovince_NEstate
+
+where be <TO> bury
+where be <TO>'s tomb
+where be the romb of <TO>
+(what|which) (city|continent|country|location|mountain|place|province|river|state) be <TO> bury
+(what|which) (city|continent|country|location|mountain|place|province|river|state) be <TO>'s tomb
+(what|which) (city|continent|country|location|mountain|place|province|river|state) be the romb of <TO>

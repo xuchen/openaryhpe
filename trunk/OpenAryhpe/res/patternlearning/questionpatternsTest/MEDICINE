@@ -1,0 +1,5 @@
+QUESTION_TEMPLATE: What is the serum for <TO>?
+ANSWER_TEMPLATE: Medicine: <PO>
+ANSWER_CONSTRAINT: NEmedicalTreatment_NEmedicinal
+
+what be ((the |a )?name (for|of) )?(the |a )?(medication|medicine|serum|vaccine) (against|for) <TO>

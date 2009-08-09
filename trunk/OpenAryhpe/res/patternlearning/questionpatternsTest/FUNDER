@@ -1,0 +1,6 @@
+QUESTION_TEMPLATE: Who was the funder of <TO>?
+ANSWER_TEMPLATE: funder: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+who be (a|the) (funder|sponsor) of <TO>
+who be <TO>'s (funder|sponsor)

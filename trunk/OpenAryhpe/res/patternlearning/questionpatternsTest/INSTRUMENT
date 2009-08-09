@@ -1,0 +1,9 @@
+QUESTION_TEMPLATE: what instrument does <TO> play?
+QUESTION_CONSTRAINT: NEperson_NEmusical_NEmusicType
+ANSWER_TEMPLATE: Instrument: <PO>
+ANSWER_CONSTRAINT: NEmusicalInstrument
+
+(what|which) instrument do <TO> play
+(musician )?<TO> play (what|which) instrument
+(what|which) instrument be <TO> ((best )?know|famous) for play
+(musician )?<TO> be ((best )?know|famous) for play (what|which) instrument

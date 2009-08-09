@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: Who discovered <TO>?
+ANSWER_TEMPLATE: Discovered by: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+who (discover|find) <TO>
+<TO> be (discover|find) by whom?
+who be (the |a )?discoverer of <TO>
