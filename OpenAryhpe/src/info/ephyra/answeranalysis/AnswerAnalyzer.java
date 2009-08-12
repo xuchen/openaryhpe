@@ -170,7 +170,7 @@ public class AnswerAnalyzer {
 					wrong = Integer.parseInt(in.readLine().split(" ")[1]);
 					
 					// strict constraint on the number of correct and wrong
-					if (wrong < 20 && (wrong == 0 || correct*1.0/wrong > 8)) {
+					if (wrong < 50 && (wrong == 0 || correct*1.0/(wrong + correct)> 0.75)) {
 						try {
 							patterns.add(new AnswerPattern(expr, prop,
 														   correct, wrong));

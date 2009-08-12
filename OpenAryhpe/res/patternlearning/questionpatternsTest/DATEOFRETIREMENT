@@ -1,4 +1,4 @@
-QUESTION_TEMPLATE: When die <TO> retire?
+QUESTION_TEMPLATE: When did <TO> retire?
 QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
 ANSWER_TEMPLATE: Retired: <PO>
 ANSWER_CONSTRAINT: NEdate_NEhour_NEmonth_NEday_NEyear
