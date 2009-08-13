@@ -62,19 +62,14 @@ public class TreeAnswerAnalyzer {
 		types = new ArrayList<String[]>();
 		sents = new ArrayList<String>();
 		aps = new ArrayList<AnswerPattern>();
-		String prop;
 		
-		String[] cos = new String[0];  // CONTEXT objects are ignored
-		HashSet<AnswerPattern> patterns;
 		String[] sentences = ans.getSentences();
-		String[] originalSentences = ans.getOriginalSentences();
-		String[][][] nes = ans.getNes();
 		Term[][] terms = ans.getTerms();
 		Tree[] trees = ans.getTrees();
 		
 		if (terms == null) return null;
 		for (int i=0; i<sentences.length; i++) {
-			// compress trees by removingsentence-initial conjunctions, appositives.
+			// compress trees by removing sentence-initial conjunctions, appositives.
 			Tree compressedTree = TreeCompressor.compress(trees[i]);
 			// mark unmovable structures
 			Tree unmvMarkedTree = UnmovableTreeMarker.mark(compressedTree);
