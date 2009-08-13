@@ -50,11 +50,13 @@ public class HashDictionary implements Dictionary {
 		if (fileName != null) {
 			File file = new File(fileName);
 			BufferedReader in = new BufferedReader(new FileReader(file));
-			
+			// potential BUG here: this constructor is also used to load
+			// irregular verbs, functionwords, etc. these words shouldn't be stemmed.
 			while (in.ready()) {
 				// read and normalize word
 				String word = in.readLine().trim();
 				if (word.startsWith("//")) continue;  // skip comments
+				if (word.startsWith("#")) continue;  // skip comments
 				word = NETagger.tokenizeWithSpaces(word.toLowerCase());
 				word = SnowballStemmer.stemAllTokens(word);
 				
