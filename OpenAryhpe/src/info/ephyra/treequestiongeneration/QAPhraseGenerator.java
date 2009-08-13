@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 
 import cern.colt.Arrays;
 
-import edu.stanford.nlp.ling.LabeledWord;
 import edu.stanford.nlp.trees.CollinsHeadFinder;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
@@ -80,7 +79,11 @@ public class QAPhraseGenerator {
 				if(termStr.equals(npHeadWord)) {
 					termNPtree = npHeadTree;
 					//TODO: maybe the whole NP should be the answer, rather than only the head of NP
-					ansPhrase = TreeUtil.getLabel(npHeadTree);
+					//X. Yao. Aug,13,2009. Change to let the whole NP be the answer
+					//This is a case where a list NEtagger finds "tiger" as an animal, but
+					//fails to capture the determiner "the" in "the tiger".
+					//ansPhrase = TreeUtil.getLabel(npHeadTree);
+					ansPhrase = TreeUtil.getLabel(npTree);
 					ansTerm = term;
 					break;
 				}
@@ -100,7 +103,7 @@ public class QAPhraseGenerator {
 			}
 		}
 		
-		// then deal with PP who's child is a NP
+		// then deal with PP whose child is a NP
 		tregex = "PP=pp < IN=in < NP=np";
 
 		try {
@@ -145,7 +148,9 @@ public class QAPhraseGenerator {
 				if(termStr.equals(npHeadWord)) {
 					termNPtree = npHeadTree;
 					//TODO: maybe the whole NP should be the answer, rather than only the head of NP
-					ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npHeadTree);
+					//X. Yao. Aug,13,2009. Change to let the whole NP be the answer
+					//ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npHeadTree);
+					ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npTree);
 					ansTerm = term;
 					break;
 				}
