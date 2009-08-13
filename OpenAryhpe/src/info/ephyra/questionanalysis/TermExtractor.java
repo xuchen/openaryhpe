@@ -168,8 +168,8 @@ public class TermExtractor {
 		boolean[] assigned = new boolean[tokens.length];
 		Arrays.fill(assigned, false);
 		
-		// for each token a term that starts at that token or 'null'
-		Term[] terms = new Term[tokens.length];
+		List<Term> termsL = new ArrayList<Term>();
+
 		// normalized terms (do identify duplicates)
 		Set<String> termSet = new HashSet<String>();
 		
@@ -202,7 +202,8 @@ public class TermExtractor {
 				String[] neTypes = getNeTypes(StringUtils.concatWithSpaces(OpenNLP.tokenize(text)), nes);
 				if (neTypes.length > 0) {
 					// construct term
-					terms[id] = new Term(text, Term.COMPOUND, neTypes);
+					Term t = new Term(text, Term.COMPOUND, neTypes);
+					termsL.add(t);
 					// mark tokens as assigned
 					for (int offset = 0; offset < length; offset++)
 						assigned[id + offset] = true;
@@ -225,7 +226,8 @@ public class TermExtractor {
 					// phrase is in the dictionary?
 					if (dict.contains(text)) {
 						// construct term
-						terms[id] = new Term(text, Term.COMPOUND);
+						Term t = new Term(text, Term.COMPOUND);
+						termsL.add(t);
 						// mark tokens as assigned
 						for (int offset = 0; offset < length; offset++)
 							assigned[id + offset] = true;
@@ -237,7 +239,11 @@ public class TermExtractor {
 		// construct single-token terms
 		for (int id = 0; id < tokens.length; id++) {
 			// token is part of a multi-token term?
-			if (assigned[id]) continue;
+			//X. Yao. Aug 13, 2009. Different NEtaggers might conflict.
+			//for instance, "red kangaroo" is NEorganization by Stanford NEtagger
+			//"kangaroo" is NEanimal by list tagger
+			//thus comment out the following line to have more NEs.
+			//if (assigned[id]) continue;
 			
 			// token is a duplicate?
 			if (!termSet.add(StringUtils.normalize(tokens[id]))) continue;
@@ -246,13 +252,9 @@ public class TermExtractor {
 			
 			// get named entity types and construct term
 			String[] neTypes = getNeTypes(tokens[id], nes);
-			terms[id] = new Term(tokens[id], pos[id], neTypes);
+			Term t = new Term(tokens[id], pos[id], neTypes);
+			termsL.add(t);
 		}
-		
-		// get ordered list of terms
-		List<Term> termsL = new ArrayList<Term>();
-		for (Term term : terms)
-			if (term != null) termsL.add(term);
 		
 		return termsL.toArray(new Term[termsL.size()]);
 	}
