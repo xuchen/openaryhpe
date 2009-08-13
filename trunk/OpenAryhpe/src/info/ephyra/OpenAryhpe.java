@@ -52,6 +52,7 @@ import info.ephyra.search.searchers.YahooKM;
 import info.ephyra.treeansweranalysis.TreeAnswer;
 import info.ephyra.treeansweranalysis.TreeAnswerAnalyzer;
 import info.ephyra.treeansweranalysis.TreeAnswers;
+import info.ephyra.treeansweranalysis.TreeBreaker;
 import info.ephyra.treeansweranalysis.TreeCompressor;
 import info.ephyra.treeansweranalysis.UnmovableTreeMarker;
 import info.ephyra.treequestiongeneration.TreeQuestionGenerator;
@@ -256,6 +257,15 @@ public class OpenAryhpe {
 		if (!UnmovableTreeMarker.loadUnmvRegex("res/nlp/treetransform/unmovable"))
 			MsgPrinter.printErrorMsg("Could not Tregex patterns for unmovable phrases.");
 		
+		// Initialize TreeBreaker
+		MsgPrinter.printStatusMsg("Initialize TreeBreaker...");
+		if (!TreeBreaker.initialize()) {
+			MsgPrinter.printErrorMsg("failed.");
+			System.exit(-1);
+		}
+		else
+			MsgPrinter.printStatusMsg("Done");
+		
 		// Initialize TreeCompressor
 		MsgPrinter.printStatusMsg("Initialize TreeCompressor...");
 		if (!TreeCompressor.initialize()) {
@@ -411,6 +421,7 @@ public class OpenAryhpe {
 //				results = askFactoid(question, FACTOID_MAX_ANSWERS,
 //									 FACTOID_ABS_THRESH);
 				//AnalyzedQuestion aq = QuestionAnalysis.analyze(question);
+				question = TreeBreaker.doBreak(question);
 				TreeAnswers treeAnswers = new TreeAnswers(question);
 				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(treeAnswers);
 				Iterator<TreeAnswer> tAnsIter = treeAnsList.iterator();
