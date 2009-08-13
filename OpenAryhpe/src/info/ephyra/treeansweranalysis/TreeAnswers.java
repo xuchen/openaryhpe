@@ -35,35 +35,6 @@ public class TreeAnswers {
 	//private ArrayList<String>[] to;
 	private Term[][] terms;
 
-//	private ArrayList<String> to = new ArrayList<String>();
-//	public Answers(String answers) {
-//		this.answers = answers;
-//		this.originalSentences = OpenNLP.sentDetect(this.answers);
-//		this.countOfSents = this.originalSentences.length;
-//		this.tokens = new String[this.countOfSents][];
-//		this.sentences = new String[this.countOfSents];
-//		for (int i = 0; i < this.countOfSents; i++) {
-//			tokens[i] = NETagger.tokenize(this.originalSentences[i]);
-//			sentences[i] = StringUtils.concatWithSpaces(this.tokens[i]);
-//		}
-//		// extract named entities
-//		this.nes = NETagger.extractNes(this.tokens);
-//		if (this.nes != null) {
-//			int len1 = nes.length;
-//			for (int i=0; i<len1; i++){
-//				int len2 = nes[i].length;
-//				for (int j=0; j<len2; j++){
-//					int len3 = nes[i][j].length;
-//					for (int k=0; k<len3; k++) {
-//						if (nes[i][j][k] != null && ! to.contains(nes[i][j][k])) {
-//							to.add(nes[i][j][k]);
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
-
 	// Heavy constructor;-)
 	public TreeAnswers(String answers) {
 		this.answers = answers;

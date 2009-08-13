@@ -271,6 +271,12 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEurl")) {
 				qType = "WHAT";
 				qPhrase = "what URL";
+			} else if (neType.equals("NEweekday")) {
+				qType = "WHEN";
+				qPhrase = "which day";
+			} else if (neType.equals("NEyear")) {
+				qType = "WHEN";
+				qPhrase = "which year";
 			} else if (neType.equals("NEzipcode")) {
 				qType = "WHAT";
 				qPhrase = "what zipcode";

@@ -59,6 +59,7 @@ public class TreeQuestionGenerator {
 			quesSent = quesSent.replaceAll("(\\.|\\?|!)$", "").trim()+"?";
 			// remove extra spaces
 			quesSent = quesSent.replaceAll("\\s{2,}", " ");
+			// Capitalize the first letter
 			quesSent = quesSent.substring(0,1).toUpperCase() + quesSent.substring(1);
 			pPair.setQuesSentence(quesSent);
 			// generate another y/n question here, which should be invSent with the first capitalized

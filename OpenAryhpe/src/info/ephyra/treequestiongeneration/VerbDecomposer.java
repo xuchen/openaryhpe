@@ -176,7 +176,7 @@ public class VerbDecomposer {
 				vpTree = tregexMatcher.getNode("mainvp");
 				vbTree = tregexMatcher.getNode("vb1");
 				lab = vbTree.label().value();
-				String word = vbTree.firstChild().label().value();
+				String word = vbTree.firstChild().label().value().replaceFirst("-\\d+$", "");
 				// TODO: BUG: getLemma will return "saw" as the lemma of VBZ "saw", mostly it should return "see"
 				// ref: http://nlp.stanford.edu/nlp/javadoc/jwnl-docs/net/didion/jwnl/data/IndexWord.html
 				String lemma = WordNet.getLemma(word, WordNet.VERB);
@@ -205,6 +205,15 @@ public class VerbDecomposer {
 						// VBG verb, gerund/present participle, "taking"
 						// VBN verb, past participle, "taken" 
 						MsgPrinter.printErrorMsg(lab+" found as the main verb.");
+						// parser might be wrong, so we still use the cases here
+						if (lab.equals("VBG")) {
+							//VBZ verb, 3rd person sing. present, "take"
+							auxTree = "(AUX-VB does)";
+						} else if (lab.equals("VBN")) {
+							//VB verb, base form, "take"
+							auxTree = "(AUX-VB did)";
+						}	
+					
 					}
 					// construct a tree with the question phrase and auxiliary verb
 					auxTree = "(Q-AUX (Q <quesPhrase>)" + auxTree + " )";

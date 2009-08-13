@@ -42,6 +42,7 @@ public class TreeUtil {
 			// labeled Word has a form of paper/NN, paper is the value() and NN is the tag()
 			labeledWord = labelIter.next();
 			if (labeledWord.tag().value().equals("-NONE-")) continue;
+			//label += labeledWord.value().replaceAll("-LRB-", "(").replaceAll("-RRB-", ")");
 			label += labeledWord.value();
 		}
 		
@@ -80,7 +81,8 @@ public class TreeUtil {
 			// labeled Word has a form of paper/NN, paper is the value() and NN is the tag()
 			labeledWord = labelIter.next();
 			if (labeledWord.tag().value().equals("-NONE-")) continue;
-			label += labeledWord.value()+" ";
+			label += labeledWord.value().replaceAll("-LRB-", "(").replaceAll("-RRB-", ")")+" ";
+			//label += labeledWord.value()+" ";
 		}
 		
 		return label.trim();

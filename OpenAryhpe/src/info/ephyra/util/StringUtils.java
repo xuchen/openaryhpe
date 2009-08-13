@@ -390,4 +390,14 @@ public class StringUtils {
 		
 		Arrays.sort(ss, lengthC);
 	}
+	
+	/**
+	 * Capitalize the first letter of <code>input</code> and return the new string.
+	 * 
+	 */
+	public static String capitalizeFirst(String input) {
+		if (input == null) return null;
+		
+		return input.substring(0,1).toUpperCase() + input.substring(1);
+	}
 }
