@@ -38,7 +38,7 @@ public class QAPhraseGenerator {
 		
 		log.debug("Terms: "+Arrays.toString(terms));
 		// first deal with NP who's not under a PP
-		String tregex = "NP !> PP";
+		String tregex = "NP !> PP ?< DT=det";
 		TregexPattern tPattern = null;
 		// TODO: consider SemanticHeadFinder
 		CollinsHeadFinder headFinder = new CollinsHeadFinder();
@@ -50,6 +50,11 @@ public class QAPhraseGenerator {
 		TregexMatcher tregexMatcher = tPattern.matcher(tree);
 		while (tregexMatcher.find()) {
 			Tree npTree = tregexMatcher.getMatch();
+			Tree dtTree = tregexMatcher.getNode("det");
+			String determiner="";
+			if(dtTree!=null) {
+				determiner=TreeUtil.getTightLabelNoIndex(dtTree);
+			}
 			
 			// unmovable phrases can't construct WH-movement
 			String checkUnmv = npTree.labels().toString();
@@ -69,14 +74,14 @@ public class QAPhraseGenerator {
 			// if either npWord or npHeadWord is a term with a NE type
 			for (Term term:terms) {
 				if (term.getNeTypes().length == 0) continue;
+				termNPtree = null;
 				String termStr = term.getText().replaceAll("\\s+", "");
-				if(termStr.equals(npWord)) {
+				if(termStr.equals(npWord) || (determiner+termStr).equals(npWord)) {
 					termNPtree = npTree;
 					ansPhrase = TreeUtil.getLabel(npTree);
 					ansTerm = term;
-					break;
-				}
-				if(termStr.equals(npHeadWord)) {
+				} else
+				if(termStr.equals(npHeadWord) || termStr.equals(determiner+npHeadWord)) {
 					termNPtree = npHeadTree;
 					//TODO: maybe the whole NP should be the answer, rather than only the head of NP
 					//X. Yao. Aug,13,2009. Change to let the whole NP be the answer
@@ -85,26 +90,17 @@ public class QAPhraseGenerator {
 					//ansPhrase = TreeUtil.getLabel(npHeadTree);
 					ansPhrase = TreeUtil.getLabel(npTree);
 					ansTerm = term;
-					break;
+				}
+				// then put it as an answer candidate
+				if (termNPtree != null) {
+					qaList.addAll(setupQuesTypePhrase("", ansPhrase, termNPtree, ansTerm));
 				}
 			}
-			// then put it as an answer candidate
-			if (termNPtree != null) {
-				// construct QAphrasePair
-				//QAPhrasePair pair = new QAPhrasePair(ansPhrase, termNPtree, ansTerm);
-				qaList.addAll(setupQuesTypePhrase("", ansPhrase, termNPtree, ansTerm));
-				// TODO: return multiple question types here
-//				String qType = determineQuesType(pair);
-//				pair.setQuesType(qType);
-//				String qPhrase = constructQuesPhrase(pair);
-//				pair.setQuesPhrase(qPhrase);
-				// add to qaList
-				//qaList.add(pair);
-			}
+
 		}
 		
 		// then deal with PP whose child is a NP
-		tregex = "PP=pp < IN=in < NP=np";
+		tregex = "PP=pp < IN=in < (NP=np ?< DT=det)";
 
 		try {
 			tPattern = TregexPattern.compile(tregex);
@@ -116,7 +112,12 @@ public class QAPhraseGenerator {
 			Tree ppTree = tregexMatcher.getNode("pp");
 			Tree inTree = tregexMatcher.getNode("in");
 			Tree npTree = tregexMatcher.getNode("np");
-			
+			Tree dtTree = tregexMatcher.getNode("det");
+			String determiner="";
+			if(dtTree!=null) {
+				determiner=TreeUtil.getTightLabelNoIndex(dtTree);
+			}
+
 			// unmovable phrases can't construct WH-movement
 			String checkUnmv = ppTree.labels().toString();
 			if (checkUnmv.contains("UNMV-")) {
@@ -139,33 +140,23 @@ public class QAPhraseGenerator {
 			for (Term term:terms) {
 				if (term.getNeTypes().length == 0) continue;
 				String termStr = term.getText().replaceAll("\\s+", "");
-				if(termStr.equals(npWord)) {
+				if(termStr.equals(npWord) || (determiner+termStr).equals(npWord)) {
 					termNPtree = npTree;
 					ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npTree);
 					ansTerm = term;
-					break;
-				}
-				if(termStr.equals(npHeadWord)) {
+				} else
+				if(termStr.equals(npHeadWord) || termStr.equals(determiner+npHeadWord)) {
 					termNPtree = npHeadTree;
 					//TODO: maybe the whole NP should be the answer, rather than only the head of NP
 					//X. Yao. Aug,13,2009. Change to let the whole NP be the answer
 					//ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npHeadTree);
 					ansPhrase = TreeUtil.getLabel(inTree)+" "+TreeUtil.getLabel(npTree);
 					ansTerm = term;
-					break;
 				}
-			}
-			// then put it as an answer candidate
-			if (termNPtree != null) {
-				qaList.addAll(setupQuesTypePhrase(inWord, ansPhrase, termNPtree, ansTerm));
-				// construct QAphrasePair
-//				QAPhrasePair pair = new QAPhrasePair(inWord, ansPhrase, termNPtree, ansTerm);
-//				String qType = determineQuesType(pair);
-//				pair.setQuesType(qType);
-//				String qPhrase = constructQuesPhrase(pair);
-//				pair.setQuesPhrase(qPhrase);
-//				// add to qaList
-//				qaList.add(pair);
+				// then put it as an answer candidate
+				if (termNPtree != null) {
+					qaList.addAll(setupQuesTypePhrase(inWord, ansPhrase, termNPtree, ansTerm));
+				}
 			}
 		}
 
