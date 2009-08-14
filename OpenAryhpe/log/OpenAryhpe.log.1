@@ -1,1153 +1,43 @@
-DEBUG (TreeBreaker.java:228) - Enter subject in relative clause
-DEBUG (TreeBreaker.java:234) - New sent: 33 men worked closely with the substance. 
-DEBUG (TreeBreaker.java:240) - New answers: 33 men worked closely with the substance. Among 33 men who worked closely with the substance , 28 have died -- more than three times the expected number . 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [33, men, worked, closely, with, the, substance, .]
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Among, 33, men, who, worked, closely, with, the, substance, ,, 28, have, died, --, more, than, three, times, the, expected, number, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (CD 33-1) (NNS men-2))
-    (VP (VBD worked-3)
-      (ADVP (RB closely-4))
-      (PP (IN with-5)
-        (NP (DT the-6) (NN substance-7))))
-    (. .-8)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (CD 33-1) (NNS men-2))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
-      (VB work)
-      (ADVP (RB closely-4))
-      (PP (IN with-5)
-        (NP (DT the-6) (NN substance-7))))
-    (. .-8)))
-
 DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
 
 DEBUG (VerbDecomposer.java:253) - (ROOT
   (S
-    (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
-    (NP (CD 33-1) (NNS men-2))
-    (VP (VB work)
-      (ADVP (RB closely-4))
-      (PP (IN with-5)
-        (NP (DT the-6) (NN substance-7))))
-    (. .-8)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
-    (NP (CD 33-1) (NNS men-2))
-    (VP (VB work)
-      (ADVP (RB closely-4))
-      (PP (IN with-5)
-        (NP (DT the-6) (NN substance-7))))
-    (. .-8)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"33"; POS: CD; NE types: NEnumber}, {"men"; POS: NNS}, {"worked"; POS: VBD}, {"closely"; POS: RB}, {"substance"; POS: NN}]
-DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (S < PP|ADJP|ADVP|S|SBAR=unmv )
-
-DEBUG (UnmovableTreeMarker.java:101) - (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (VP (VBD worked-5)
-              (ADVP (RB closely-6))
-              (PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (SBAR < /^WH.*P$/ << NP|ADJP|VP|ADVP|PP=unmv )
-
-DEBUG (UnmovableTreeMarker.java:101) - (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (UNMV-VP (VBD worked-5)
-              (ADVP (RB closely-6))
-              (PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (SBAR < /^WH.*P$/ << NP|ADJP|VP|ADVP|PP=unmv )
-
-DEBUG (UnmovableTreeMarker.java:101) - (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (UNMV-VP (VBD worked-5)
-              (UNMV-ADVP (RB closely-6))
-              (PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (SBAR < /^WH.*P$/ << NP|ADJP|VP|ADVP|PP=unmv )
-
-DEBUG (UnmovableTreeMarker.java:101) - (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (UNMV-VP (VBD worked-5)
-              (UNMV-ADVP (RB closely-6))
-              (UNMV-PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (SBAR < /^WH.*P$/ << NP|ADJP|VP|ADVP|PP=unmv )
-
-DEBUG (UnmovableTreeMarker.java:101) - (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (UNMV-VP (VBD worked-5)
-              (UNMV-ADVP (RB closely-6))
-              (UNMV-PP (IN with-7)
-                (UNMV-NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
-
-DEBUG (UnmovableTreeMarker.java:101) - (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (UNMV-NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (UNMV-VP (VBD worked-5)
-              (UNMV-ADVP (RB closely-6))
-              (UNMV-PP (IN with-7)
-                (UNMV-NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
-
-DEBUG (UnmovableTreeMarker.java:101) - (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (UNMV-NP
-        (UNMV-NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (UNMV-VP (VBD worked-5)
-              (UNMV-ADVP (RB closely-6))
-              (UNMV-PP (IN with-7)
-                (UNMV-NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (UNMV-PP (IN Among-1)
-      (UNMV-NP
-        (UNMV-NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (UNMV-VP (VBD worked-5)
-              (UNMV-ADVP (RB closely-6))
-              (UNMV-PP (IN with-7)
-                (UNMV-NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VBP have-12)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (VP (VBD worked-5)
-              (ADVP (RB closely-6))
-              (PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX-VB do))
-      (VB have)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX-VB do))
-    (PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (VP (VBD worked-5)
-              (ADVP (RB closely-6))
-              (PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (NP (CD 28-11))
-    (VP (VB have)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (VerbDecomposer.java:266) - Moving PP adjunct to the front:
-
-DEBUG (VerbDecomposer.java:268) - (ROOT
-  (SQ
-    (PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (VP (VBD worked-5)
-              (ADVP (RB closely-6))
-              (PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (Q-AUX (Q <quesPhrase>) (AUX-VB do))
-    (NP (CD 28-11))
-    (VP (VB have)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (PP (IN Among-1)
-      (NP
-        (NP (CD 33-2) (NNS men-3))
-        (SBAR
-          (WHNP (WP who-4))
-          (S
-            (VP (VBD worked-5)
-              (ADVP (RB closely-6))
-              (PP (IN with-7)
-                (NP (DT the-8) (NN substance-9))))))))
-    (, ,-10)
-    (Q-AUX (Q <quesPhrase>) (AUX-VB do))
-    (NP (CD 28-11))
-    (VP (VB have)
-      (VP
-        (VP (VBN died-13))
-        (: ---14)
-        (NP
-          (NP
-            (QP (JJR more-15) (IN than-16) (CD three-17))
-            (NNS times-18))
-          (NP (DT the-19) (JJ expected-20) (NN number-21)))))
-    (. .-22)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"33"; POS: CD; NE types: NEnumber}, {"men"; POS: NNS}, {"worked"; POS: VBD}, {"closely"; POS: RB}, {"substance"; POS: NN}, {"28"; POS: CD; NE types: NEday, NEnumber}, {"died"; POS: VBN}, {"--"; POS: :}, {"three times"; POS: COMPOUND; NE types: NEfilm}, {"expected"; POS: JJ}, {"number"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [33, men, worked, closely, with, the, substance, .]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Among, 33, men, who, worked, closely, with, the, substance, ,, 28, have, died, --, more, than, three, times, the, expected, number, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 10:32:50
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 11:04:33
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, man, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is not a man.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [31.298]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [19.203] (VBZ [0.144] is) (RB [1.571] not)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is not a man. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, man, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2) (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEactor, NEauthor, NEfirstName, NEperson}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, not, a, man, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 11:11:51
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 11:11:53
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, man]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is not a man
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [36.326]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [19.203] (VBZ [0.144] is) (RB [1.571] not)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is not a man 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, man]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2) (RB not-3)
-      (NP (DT a-4) (NN man-5)))))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (RB not-3)
-      (NP (DT a-4) (NN man-5)))))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN man-5)))))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN man-5)))))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEactor, NEauthor, NEfirstName, NEperson}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, not, a, man]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, Bly, is, not, a, man]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary Bly is not a man
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [47.993]
-    (NP [22.620] (NNP [8.298] Mary) (NNP [11.833] Bly))
-    (VP [19.203] (VBZ [0.144] is) (RB [1.571] not)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary Bly is not a man 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, Bly, is, not, a, man]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1) (NNP Bly-2))
-    (VP (VBZ is-3) (RB not-4)
-      (NP (DT a-5) (NN man-6)))))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1) (NNP Bly-2))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-3))
-      (RB not-4)
-      (NP (DT a-5) (NN man-6)))))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Mary-1) (NNP Bly-2))
-    (VP (RB not-4)
-      (NP (DT a-5) (NN man-6)))))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Mary-1) (NNP Bly-2))
-    (VP (RB not-4)
-      (NP (DT a-5) (NN man-6)))))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary Bly"; POS: COMPOUND; NE types: NEauthor, NEperson}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, Bly, is, not, a, man]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, mn]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is not a mn
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [41.513]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [24.390] (VBZ [0.144] is) (RB [1.571] not)
-      (NP [15.626] (DT [1.419] a) (NN [12.224] mn)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is not a mn 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, mn]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2) (RB not-3)
-      (NP (DT a-4) (NN mn-5)))))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (RB not-3)
-      (NP (DT a-4) (NN mn-5)))))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN mn-5)))))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN mn-5)))))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEactor, NEauthor, NEfirstName, NEperson}, {"mn"; POS: NN; NE types: NEacademicTitle}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, not, a, mn]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, man, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is not a man.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [31.298]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [19.203] (VBZ [0.144] is) (RB [1.571] not)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is not a man. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, not, a, man, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2) (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP (RB not-3)
-      (NP (DT a-4) (NN man-5)))
-    (. .-6)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEactor, NEauthor, NEfirstName, NEperson}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, not, a, man, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is a man.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [27.872]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [15.776] (VBZ [0.144] is)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is a man. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2)
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEactor, NEauthor, NEfirstName, NElanguage, NEorganization}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, a, man, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [River, is, a, river, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :River is a river.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [29.934]
-    (NP [10.603] (NNP [7.948] River))
-    (VP [18.189] (VBZ [0.144] is)
-      (NP [12.851] (DT [1.419] a) (NN [9.450] river)))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: River is a river. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [River, is, a, river, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP River-1))
-    (VP (VBZ is-2)
-      (NP (DT a-3) (NN river-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP River-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (NP (DT a-3) (NN river-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP River-1))
-    (VP
-      (NP (DT a-3) (NN river-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP River-1))
-    (VP
-      (NP (DT a-3) (NN river-4)))
-    (. .-5)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"River"; POS: NNP}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [River, is, a, river, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Ob, river, is, a, river]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Ob river is a river
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [52.606]
-    (NP [28.248] (NNP [12.355] Ob) (NN [9.450] river))
-    (VP [18.189] (VBZ [0.144] is)
-      (NP [12.851] (DT [1.419] a) (NN [9.450] river)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Ob river is a river 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Ob, river, is, a, river]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Ob-1) (NN river-2))
-    (VP (VBZ is-3)
-      (NP (DT a-4) (NN river-5)))))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Ob-1) (NN river-2))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-3))
-      (NP (DT a-4) (NN river-5)))))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Ob-1) (NN river-2))
-    (VP
-      (NP (DT a-4) (NN river-5)))))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Ob-1) (NN river-2))
-    (VP
-      (NP (DT a-4) (NN river-5)))))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Ob river"; POS: COMPOUND; NE types: NEriver, NEwater, NElocation}, {"river"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Ob, river, is, a, river]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Tom, is, a, man]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Tom is a man
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [32.819]
-    (NP [10.873] (NNP [8.218] Tom))
-    (VP [15.776] (VBZ [0.144] is)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Tom is a man 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Tom, is, a, man]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Tom-1))
-    (VP (VBZ is-2)
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Tom-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Tom-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Tom-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Tom"; POS: NNP; NE types: NEfirstName}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Tom, is, a, man]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is a man
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [32.900]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [15.776] (VBZ [0.144] is)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is a man 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2)
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEactor, NEauthor, NEfirstName, NElanguage, NEorganization}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, a, man]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 12:25:31
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 12:25:33
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is a man.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [27.872]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [15.776] (VBZ [0.144] is)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is a man. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2)
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))
-    (. .-5)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEactor, NEauthor, NEfirstName, NElanguage, NEorganization}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, a, man, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is a man
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [32.900]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [15.776] (VBZ [0.144] is)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is a man 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man]
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 12:44:45
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Mary is a man
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [32.900]
-    (NP [10.954] (NNP [8.298] Mary))
-    (VP [15.776] (VBZ [0.144] is)
-      (NP [10.439] (DT [1.419] a) (NN [7.037] man)))))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Mary is a man 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Mary, is, a, man]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP (VBZ is-2)
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Mary-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (NNP Mary-1))
-    (VP
-      (NP (DT a-3) (NN man-4)))))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Mary"; POS: NNP; NE types: NEauthor, NEfirstName, NElanguage, NEorganization}, {"man"; POS: NN; NE types: NEriver, NEwater}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Mary, is, a, man]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [this, is, the, bug, i, ate, yesterday, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :this is the bug i ate yesterday.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [62.677]
-    (NP [6.003] (DT [2.163] this))
-    (VP [55.533] (VBZ [0.144] is)
-      (NP [50.760]
-        (NP [13.208] (DT [0.650] the) (NN [10.787] bug))
-        (SBAR [34.952]
-          (S [34.265]
-            (NP [14.604] (FW [5.293] i))
-            (VP [19.329] (VBD [9.492] ate)
-              (NP [3.248] (NN [1.696] yesterday)))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: this is the bug i ate yesterday. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [this, is, the, bug, i, ate, yesterday, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT this-1))
-    (VP (VBZ is-2)
-      (NP
-        (NP (DT the-3) (NN bug-4))
-        (SBAR
-          (S
-            (NP (FW i-5))
-            (VP (VBD ate-6)
-              (NP (NN yesterday-7)))))))
-    (. .-8)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT this-1))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-2))
-      (NP
-        (NP (DT the-3) (NN bug-4))
-        (SBAR
-          (S
-            (NP (FW i-5))
-            (VP (VBD ate-6)
-              (NP (NN yesterday-7)))))))
-    (. .-8)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (DT this-1))
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
     (VP
       (NP
-        (NP (DT the-3) (NN bug-4))
-        (SBAR
-          (S
-            (NP (FW i-5))
-            (VP (VBD ate-6)
-              (NP (NN yesterday-7)))))))
-    (. .-8)))
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
 
 DEBUG (VerbDecomposer.java:275) - Inverted Tree:
 (ROOT
   (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-2))
-    (NP (DT this-1))
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
     (VP
       (NP
-        (NP (DT the-3) (NN bug-4))
-        (SBAR
-          (S
-            (NP (FW i-5))
-            (VP (VBD ate-6)
-              (NP (NN yesterday-7)))))))
-    (. .-8)))
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
 
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"bug"; POS: NN; NE types: NEfilm}, {"ate"; POS: VBD}]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
 DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [this, is, the, bug, i, ate, yesterday, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 13:40:19
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 14:12:35
+DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+ INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 15:35:05
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:35:27
 DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 3
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
 DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
 DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [131.200]
-    (NP [61.681]
-      (NP [26.842] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-      (PRN [31.246] (-LRB- [0.056] -LRB-)
-        (NP [30.020] (NNP [12.053] Macropus) (NNS [11.443] rufus))
-        (-RRB- [0.057] -RRB-)))
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
     (VP [66.609] (VBZ [0.144] is)
       (NP [60.038]
         (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
@@ -1157,9 +47,669 @@ DEBUG (TreeBreaker.java:123) - (ROOT
     (. [0.002] .)))
 
 
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP (VBZ is-4)
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-4))
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:42:30
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP (VBZ is-4)
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-4))
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+ INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 15:44:02
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:44:03
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP (VBZ is-4)
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-4))
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:52:10
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP (VBZ is-4)
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-4))
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+ INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 15:52:44
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:52:45
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP (VBZ is-4)
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-4))
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP (VBZ is-4)
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-4))
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [In, The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :In The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [102.635]
+    (PP [16.034] (IN [1.250] In)
+      (NP [14.451] (DT [2.455] The) (NNP [7.689] Red)))
+    (NP [14.168] (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: In The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [In, The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (S < PP|ADJP|ADVP|S|SBAR=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-PP (IN In-1)
+      (NP (DT The-2) (NNP Red-3)))
+    (NP (NNP Kangaroo-4))
+    (VP (VBZ is-5)
+      (NP
+        (NP (DT the-6) (JJS largest-7) (VBG surviving-8) (NNS marsupial-9))
+        (ADVP (RB anywhere-10)
+          (PP (IN in-11)
+            (NP (DT the-12) (NN world-13))))))
+    (. .-14)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-PP (IN In-1)
+      (UNMV-NP (DT The-2) (NNP Red-3)))
+    (NP (NNP Kangaroo-4))
+    (VP (VBZ is-5)
+      (NP
+        (NP (DT the-6) (JJS largest-7) (VBG surviving-8) (NNS marsupial-9))
+        (ADVP (RB anywhere-10)
+          (PP (IN in-11)
+            (NP (DT the-12) (NN world-13))))))
+    (. .-14)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (UNMV-PP (IN In-1)
+      (UNMV-NP (DT The-2) (NNP Red-3)))
+    (NP (NNP Kangaroo-4))
+    (VP (VBZ is-5)
+      (NP
+        (NP (DT the-6) (JJS largest-7) (VBG surviving-8) (NNS marsupial-9))
+        (ADVP (RB anywhere-10)
+          (PP (IN in-11)
+            (NP (DT the-12) (NN world-13))))))
+    (. .-14)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (PP (IN In-1)
+      (NP (DT The-2) (NNP Red-3)))
+    (NP (NNP Kangaroo-4))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-5))
+      (NP
+        (NP (DT the-6) (JJS largest-7) (VBG surviving-8) (NNS marsupial-9))
+        (ADVP (RB anywhere-10)
+          (PP (IN in-11)
+            (NP (DT the-12) (NN world-13))))))
+    (. .-14)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-5))
+    (PP (IN In-1)
+      (NP (DT The-2) (NNP Red-3)))
+    (NP (NNP Kangaroo-4))
+    (VP
+      (NP
+        (NP (DT the-6) (JJS largest-7) (VBG surviving-8) (NNS marsupial-9))
+        (ADVP (RB anywhere-10)
+          (PP (IN in-11)
+            (NP (DT the-12) (NN world-13))))))
+    (. .-14)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-5))
+    (PP (IN In-1)
+      (NP (DT The-2) (NNP Red-3)))
+    (NP (NNP Kangaroo-4))
+    (VP
+      (NP
+        (NP (DT the-6) (JJS largest-7) (VBG surviving-8) (NNS marsupial-9))
+        (ADVP (RB anywhere-10)
+          (PP (IN in-11)
+            (NP (DT the-12) (NN world-13))))))
+    (. .-14)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [In, The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [94.364]
+    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
+    (VP [66.609] (VBZ [0.144] is)
+      (NP [60.038]
+        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
+        (ADVP [20.622] (RB [6.805] anywhere)
+          (PP [11.369] (IN [1.552] in)
+            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP (VBZ is-4)
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-4))
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-4))
+    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (VP
+      (NP
+        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
+        (ADVP (RB anywhere-9)
+          (PP (IN in-10)
+            (NP (DT the-11) (NN world-12))))))
+    (. .-13)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
 DEBUG (StanfordParser.java:149) - Parsing sentence
 DEBUG (StanfordParser.java:154) - Tokenization: [Fewer, in, numbers, ,, the, Red, Kangaroo, occupies, the, arid, and, semi-arid, center, of, the, continent, .]
-DEBUG (TreeBreaker.java:122) - Sentence 1 :Fewer in numbers, the Red Kangaroo occupies the arid and semi-arid centre of the continent. 
+DEBUG (TreeBreaker.java:122) - Sentence 0 :Fewer in numbers, the Red Kangaroo occupies the arid and semi-arid centre of the continent.
 DEBUG (TreeBreaker.java:123) - (ROOT
   (S [126.393]
     (NP [54.985]
@@ -1181,113 +731,9 @@ DEBUG (TreeBreaker.java:123) - (ROOT
     (. [0.002] .)))
 
 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [A, large, male, can, be, 2, metres, -LRB-, 6, ft, 7, in, -RRB-, tall, and, weigh, 90, kg, -LRB-, 200, lb, -RRB-, .]
-DEBUG (TreeBreaker.java:122) - Sentence 2 :A large male can be 2 metres (6 ft 7 in) tall and weigh 90 kg (200 lb).
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [194.266]
-    (NP [24.650] (DT [4.555] A) (JJ [5.456] large) (NN [10.735] male))
-    (VP [168.474] (MD [2.354] can)
-      (VP [163.914]
-        (VP [94.201] (VB [0.002] be)
-          (ADJP [89.854]
-            (NP [74.352]
-              (NP [20.224] (CD [4.884] 2) (NNS [11.443] metres))
-              (PRN [50.121] (-LRB- [0.056] -LRB-)
-                (NP [47.646]
-                  (NP [23.040] (CD [5.434] 6) (NN [12.224] ft))
-                  (NP [19.865]
-                    (NP [9.833] (CD [5.539] 7))
-                    (PP [9.371] (IN [1.850] in))))
-                (-RRB- [0.057] -RRB-)))
-            (JJ [7.782] tall)))
-        (CC [0.106] and)
-        (VP [65.455] (VB [7.989] weigh)
-          (NP [53.298]
-            (NP [23.651] (CD [6.044] 90) (NN [12.224] kg))
-            (PRN [25.263] (-LRB- [0.056] -LRB-)
-              (NP [24.038] (CD [6.675] 200) (NN [12.224] lb))
-              (-RRB- [0.057] -RRB-))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world.  Fewer in numbers, the Red Kangaroo occupies the arid and semi-arid centre of the continent.  A large male can be 2 metres (6 ft 7 in) tall and weigh 90 kg (200 lb). 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (TreeBreaker.java:240) - New answers: Fewer in numbers, the Red Kangaroo occupies the arid and semi-arid centre of the continent. 
 DEBUG (StanfordParser.java:149) - Parsing sentence
 DEBUG (StanfordParser.java:154) - Tokenization: [Fewer, in, numbers, ,, the, Red, Kangaroo, occupies, the, arid, and, semi-arid, center, of, the, continent, .]
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [A, large, male, can, be, 2, metres, -LRB-, 6, ft, 7, in, -RRB-, tall, and, weigh, 90, kg, -LRB-, 200, lb, -RRB-, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP (VBZ is-8)
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-8))
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Macropus"; POS: NNP}, {"rufus"; POS: NN}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
 DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
   (S
     (NP
@@ -1378,7 +824,44 @@ DEBUG (VerbDecomposer.java:275) - Inverted Tree:
           (NP (DT the-15) (NN continent-16)))))
     (. .-17)))
 
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"numbers"; POS: NNS}, {"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"occupies"; POS: VBZ}, {"arid"; POS: NN}, {"semi-arid"; POS: JJ}, {"centre"; POS: NN}, {"continent"; POS: NN}]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"numbers"; POS: NNS}, {"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"occupies"; POS: VBZ}, {"arid"; POS: NN}, {"semi-arid"; POS: JJ}, {"centre"; POS: NN}, {"continent"; POS: NN}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [Fewer, in, numbers, ,, the, Red, Kangaroo, occupies, the, arid, and, semi-arid, center, of, the, continent, .]
+DEBUG (TreeBreaker.java:108) - Breaking sentences.
+DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [A, large, male, can, be, 2, metres, -LRB-, 6, ft, 7, in, -RRB-, tall, and, weigh, 90, kg, -LRB-, 200, lb, -RRB-, .]
+DEBUG (TreeBreaker.java:122) - Sentence 0 :A large male can be 2 metres (6 ft 7 in) tall and weigh 90 kg (200 lb).
+DEBUG (TreeBreaker.java:123) - (ROOT
+  (S [194.266]
+    (NP [24.650] (DT [4.555] A) (JJ [5.456] large) (NN [10.735] male))
+    (VP [168.474] (MD [2.354] can)
+      (VP [163.914]
+        (VP [94.201] (VB [0.002] be)
+          (ADJP [89.854]
+            (NP [74.352]
+              (NP [20.224] (CD [4.884] 2) (NNS [11.443] metres))
+              (PRN [50.121] (-LRB- [0.056] -LRB-)
+                (NP [47.646]
+                  (NP [23.040] (CD [5.434] 6) (NN [12.224] ft))
+                  (NP [19.865]
+                    (NP [9.833] (CD [5.539] 7))
+                    (PP [9.371] (IN [1.850] in))))
+                (-RRB- [0.057] -RRB-)))
+            (JJ [7.782] tall)))
+        (CC [0.106] and)
+        (VP [65.455] (VB [7.989] weigh)
+          (NP [53.298]
+            (NP [23.651] (CD [6.044] 90) (NN [12.224] kg))
+            (PRN [25.263] (-LRB- [0.056] -LRB-)
+              (NP [24.038] (CD [6.675] 200) (NN [12.224] lb))
+              (-RRB- [0.057] -RRB-))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:240) - New answers: A large male can be 2 metres (6 ft 7 in) tall and weigh 90 kg (200 lb). 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [A, large, male, can, be, 2, metres, -LRB-, 6, ft, 7, in, -RRB-, tall, and, weigh, 90, kg, -LRB-, 200, lb, -RRB-, .]
 DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
   (S
     (NP (DT A-1) (JJ large-2) (NN male-3))
@@ -1435,49 +918,1444 @@ DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
     (. .-23)))
 
 DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Fewer, in, numbers, ,, the, Red, Kangaroo, occupies, the, arid, and, semi-arid, center, of, the, continent, .]
-DEBUG (StanfordParser.java:113) - Parsing sentence
 DEBUG (StanfordParser.java:118) - Tokenization: [A, large, male, can, be, 2, metres, -LRB-, 6, ft, 7, in, -RRB-, tall, and, weigh, 90, kg, -LRB-, 200, lb, -RRB-, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
+ INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 16:07:02
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 17:16:28
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 1
 DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [131.200]
-    (NP [61.681]
-      (NP [26.842] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-      (PRN [31.246] (-LRB- [0.056] -LRB-)
-        (NP [30.020] (NNP [12.053] Macropus) (NNS [11.443] rufus))
-        (-RRB- [0.057] -RRB-)))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :John is tall and plays basketball.
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [50.145]
+    (NP [8.531] (NNP [5.875] John))
+    (VP [40.472]
+      (VP [14.086] (VBZ [0.144] is)
+        (ADJP [8.503] (JJ [7.782] tall)))
+      (CC [0.106] and)
+      (VP [22.114] (VBZ [6.285] plays)
+        (NP [11.595] (NN [9.009] basketball))))
     (. [0.002] .)))
 
 
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world. 
+DEBUG (TreeBreaker.java:250) - Enter VP CC VP
+DEBUG (TreeBreaker.java:263) - New sent: John  plays basketball . 
+DEBUG (TreeBreaker.java:271) - New sent: John is tall and plays basketball . 
+DEBUG (TreeBreaker.java:280) - New answers: John is tall and plays basketball . John  plays basketball . John is tall and plays basketball. 
 DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, plays, basketball, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP (VBZ plays-2)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+      (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP John-1))
+    (VP (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP John-1))
+    (VP (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"John"; POS: NNP; NE types: NEfirstName, NEperson}, {"plays"; POS: NNS}, {"basketball"; POS: NN; NE types: NEsport}]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, plays, basketball, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, is, tall, and, plays, basketball, .]
+ INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 17:20:33
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 17:20:35
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :John is tall and plays basketball.
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [50.145]
+    (NP [8.531] (NNP [5.875] John))
+    (VP [40.472]
+      (VP [14.086] (VBZ [0.144] is)
+        (ADJP [8.503] (JJ [7.782] tall)))
+      (CC [0.106] and)
+      (VP [22.114] (VBZ [6.285] plays)
+        (NP [11.595] (NN [9.009] basketball))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:250) - Enter VP CC VP
+DEBUG (TreeBreaker.java:261) - VP1 and CC: is tall and
+DEBUG (TreeBreaker.java:262) - CC and VP2: and is tall
+DEBUG (TreeBreaker.java:269) - New sent: John plays basketball . 
+DEBUG (TreeBreaker.java:272) - wholesent: John is tall and plays basketball .
+DEBUG (TreeBreaker.java:278) - New sent: John is tall and plays basketball . 
+DEBUG (TreeBreaker.java:283) - New answers: John is tall and plays basketball . John plays basketball . John is tall and plays basketball. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, plays, basketball, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP (VBZ plays-2)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+      (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP John-1))
+    (VP (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP John-1))
+    (VP (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"John"; POS: NNP; NE types: NEfirstName, NEperson}, {"plays"; POS: NNS}, {"basketball"; POS: NN; NE types: NEsport}]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, plays, basketball, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, is, tall, and, plays, basketball, .]
+ INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 17:21:28
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 17:21:29
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :John is tall and plays basketball.
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [50.145]
+    (NP [8.531] (NNP [5.875] John))
+    (VP [40.472]
+      (VP [14.086] (VBZ [0.144] is)
+        (ADJP [8.503] (JJ [7.782] tall)))
+      (CC [0.106] and)
+      (VP [22.114] (VBZ [6.285] plays)
+        (NP [11.595] (NN [9.009] basketball))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:250) - Enter VP CC VP
+DEBUG (TreeBreaker.java:261) - VP1 and CC: is tall and
+DEBUG (TreeBreaker.java:262) - CC and VP2: and plays basketball
+DEBUG (TreeBreaker.java:269) - New sent: John plays basketball . 
+DEBUG (TreeBreaker.java:272) - wholesent: John is tall and plays basketball .
+DEBUG (TreeBreaker.java:278) - New sent: John is tall . 
+DEBUG (TreeBreaker.java:283) - New answers: John is tall . John plays basketball . John is tall and plays basketball. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, plays, basketball, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP (VBZ is-2)
+      (ADJP (JJ tall-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX is-2))
+      (ADJP (JJ tall-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX is-2))
+    (NP (NNP John-1))
+    (VP
+      (ADJP (JJ tall-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX is-2))
+    (NP (NNP John-1))
+    (VP
+      (ADJP (JJ tall-3)))
+    (. .-4)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"John"; POS: NNP; NE types: NEfirstName, NEperson}, {"tall"; POS: JJ}]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP (VBZ plays-2)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+      (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP John-1))
+    (VP (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP John-1))
+    (VP (VB play)
+      (NP (NN basketball-3)))
+    (. .-4)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"John"; POS: NNP; NE types: NEfirstName, NEperson}, {"plays"; POS: NNS}, {"basketball"; POS: NN; NE types: NEsport}]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (NP (NNP John-1))
+    (VP
+      (VP (VBZ is-2)
+        (ADJP (JJ tall-3)))
+      (CC and-4)
+      (VP (VBZ plays-5)
+        (NP (NN basketball-6))))
+    (. .-7)))
+
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, is, tall, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, plays, basketball, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [Mrs., Yeargin, admits, she, made, a, big, mistake, but, insists, her, motives, were, correct, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :Mrs. Yeargin admits she made a big mistake but insists her motives were correct .
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [116.313]
+    (NP [20.720] (NNP [6.634] Mrs.) (NNP [11.597] Yeargin))
+    (VP [94.451] (VBZ [6.442] admits)
+      (SBAR [83.360]
+        (S [83.330]
+          (NP [5.066] (PRP [3.816] she))
+          (VP [77.932]
+            (VP [26.509] (VBD [4.662] made)
+              (NP [18.352] (DT [1.419] a) (JJ [4.801] big) (NN [9.361] mistake)))
+            (CC [0.068] but)
+            (VP [45.213] (VBZ [6.443] insists)
+              (SBAR [33.376]
+                (S [33.346]
+                  (NP [18.647] (PRP$ [3.272] her) (NNS [10.044] motives))
+                  (VP [14.366] (VBD [1.098] were)
+                    (ADJP [8.022] (JJ [7.300] correct))))))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:166) - Enter finite
+DEBUG (TreeBreaker.java:174) - New sent: Her motives were correct. 
+DEBUG (TreeBreaker.java:283) - New answers: Her motives were correct. Mrs. Yeargin admits she made a big mistake but insists her motives were correct . 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [Her, motives, were, correct, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [Mrs., Yeargin, admits, she, made, a, big, mistake, but, insists, her, motives, were, correct, .]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (PRP$ Her-1) (NNS motives-2))
+    (VP (VBD were-3)
+      (ADJP (JJ correct-4)))
+    (. .-5)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (PRP$ Her-1) (NNS motives-2))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX were-3))
+      (ADJP (JJ correct-4)))
+    (. .-5)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX were-3))
+    (NP (PRP$ Her-1) (NNS motives-2))
+    (VP
+      (ADJP (JJ correct-4)))
+    (. .-5)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX were-3))
+    (NP (PRP$ Her-1) (NNS motives-2))
+    (VP
+      (ADJP (JJ correct-4)))
+    (. .-5)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"motives"; POS: NNS}, {"correct"; POS: JJ}]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (NNP Mrs.-1) (NNP Yeargin-2))
+    (VP (VBZ admits-3)
+      (SBAR
+        (S
+          (NP (PRP she-4))
+          (VP
+            (VP (VBD made-5)
+              (NP (DT a-6) (JJ big-7) (NN mistake-8)))
+            (CC but-9)
+            (VP (VBZ insists-10)
+              (SBAR
+                (S
+                  (NP (PRP$ her-11) (NNS motives-12))
+                  (VP (VBD were-13)
+                    (ADJP (JJ correct-14))))))))))
+    (. .-15)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (NNP Mrs.-1) (NNP Yeargin-2))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+      (VB admit)
+      (SBAR
+        (S
+          (NP (PRP she-4))
+          (VP
+            (VP (VBD made-5)
+              (NP (DT a-6) (JJ big-7) (NN mistake-8)))
+            (CC but-9)
+            (VP (VBZ insists-10)
+              (SBAR
+                (S
+                  (NP (PRP$ her-11) (NNS motives-12))
+                  (VP (VBD were-13)
+                    (ADJP (JJ correct-14))))))))))
+    (. .-15)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP Mrs.-1) (NNP Yeargin-2))
+    (VP (VB admit)
+      (SBAR
+        (S
+          (NP (PRP she-4))
+          (VP
+            (VP (VBD made-5)
+              (NP (DT a-6) (JJ big-7) (NN mistake-8)))
+            (CC but-9)
+            (VP (VBZ insists-10)
+              (SBAR
+                (S
+                  (NP (PRP$ her-11) (NNS motives-12))
+                  (VP (VBD were-13)
+                    (ADJP (JJ correct-14))))))))))
+    (. .-15)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX-VBZ does))
+    (NP (NNP Mrs.-1) (NNP Yeargin-2))
+    (VP (VB admit)
+      (SBAR
+        (S
+          (NP (PRP she-4))
+          (VP
+            (VP (VBD made-5)
+              (NP (DT a-6) (JJ big-7) (NN mistake-8)))
+            (CC but-9)
+            (VP (VBZ insists-10)
+              (SBAR
+                (S
+                  (NP (PRP$ her-11) (NNS motives-12))
+                  (VP (VBD were-13)
+                    (ADJP (JJ correct-14))))))))))
+    (. .-15)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Mrs. Yeargin"; POS: COMPOUND; NE types: NEperson}, {"Mrs."; POS: NNP; NE types: NEperson}, {"Yeargin"; POS: NNP; NE types: NEperson}, {"admits"; POS: VBZ}, {"made"; POS: VBD}, {"big"; POS: JJ}, {"mistake"; POS: NN}, {"insists"; POS: VBZ}, {"motives"; POS: NNS}, {"correct"; POS: JJ}]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [Her, motives, were, correct, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [Mrs., Yeargin, admits, she, made, a, big, mistake, but, insists, her, motives, were, correct, .]
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 2
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, judge, declined, to, discuss, his, salary, in, detail, ,, but, said, :, ``, I, 'm, going, to, be, a, high-priced, lawyer, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :The judge declined to discuss his salary in detail , but said : `` I'm going to be a high-priced lawyer . 
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [122.776]
+    (S [68.041]
+      (NP [11.583] (DT [2.455] The) (NN [6.965] judge))
+      (VP [55.902]
+        (VP [46.046] (VBD [4.623] declined)
+          (S [37.434]
+            (VP [37.169] (TO [0.011] to)
+              (VP [37.139] (VB [6.271] discuss)
+                (NP [14.123] (PRP$ [1.601] his) (NN [8.951] salary))
+                (PP [13.758] (IN [1.552] in)
+                  (NP [11.533] (NN [9.204] detail)))))))
+        (, [-0.000] ,)
+        (CC [0.068] but)
+        (VP [3.649] (VBD [1.395] said))))
+    (: [1.357] :) (`` [0.010] ``)
+    (S [44.288]
+      (NP [3.944] (PRP [2.694] I))
+      (VP [39.788] (VBP [3.529] 'm)
+        (VP [32.022] (VBG [3.631] going)
+          (S [26.005]
+            (VP [25.741] (TO [0.011] to)
+              (VP [25.711] (VB [0.002] be)
+                (NP [20.487] (DT [1.419] a) (JJ [8.725] high-priced) (NN [7.572] lawyer))))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:166) - Enter finite
+DEBUG (TreeBreaker.java:174) - New sent: I 'm going to be a high-priced lawyer. 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: ['']
+DEBUG (TreeBreaker.java:126) - Sentence 1 :''
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (NP [1003.275] (NNP [1000.000] '')))
+
+
+DEBUG (TreeBreaker.java:283) - New answers: I 'm going to be a high-priced lawyer. The judge declined to discuss his salary in detail , but said : `` I'm going to be a high-priced lawyer .  '' 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [I, 'm, going, to, be, a, high-priced, lawyer, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, judge, declined, to, discuss, his, salary, in, detail, ,, but, said, :, ``, I, 'm, going, to, be, a, high-priced, lawyer, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: ['']
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (PRP I-1))
+    (VP (VBP 'm-2)
+      (VP (VBG going-3)
+        (S
+          (VP (TO to-4)
+            (VP (VB be-5)
+              (NP (DT a-6) (JJ high-priced-7) (NN lawyer-8)))))))
+    (. .-9)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:145) - VPs with two or more verbs.
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (NP (PRP I-1))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX 'm-2))
+      (VP (VBG going-3)
+        (S
+          (VP (TO to-4)
+            (VP (VB be-5)
+              (NP (DT a-6) (JJ high-priced-7) (NN lawyer-8)))))))
+    (. .-9)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX 'm-2))
+    (NP (PRP I-1))
+    (VP
+      (VP (VBG going-3)
+        (S
+          (VP (TO to-4)
+            (VP (VB be-5)
+              (NP (DT a-6) (JJ high-priced-7) (NN lawyer-8)))))))
+    (. .-9)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX 'm-2))
+    (NP (PRP I-1))
+    (VP
+      (VP (VBG going-3)
+        (S
+          (VP (TO to-4)
+            (VP (VB be-5)
+              (NP (DT a-6) (JJ high-priced-7) (NN lawyer-8)))))))
+    (. .-9)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"going"; POS: VBG}, {"high-priced"; POS: JJ}, {"lawyer"; POS: NN; NE types: NEprofession, NEsocialTitle}]
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (S < PP|ADJP|ADVP|S|SBAR=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (NP (DT The-1) (NN judge-2))
+      (VP
+        (VP (VBD declined-3)
+          (S
+            (VP (TO to-4)
+              (VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (S < PP|ADJP|ADVP|S|SBAR=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (NP (DT The-1) (NN judge-2))
+      (VP
+        (VP (VBD declined-3)
+          (S
+            (VP (TO to-4)
+              (VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (VP
+        (VP (VBD declined-3)
+          (S
+            (VP (TO to-4)
+              (VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (VP (VBD declined-3)
+          (S
+            (VP (TO to-4)
+              (VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (VP (TO to-4)
+              (VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (UNMV-NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (UNMV-NP (PRP I-15))
+      (UNMV-VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (UNMV-NP (PRP I-15))
+      (UNMV-VP (VBP 'm-16)
+        (UNMV-VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (UNMV-NP (PRP I-15))
+      (UNMV-VP (VBP 'm-16)
+        (UNMV-VP (VBG going-17)
+          (S
+            (UNMV-VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (UNMV-NP (PRP I-15))
+      (UNMV-VP (VBP 'm-16)
+        (UNMV-VP (VBG going-17)
+          (S
+            (UNMV-VP (TO to-18)
+              (UNMV-VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (@UNMV << NP|ADJP|VP|ADVP|PP=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (UNMV-NP (PRP I-15))
+      (UNMV-VP (VBP 'm-16)
+        (UNMV-VP (VBG going-17)
+          (S
+            (UNMV-VP (TO to-18)
+              (UNMV-VP (VB be-19)
+                (UNMV-NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (UNMV-S
+      (UNMV-NP (DT The-1) (NN judge-2))
+      (UNMV-VP
+        (UNMV-VP (VBD declined-3)
+          (S
+            (UNMV-VP (TO to-4)
+              (UNMV-VP (VB discuss-5)
+                (UNMV-NP (PRP$ his-6) (NN salary-7))
+                (UNMV-PP (IN in-8)
+                  (UNMV-NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (UNMV-VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (UNMV-S
+      (UNMV-NP (PRP I-15))
+      (UNMV-VP (VBP 'm-16)
+        (UNMV-VP (VBG going-17)
+          (S
+            (UNMV-VP (TO to-18)
+              (UNMV-VP (VB be-19)
+                (UNMV-NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (S
+      (NP (DT The-1) (NN judge-2))
+      (VP
+        (VP (VBD declined-3)
+          (S
+            (VP (TO to-4)
+              (VP (VB discuss-5)
+                (NP (PRP$ his-6) (NN salary-7))
+                (PP (IN in-8)
+                  (NP (NN detail-9)))))))
+        (, ,-10)
+        (CC but-11)
+        (VP (VBD said-12))))
+    (: :-13) (`` ``-14)
+    (S
+      (NP (PRP I-15))
+      (VP (VBP 'm-16)
+        (VP (VBG going-17)
+          (S
+            (VP (TO to-18)
+              (VP (VB be-19)
+                (NP (DT a-20) (JJ high-priced-21) (NN lawyer-22))))))))
+    (. .-23)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (NP (NNP ''-1)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (NP (NNP ''-1)))
+
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [I, 'm, going, to, be, a, high-priced, lawyer, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, judge, declined, to, discuss, his, salary, in, detail, ,, but, said, :, ``, I, 'm, going, to, be, a, high-priced, lawyer, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: ['']
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 1
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [Meanwhile, ,, business, and, government, leaders, rebuked, the, computer, makers, ,, and, fretted, about, the, broader, statement, the, companies, ', actions, make, about, Japanese, cutthroat, pricing, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :Meanwhile , business and government leaders rebuked the computer makers , and fretted about the broader statement the companies' actions make about Japanese cutthroat pricing .
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [189.145]
+    (ADVP [4.957] (RB [4.842] Meanwhile))
+    (, [0.000] ,)
+    (NP [23.924] (NN [5.007] business)
+      (CC [0.165] and)
+      (NN [5.093] government) (NNS [6.172] leaders))
+    (VP [156.285]
+      (VP [33.402] (VBD [11.441] rebuked)
+        (NP [18.466] (DT [0.650] the) (NN [6.077] computer) (NNS [6.129] makers)))
+      (, [-0.000] ,)
+      (CC [0.106] and)
+      (VP [117.041] (VBD [11.441] fretted)
+        (PP [100.081] (IN [4.351] about)
+          (NP [94.901]
+            (NP [17.908] (DT [0.650] the) (JJR [4.287] broader) (NN [6.715] statement))
+            (SBAR [73.675]
+              (S [72.988]
+                (NP [21.621]
+                  (NP [11.712] (DT [0.650] the) (NNS [4.323] companies) (POS [2.667] '))
+                  (NNS [7.010] actions))
+                (VP [48.088] (VBP [4.223] make)
+                  (PP [38.472] (IN [4.351] about)
+                    (NP [33.448] (JJ [5.011] Japanese) (JJ [14.654] cutthroat) (NN [7.986] pricing))))))))))
+    (. [0.002] .)))
+
+
+DEBUG (TreeBreaker.java:215) - Enter object in relative clause
+DEBUG (TreeBreaker.java:223) - New sent: The companies ' actions make the broader statement about Japanese cutthroat pricing. 
+DEBUG (TreeBreaker.java:250) - Enter VP CC VP
+DEBUG (TreeBreaker.java:261) - VP1 and CC: rebuked the computer makers and
+DEBUG (TreeBreaker.java:262) - CC and VP2: and fretted about the broader statement the companies ' actions make about Japanese cutthroat pricing
+DEBUG (TreeBreaker.java:269) - New sent: Meanwhile , business and government leaders rebuked the computer makers , and fretted about the broader statement the companies ' actions make about Japanese cutthroat pricing . 
+DEBUG (TreeBreaker.java:272) - wholesent: Meanwhile , business and government leaders rebuked the computer makers , and fretted about the broader statement the companies ' actions make about Japanese cutthroat pricing .
+DEBUG (TreeBreaker.java:278) - New sent: Meanwhile , business and government leaders rebuked the computer makers , . 
+DEBUG (TreeBreaker.java:250) - Enter VP CC VP
+DEBUG (TreeBreaker.java:261) - VP1 and CC: rebuked the computer makers and
+DEBUG (TreeBreaker.java:262) - CC and VP2: and make about Japanese cutthroat pricing
+DEBUG (TreeBreaker.java:272) - wholesent: Meanwhile , business and government leaders rebuked the computer makers , and fretted about the broader statement the companies ' actions make about Japanese cutthroat pricing .
+DEBUG (TreeBreaker.java:283) - New answers: Meanwhile , business and government leaders rebuked the computer makers , . Meanwhile , business and government leaders rebuked the computer makers , and fretted about the broader statement the companies ' actions make about Japanese cutthroat pricing . The companies ' actions make the broader statement about Japanese cutthroat pricing. Meanwhile , business and government leaders rebuked the computer makers , and fretted about the broader statement the companies' actions make about Japanese cutthroat pricing . 
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [Meanwhile, ,, business, and, government, leaders, rebuked, the, computer, makers, ,, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [Meanwhile, ,, business, and, government, leaders, rebuked, the, computer, makers, ,, and, fretted, about, the, broader, statement, the, companies, ', actions, make, about, Japanese, cutthroat, pricing, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [The, companies, ', actions, make, the, broader, statement, about, Japanese, cutthroat, pricing, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [Meanwhile, ,, business, and, government, leaders, rebuked, the, computer, makers, ,, and, fretted, about, the, broader, statement, the, companies, ', actions, make, about, Japanese, cutthroat, pricing, .]
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (S < PP|ADJP|ADVP|S|SBAR=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP (VBD rebuked-7)
+      (NP
+        (NP
+          (NP (DT the-8) (NN computer-9))
+          (NP (NNS makers-10)))
+        (, ,-11)))
+    (. .-12)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (UNMV-ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP (VBD rebuked-7)
+      (NP
+        (NP
+          (NP (DT the-8) (NN computer-9))
+          (NP (NNS makers-10)))
+        (, ,-11)))
+    (. .-12)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
+(ROOT
+  (S
+    (ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP
+      (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
+      (VB rebuke)
+      (NP
+        (NP
+          (NP (DT the-8) (NN computer-9))
+          (NP (NNS makers-10)))
+        (, ,-11)))
+    (. .-12)))
+
+DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
+
+DEBUG (VerbDecomposer.java:253) - (ROOT
+  (S
+    (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
+    (ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP (VB rebuke)
+      (NP
+        (NP
+          (NP (DT the-8) (NN computer-9))
+          (NP (NNS makers-10)))
+        (, ,-11)))
+    (. .-12)))
+
+DEBUG (VerbDecomposer.java:275) - Inverted Tree:
+(ROOT
+  (SQ
+    (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
+    (ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP (VB rebuke)
+      (NP
+        (NP
+          (NP (DT the-8) (NN computer-9))
+          (NP (NNS makers-10)))
+        (, ,-11)))
+    (. .-12)))
+
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Meanwhile"; POS: RB}, {"business"; POS: NN; NE types: NEnewspaper}, {"government"; POS: NN}, {"leaders"; POS: NNS; NE types: NEsocialTitle}, {"rebuked"; POS: VBD}, {"computer"; POS: NN}, {"makers"; POS: NNS}]
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (S < PP|ADJP|ADVP|S|SBAR=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP
+      (VP (VBD rebuked-7)
+        (NP (DT the-8) (NN computer-9) (NNS makers-10)))
+      (, ,-11)
+      (CC and-12)
+      (VP (VBD fretted-13)
+        (PP (IN about-14)
+          (NP
+            (NP (DT the-15) (JJR broader-16) (NN statement-17))
+            (SBAR
+              (S
+                (NP
+                  (NP (DT the-18) (NNS companies-19) (POS '-20))
+                  (NNS actions-21))
+                (VP (VBP make-22)
+                  (PP (IN about-23)
+                    (NP (JJ Japanese-24) (JJ cutthroat-25) (NN pricing-26))))))))))
+    (. .-27)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (UNMV-ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP
+      (VP (VBD rebuked-7)
+        (NP (DT the-8) (NN computer-9) (NNS makers-10)))
+      (, ,-11)
+      (CC and-12)
+      (VP (VBD fretted-13)
+        (PP (IN about-14)
+          (NP
+            (NP (DT the-15) (JJR broader-16) (NN statement-17))
+            (SBAR
+              (S
+                (NP
+                  (NP (DT the-18) (NNS companies-19) (POS '-20))
+                  (NNS actions-21))
+                (VP (VBP make-22)
+                  (PP (IN about-23)
+                    (NP (JJ Japanese-24) (JJ cutthroat-25) (NN pricing-26))))))))))
+    (. .-27)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP
+      (VP (VBD rebuked-7)
+        (NP (DT the-8) (NN computer-9) (NNS makers-10)))
+      (, ,-11)
+      (CC and-12)
+      (VP (VBD fretted-13)
+        (PP (IN about-14)
+          (NP
+            (NP (DT the-15) (JJR broader-16) (NN statement-17))
+            (SBAR
+              (S
+                (NP
+                  (NP (DT the-18) (NNS companies-19) (POS '-20))
+                  (NNS actions-21))
+                (VP (VBP make-22)
+                  (PP (IN about-23)
+                    (NP (JJ Japanese-24) (JJ cutthroat-25) (NN pricing-26))))))))))
+    (. .-27)))
+
 DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
   (S
     (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP (VBZ is-8)
+      (NP (DT The-1) (NNS companies-2) (POS '-3))
+      (NNS actions-4))
+    (VP (VBP make-5)
       (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+        (NP (DT the-6) (JJR broader-7) (NN statement-8))
+        (PP (IN about-9)
+          (NP (JJ Japanese-10) (JJ cutthroat-11) (NN pricing-12)))))
+    (. .-13)))
 
 DEBUG (VerbDecomposer.java:142) - Decomposing the verb
 
@@ -1485,1220 +2363,346 @@ DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
 (ROOT
   (S
     (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
+      (NP (DT The-1) (NNS companies-2) (POS '-3))
+      (NNS actions-4))
     (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-8))
+      (Q-AUX (Q <quesPhrase>) (AUX-VB do))
+      (VB make)
       (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+        (NP (DT the-6) (JJR broader-7) (NN statement-8))
+        (PP (IN about-9)
+          (NP (JJ Japanese-10) (JJ cutthroat-11) (NN pricing-12)))))
+    (. .-13)))
 
 DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
 
 DEBUG (VerbDecomposer.java:253) - (ROOT
   (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
+    (Q-AUX (Q <quesPhrase>) (AUX-VB do))
     (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
+      (NP (DT The-1) (NNS companies-2) (POS '-3))
+      (NNS actions-4))
+    (VP (VB make)
       (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+        (NP (DT the-6) (JJR broader-7) (NN statement-8))
+        (PP (IN about-9)
+          (NP (JJ Japanese-10) (JJ cutthroat-11) (NN pricing-12)))))
+    (. .-13)))
 
 DEBUG (VerbDecomposer.java:275) - Inverted Tree:
 (ROOT
   (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
+    (Q-AUX (Q <quesPhrase>) (AUX-VB do))
     (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
+      (NP (DT The-1) (NNS companies-2) (POS '-3))
+      (NNS actions-4))
+    (VP (VB make)
       (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+        (NP (DT the-6) (JJR broader-7) (NN statement-8))
+        (PP (IN about-9)
+          (NP (JJ Japanese-10) (JJ cutthroat-11) (NN pricing-12)))))
+    (. .-13)))
 
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"Macropus"; POS: NNP}, {"rufus"; POS: NN}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"companies"; POS: NNS}, {"actions"; POS: NNS}, {"make"; POS: VBP}, {"broader"; POS: JJR}, {"statement"; POS: NN}, {"Japanese"; POS: NNP; NE types: NEethnicGroup, NElanguage, NEnationality, NEnewspaper}, {"cutthroat"; POS: NN}, {"pricing"; POS: NN}]
+DEBUG (UnmovableTreeMarker.java:91) - UNMV: Root (S < PP|ADJP|ADVP|S|SBAR=unmv )
+
+DEBUG (UnmovableTreeMarker.java:101) - (ROOT
+  (S
+    (UNMV-ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP
+      (VP (VBD rebuked-7)
+        (NP (DT the-8) (NN computer-9) (NNS makers-10)))
+      (, ,-11)
+      (CC and-12)
+      (VP (VBD fretted-13)
+        (PP (IN about-14)
+          (NP
+            (NP (DT the-15) (JJR broader-16) (NN statement-17))
+            (SBAR
+              (S
+                (NP
+                  (NP (DT the-18) (NNS companies-19) (POS '-20))
+                  (NNS actions-21))
+                (VP (VBP make-22)
+                  (PP (IN about-23)
+                    (NP (JJ Japanese-24) (JJ cutthroat-25) (NN pricing-26))))))))))
+    (. .-27)))
+
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (UNMV-ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP
+      (VP (VBD rebuked-7)
+        (NP (DT the-8) (NN computer-9) (NNS makers-10)))
+      (, ,-11)
+      (CC and-12)
+      (VP (VBD fretted-13)
+        (PP (IN about-14)
+          (NP
+            (NP (DT the-15) (JJR broader-16) (NN statement-17))
+            (SBAR
+              (S
+                (NP
+                  (NP (DT the-18) (NNS companies-19) (POS '-20))
+                  (NNS actions-21))
+                (VP (VBP make-22)
+                  (PP (IN about-23)
+                    (NP (JJ Japanese-24) (JJ cutthroat-25) (NN pricing-26))))))))))
+    (. .-27)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (ADVP (RB Meanwhile-1))
+    (, ,-2)
+    (NP (NN business-3)
+      (CC and-4)
+      (NN government-5) (NNS leaders-6))
+    (VP
+      (VP (VBD rebuked-7)
+        (NP (DT the-8) (NN computer-9) (NNS makers-10)))
+      (, ,-11)
+      (CC and-12)
+      (VP (VBD fretted-13)
+        (PP (IN about-14)
+          (NP
+            (NP (DT the-15) (JJR broader-16) (NN statement-17))
+            (SBAR
+              (S
+                (NP
+                  (NP (DT the-18) (NNS companies-19) (POS '-20))
+                  (NNS actions-21))
+                (VP (VBP make-22)
+                  (PP (IN about-23)
+                    (NP (JJ Japanese-24) (JJ cutthroat-25) (NN pricing-26))))))))))
+    (. .-27)))
+
 DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:118) - Tokenization: [Meanwhile, ,, business, and, government, leaders, rebuked, the, computer, makers, ,, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [Meanwhile, ,, business, and, government, leaders, rebuked, the, computer, makers, ,, and, fretted, about, the, broader, statement, the, companies, ', actions, make, about, Japanese, cutthroat, pricing, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [The, companies, ', actions, make, the, broader, statement, about, Japanese, cutthroat, pricing, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [Meanwhile, ,, business, and, government, leaders, rebuked, the, computer, makers, ,, and, fretted, about, the, broader, statement, the, companies, ', actions, make, about, Japanese, cutthroat, pricing, .]
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 1
 DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+DEBUG (StanfordParser.java:154) - Tokenization: [All, the, contracts, were, for, computer-system-design, contracts, and, involved, no, hardware, or, software, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :All the contracts were for computer-system-design contracts and involved no hardware or software .
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [95.262]
+    (NP [17.272] (PDT [2.686] All) (DT [0.650] the) (NNS [5.961] contracts))
+    (VP [76.848]
+      (VP [31.736] (VBD [1.098] were)
+        (PP [23.510] (IN [2.260] for)
+          (NP [20.577] (JJ [11.619] computer-system-design) (NNS [5.961] contracts))))
+      (CC [0.106] and)
+      (VP [40.838] (VBD [7.258] involved)
+        (NP [30.085] (DT [4.909] no) (NN [8.896] hardware)
+          (CC [1.882] or)
+          (NN [7.260] software))))
     (. [0.002] .)))
 
 
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (TreeBreaker.java:250) - Enter VP CC VP
+DEBUG (TreeBreaker.java:261) - VP1 and CC: were for computer-system-design contracts and
+DEBUG (TreeBreaker.java:262) - CC and VP2: and involved no hardware or software
+DEBUG (TreeBreaker.java:269) - New sent: All the contracts involved no hardware or software . 
+DEBUG (TreeBreaker.java:272) - wholesent: All the contracts were for computer-system-design contracts and involved no hardware or software .
+DEBUG (TreeBreaker.java:278) - New sent: All the contracts were for computer-system-design contracts . 
+DEBUG (TreeBreaker.java:283) - New answers: All the contracts were for computer-system-design contracts . All the contracts involved no hardware or software . All the contracts were for computer-system-design contracts and involved no hardware or software . 
 DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (StanfordParser.java:154) - Tokenization: [All, the, contracts, were, for, computer-system-design, contracts, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [All, the, contracts, involved, no, hardware, or, software, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [All, the, contracts, were, for, computer-system-design, contracts, and, involved, no, hardware, or, software, .]
 DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
   (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
+    (VP (VBD were-4)
+      (PP (IN for-5)
+        (NP (JJ computer-system-design-6) (NNS contracts-7))))
+    (. .-8)))
 
 DEBUG (VerbDecomposer.java:142) - Decomposing the verb
 
 DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
 (ROOT
   (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
     (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
+      (Q-AUX (Q <quesPhrase>) (AUX were-4))
+      (PP (IN for-5)
+        (NP (JJ computer-system-design-6) (NNS contracts-7))))
+    (. .-8)))
 
 DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
 
 DEBUG (VerbDecomposer.java:253) - (ROOT
   (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (Q-AUX (Q <quesPhrase>) (AUX were-4))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
     (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
+      (PP (IN for-5)
+        (NP (JJ computer-system-design-6) (NNS contracts-7))))
+    (. .-8)))
 
 DEBUG (VerbDecomposer.java:275) - Inverted Tree:
 (ROOT
   (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (Q-AUX (Q <quesPhrase>) (AUX were-4))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
     (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
+      (PP (IN for-5)
+        (NP (JJ computer-system-design-6) (NNS contracts-7))))
+    (. .-8)))
 
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 14:16:44
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 14:16:45
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [131.200]
-    (NP [61.681]
-      (NP [26.842] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-      (PRN [31.246] (-LRB- [0.056] -LRB-)
-        (NP [30.020] (NNP [12.053] Macropus) (NNS [11.443] rufus))
-        (-RRB- [0.057] -RRB-)))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"the contracts"; POS: COMPOUND; NE types: NEfilm}, {"contracts"; POS: NNS}, {"computer-system-design"; POS: NN}]
 DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
   (S
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP (VBZ is-8)
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
+    (VP (VBD involved-4)
+      (NP (DT no-5) (NN hardware-6)
+        (CC or-7)
+        (NN software-8)))
+    (. .-9)))
 
 DEBUG (VerbDecomposer.java:142) - Decomposing the verb
 
 DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
 (ROOT
   (S
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
     (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-8))
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+      (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
+      (VB involve)
+      (NP (DT no-5) (NN hardware-6)
+        (CC or-7)
+        (NN software-8)))
+    (. .-9)))
 
 DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
 
 DEBUG (VerbDecomposer.java:253) - (ROOT
   (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+    (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
+    (VP (VB involve)
+      (NP (DT no-5) (NN hardware-6)
+        (CC or-7)
+        (NN software-8)))
+    (. .-9)))
 
 DEBUG (VerbDecomposer.java:275) - Inverted Tree:
 (ROOT
   (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
+    (Q-AUX (Q <quesPhrase>) (AUX-VBD did))
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
+    (VP (VB involve)
+      (NP (DT no-5) (NN hardware-6)
+        (CC or-7)
+        (NN software-8)))
+    (. .-9)))
 
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEanimal, NEorganization}, {"Macropus"; POS: NNP}, {"rufus"; POS: NN}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
+DEBUG (QAPhraseGenerator.java:39) - Terms: [{"the contracts"; POS: COMPOUND; NE types: NEfilm}, {"contracts"; POS: NNS}, {"involved"; POS: VBN}, {"hardware"; POS: NN; NE types: NEfilm}, {"software"; POS: NN}]
+DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
+  (S
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
+    (VP
+      (VP (VBD were-4)
+        (PP (IN for-5)
+          (NP (JJ computer-system-design-6) (NNS contracts-7))))
+      (CC and-8)
+      (VP (VBD involved-9)
+        (NP (DT no-10) (NN hardware-11)
+          (CC or-12)
+          (NN software-13))))
+    (. .-14)))
+
+DEBUG (VerbDecomposer.java:142) - Decomposing the verb
+
+ WARN (VerbDecomposer.java:240) - No verb found here, returning null.
+DEBUG (VerbDecomposer.java:241) - Tree: (ROOT
+  (S
+    (NP (PDT All-1) (DT the-2) (NNS contracts-3))
+    (VP
+      (VP (VBD were-4)
+        (PP (IN for-5)
+          (NP (JJ computer-system-design-6) (NNS contracts-7))))
+      (CC and-8)
+      (VP (VBD involved-9)
+        (NP (DT no-10) (NN hardware-11)
+          (CC or-12)
+          (NN software-13))))
+    (. .-14)))
+
 DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
+DEBUG (StanfordParser.java:118) - Tokenization: [All, the, contracts, were, for, computer-system-design, contracts, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [All, the, contracts, involved, no, hardware, or, software, .]
+DEBUG (StanfordParser.java:113) - Parsing sentence
+DEBUG (StanfordParser.java:118) - Tokenization: [All, the, contracts, were, for, computer-system-design, contracts, and, involved, no, hardware, or, software, .]
+ INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 17:32:17
+ INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 17:35:00
+DEBUG (TreeBreaker.java:112) - Breaking sentences.
+DEBUG (TreeBreaker.java:116) - Count of original one: 1
 DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
+DEBUG (TreeBreaker.java:126) - Sentence 0 :John is tall and plays basketball.
+DEBUG (TreeBreaker.java:127) - (ROOT
+  (S [50.145]
+    (NP [8.531] (NNP [5.875] John))
+    (VP [40.472]
+      (VP [14.086] (VBZ [0.144] is)
+        (ADJP [8.503] (JJ [7.782] tall)))
+      (CC [0.106] and)
+      (VP [22.114] (VBZ [6.285] plays)
+        (NP [11.595] (NN [9.009] basketball))))
     (. [0.002] .)))
 
 
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
+DEBUG (TreeBreaker.java:250) - Enter VP CC VP
+DEBUG (TreeBreaker.java:261) - VP1 and CC: is tall and
+DEBUG (TreeBreaker.java:262) - CC and VP2: and plays basketball
+DEBUG (TreeBreaker.java:269) - New sent: John plays basketball . 
+DEBUG (TreeBreaker.java:272) - wholesent: John is tall and plays basketball .
+DEBUG (TreeBreaker.java:278) - New sent: John is tall . 
+DEBUG (TreeBreaker.java:283) - New answers: John is tall . John plays basketball . John is tall and plays basketball. 
 DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, plays, basketball, .]
+DEBUG (StanfordParser.java:149) - Parsing sentence
+DEBUG (StanfordParser.java:154) - Tokenization: [John, is, tall, and, plays, basketball, .]
 DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
   (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
+    (NP (NNP John-1))
+    (VP (VBZ is-2)
+      (ADJP (JJ tall-3)))
+    (. .-4)))
 
 DEBUG (VerbDecomposer.java:142) - Decomposing the verb
 
 DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
 (ROOT
   (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
+    (NP (NNP John-1))
     (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
+      (Q-AUX (Q <quesPhrase>) (AUX is-2))
+      (ADJP (JJ tall-3)))
+    (. .-4)))
 
 DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEanimal, NEorganization}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [89.441]
-    (NP [21.690] (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP (VBZ is-3)
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-3))
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [the, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :the Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [84.253]
-    (NP [16.502] (DT [0.650] the) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: the Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [the, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT the-1) (NNP Kangaroo-2))
-    (VP (VBZ is-3)
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT the-1) (NNP Kangaroo-2))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-3))
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (DT the-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (DT the-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (QAPhraseGenerator.java:40) - Terms: [{"Kangaroo"; POS: NNP; NE types: NEanimal, NEriver, NEwater}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [the, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 14:18:59
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 14:35:39
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [131.200]
-    (NP [61.681]
-      (NP [26.842] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-      (PRN [31.246] (-LRB- [0.056] -LRB-)
-        (NP [30.020] (NNP [12.053] Macropus) (NNS [11.443] rufus))
-        (-RRB- [0.057] -RRB-)))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo (Macropus rufus) is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP (VBZ is-8)
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-8))
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-8))
-    (NP
-      (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-      (PRN (-LRB- -LRB--4)
-        (NP (NNP Macropus-5) (NNS rufus-6))
-        (-RRB- -RRB--7)))
-    (VP
-      (NP
-        (NP (DT the-9) (JJS largest-10) (VBG surviving-11) (NNS marsupial-12))
-        (ADVP (RB anywhere-13)
-          (PP (IN in-14)
-            (NP (DT the-15) (NN world-16))))))
-    (. .-17)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEanimal, NEorganization}, {"Macropus"; POS: NNP}, {"rufus"; POS: NN}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, -LRB-, Macropus, rufus, -RRB-, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEanimal, NEorganization}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [89.441]
-    (NP [21.690] (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP (VBZ is-3)
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-3))
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (NNP Red-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 14:36:50
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 14:36:56
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEanimal, NEorganization}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 14:39:49
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 14:40:00
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 14:40:57
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 14:41:00
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red Kangaroo"; POS: COMPOUND; NE types: NEorganization}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [86.058]
-    (NP [18.307] (DT [2.455] The) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Kangaroo-2))
-    (VP (VBZ is-3)
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Kangaroo-2))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-3))
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (DT The-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-3))
-    (NP (DT The-1) (NNP Kangaroo-2))
-    (VP
-      (NP
-        (NP (DT the-4) (JJS largest-5) (VBG surviving-6) (NNS marsupial-7))
-        (ADVP (RB anywhere-8)
-          (PP (IN in-9)
-            (NP (DT the-10) (NN world-11))))))
-    (. .-12)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Kangaroo"; POS: NNP; NE types: NEanimal, NEriver, NEwater}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 15:12:33
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:16:00
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 15:33:42
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:33:44
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:251) - Moving the AUX tree to the first child of the main clause:
-
-DEBUG (VerbDecomposer.java:253) - (ROOT
-  (S
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:275) - Inverted Tree:
-(ROOT
-  (SQ
-    (Q-AUX (Q <quesPhrase>) (AUX is-4))
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (QAPhraseGenerator.java:39) - Terms: [{"Red"; POS: NNP; NE types: NEcolor, NEfilm, NEteam}, {"Kangaroo"; POS: NNP; NE types: NEanimal}, {"largest"; POS: JJS}, {"surviving"; POS: VBG}, {"marsupial"; POS: NN}, {"world"; POS: NN}]
-DEBUG (StanfordParser.java:113) - Parsing sentence
-DEBUG (StanfordParser.java:118) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
- INFO (OpenAryhpe.java:407) - OpenAryhpe ended at 2009-08-13 15:34:26
- INFO (OpenAryhpe.java:134) - OpenAryhpe started at 2009-08-13 15:34:31
-DEBUG (TreeBreaker.java:108) - Breaking sentences.
-DEBUG (TreeBreaker.java:112) - Count of original one: 1
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (TreeBreaker.java:122) - Sentence 0 :The Red Kangaroo is the largest surviving marsupial anywhere in the world.
-DEBUG (TreeBreaker.java:123) - (ROOT
-  (S [94.364]
-    (NP [26.613] (DT [2.455] The) (NNP [7.689] Red) (NNP [11.512] Kangaroo))
-    (VP [66.609] (VBZ [0.144] is)
-      (NP [60.038]
-        (NP [33.025] (DT [0.650] the) (JJS [1.967] largest) (VBG [6.025] surviving) (NNS [16.344] marsupial))
-        (ADVP [20.622] (RB [6.805] anywhere)
-          (PP [11.369] (IN [1.552] in)
-            (NP [8.927] (DT [0.650] the) (NN [6.090] world))))))
-    (. [0.002] .)))
-
-
-DEBUG (TreeBreaker.java:240) - New answers: The Red Kangaroo is the largest surviving marsupial anywhere in the world. 
-DEBUG (StanfordParser.java:149) - Parsing sentence
-DEBUG (StanfordParser.java:154) - Tokenization: [The, Red, Kangaroo, is, the, largest, surviving, marsupial, anywhere, in, the, world, .]
-DEBUG (UnmovableTreeMarker.java:110) - After UNMV: (ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP (VBZ is-4)
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
-
-DEBUG (VerbDecomposer.java:142) - Decomposing the verb
-
-DEBUG (VerbDecomposer.java:245) - Auxiliarized Tree:
-(ROOT
-  (S
-    (NP (DT The-1) (NNP Red-2) (NNP Kangaroo-3))
-    (VP
-      (Q-AUX (Q <quesPhrase>) (AUX is-4))
-      (NP
-        (NP (DT the-5) (JJS largest-6) (VBG surviving-7) (NNS marsupial-8))
-        (ADVP (RB anywhere-9)
-          (PP (IN in-10)
-            (NP (DT the-11) (NN world-12))))))
-    (. .-13)))
 

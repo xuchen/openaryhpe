@@ -1,5 +1,6 @@
 package info.ephyra.treequestiongeneration;
 
+import info.ephyra.answeranalysis.Answer;
 import info.ephyra.questionanalysis.Term;
 import edu.stanford.nlp.trees.Tree;
 
@@ -97,5 +98,24 @@ public class QAPhrasePair {
 			return true;
 		else
 			return false;
+	}
+	
+	public boolean equals(Object o)
+	{
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final QAPhrasePair p = (QAPhrasePair) o;
+		if ((this.ansPhrase== null && p.getAnsPhrase() == null) || (this.ansPhrase.equals(p.getAnsPhrase())) 
+				&& (this.ansTree== null && p.getAnsTree() == null) || this.ansTree.equals(p.getAnsTree())
+				&& (this.inPhrase== null && p.getInPhrase() == null) || this.inPhrase.equals(p.getInPhrase()) 
+				&& (this.quesPhrase== null && p.getQuesPhrase() == null) || this.quesPhrase.equals(p.getQuesPhrase())
+				&& (this.quesSentence== null && p.getQuesSentence() == null) || this.quesSentence.equals(p.getQuesSentence()) 
+				&& (this.quesType== null && p.getQuesType() == null) || this.quesType.equals(p.getQuesType())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
