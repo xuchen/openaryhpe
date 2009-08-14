@@ -421,6 +421,9 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEfilmType")) {
 				qType = "WHAT";
 				qPhrase = "what film type";
+			} else if (neType.equals("NEfirstName")) {
+				qType = "WHO";
+				qPhrase = "who";
 			} else if (neType.equals("NEflower")) {
 				qType = "WHAT";
 				qPhrase = "what flower";
@@ -606,7 +609,9 @@ public class QAPhraseGenerator {
 				qPhrase = "what";
 			}
 			QAPhrasePair p = new QAPhrasePair(qType, qPhrase, inWord, ansPhrase, termTree, t);
-			list.add(p);
+			if (!list.contains(p)) {
+				list.add(p);
+			}
 		}
 		return list;
 		
