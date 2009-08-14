@@ -73,7 +73,10 @@ public class TreeBreaker {
 			                        "!< WHADVP " +
 			                        "!< WHADJP " +
 			                   ")";
-		private static TregexPattern tregexPatternMatchRelativeClauseSubject;
+	private static TregexPattern tregexPatternMatchRelativeClauseSubject;
+	
+	private static String tregexMatchCC = "VP < (CC=cc ,, VP=vp1 .. VP=vp2) > (S > ROOT)";
+	private static TregexPattern tregexPatternMatchCC;
 	
 	// initialize all the matching patterns
 	// must be called before running other operations
@@ -88,6 +91,7 @@ public class TreeBreaker {
 			tsurgeonPatternInsertObject = Tsurgeon.parseOperation(operationInsertObject);
 			
 			tregexPatternMatchRelativeClauseSubject = TregexPattern.compile(tregexMatchRelativeClauseSubject);
+			tregexPatternMatchCC = TregexPattern.compile(tregexMatchCC);
 			
 			initialized = true;
 		} catch (edu.stanford.nlp.trees.tregex.ParseException e) {
@@ -233,6 +237,45 @@ public class TreeBreaker {
 				newSent = StringUtils.capitalizeFirst(newSent);
 				log.debug("New sent: "+newSent);
 				if (! newAnswers.contains(newSent)) {
+					newAnswers = newSent+newAnswers;
+				}
+			}
+			
+			/* Two new trees are obtained by dividing a sentence with a CC connecting 2 VPs into 2.
+			 * For instance: John is tall and plays basketball.
+			 * -> John is tall. John plays basketball.
+			 */
+			tregexMatcher = tregexPatternMatchCC.matcher(tree);
+			while (tregexMatcher.find()) {
+				log.debug("Enter VP CC VP");
+				Tree ccTree = tregexMatcher.getNode("cc");
+				Tree vp1Tree = tregexMatcher.getNode("vp1");
+				Tree vp2Tree = tregexMatcher.getNode("vp2");
+				
+				String wholeSent = TreeUtil.getLabel(tree);
+				String vp1Sent = TreeUtil.getLabel(vp1Tree);
+				String ccSent = TreeUtil.getLabel(ccTree);
+				String vp2Sent = TreeUtil.getLabel(vp2Tree);
+				String vp1ccSent = vp1Sent+" "+ccSent;
+				String ccvp2Sent = ccSent+" "+vp2Sent;
+				log.debug("VP1 and CC: "+vp1ccSent);
+				log.debug("CC and VP2: "+ccvp2Sent);
+				
+				String newSent = wholeSent.replaceFirst(vp1ccSent+" ", "")+" ";
+				if(newSent.equals(wholeSent)) {
+					log.warn("breaking VP CC VP failed:\n"+newSent);
+				}
+				if (! newAnswers.contains(newSent)) {
+					log.debug("New sent: "+newSent);
+					newAnswers = newSent+newAnswers;
+				}
+				log.debug("wholesent: "+wholeSent);
+				newSent = wholeSent.replaceFirst(ccvp2Sent+" ", "")+" ";
+				if(newSent.equals(wholeSent)) {
+					log.warn("breaking VP CC VP failed:\n"+newSent);
+				}
+				if (! newAnswers.contains(newSent)) {
+					log.debug("New sent: "+newSent);
 					newAnswers = newSent+newAnswers;
 				}
 			}
