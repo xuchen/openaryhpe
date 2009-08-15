@@ -180,6 +180,8 @@ public class VerbDecomposer {
 				// TODO: BUG: getLemma will return "saw" as the lemma of VBZ "saw", mostly it should return "see"
 				// ref: http://nlp.stanford.edu/nlp/javadoc/jwnl-docs/net/didion/jwnl/data/IndexWord.html
 				String lemma = WordNet.getLemma(word, WordNet.VERB);
+				if (lemma == null) 
+					return null;
 				String auxTree = "(AUX-VB do)";
 				if (lemma.equals("be")) {
 					// John is a man -> Is John a man

@@ -106,15 +106,20 @@ public class QAPhrasePair {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
+
 		final QAPhrasePair p = (QAPhrasePair) o;
-		if ((this.ansPhrase== null && p.getAnsPhrase() == null) || (this.ansPhrase.equals(p.getAnsPhrase())) 
-				&& (this.ansTree== null && p.getAnsTree() == null) || this.ansTree.equals(p.getAnsTree())
-				&& (this.inPhrase== null && p.getInPhrase() == null) || this.inPhrase.equals(p.getInPhrase()) 
-				&& (this.quesPhrase== null && p.getQuesPhrase() == null) || this.quesPhrase.equals(p.getQuesPhrase())
-				&& (this.quesSentence== null && p.getQuesSentence() == null) || this.quesSentence.equals(p.getQuesSentence()) 
-				&& (this.quesType== null && p.getQuesType() == null) || this.quesType.equals(p.getQuesType())) {
-			return true;
-		} else {
+		try {
+			if ((this.ansPhrase== null && p.getAnsPhrase() == null) || (this.ansPhrase.equals(p.getAnsPhrase())) 
+					//&& (this.ansTree== null && p.getAnsTree() == null) || this.ansTree.equals(p.getAnsTree())
+					&& (this.inPhrase== null && p.getInPhrase() == null) || this.inPhrase.equals(p.getInPhrase()) 
+					&& (this.quesPhrase== null && p.getQuesPhrase() == null) || this.quesPhrase.equals(p.getQuesPhrase())
+					&& (this.quesSentence== null && p.getQuesSentence() == null) || this.quesSentence.equals(p.getQuesSentence()) 
+					&& (this.quesType== null && p.getQuesType() == null) || this.quesType.equals(p.getQuesType())) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (java.lang.NullPointerException e) {
 			return false;
 		}
 	}

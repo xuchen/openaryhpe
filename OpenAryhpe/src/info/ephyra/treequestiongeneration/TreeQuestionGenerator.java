@@ -86,7 +86,7 @@ public class TreeQuestionGenerator {
 			while (pPairIter.hasNext()) {
 				quesCount++;
 				pPair = pPairIter.next();
-				MsgPrinter.printStatusMsg("\t"+quesCount+". Q type: "+pPair.getQuesType());
+				MsgPrinter.printStatusMsg("\t"+quesCount+". Q type: "+pPair.getQuesType()+" NE type: "+pPair.getAnsTerm());
 				MsgPrinter.printStatusMsg("\t\tQuestion: "+pPair.getQuesSentence());
 				MsgPrinter.printStatusMsg("\t\tAnswer: "+pPair.getAnsPhrase().replaceAll("-\\d+\\b", ""));
 			}
