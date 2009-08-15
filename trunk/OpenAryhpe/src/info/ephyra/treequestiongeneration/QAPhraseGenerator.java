@@ -139,6 +139,7 @@ public class QAPhraseGenerator {
 			// TODO: maybe we should trace back to the root PP phrase and let it be the ansPhrase
 			for (Term term:terms) {
 				if (term.getNeTypes().length == 0) continue;
+				termNPtree = null;
 				String termStr = term.getText().replaceAll("\\s+", "");
 				if(termStr.equals(npWord) || (determiner+termStr).equals(npWord)) {
 					termNPtree = npTree;
@@ -155,7 +156,10 @@ public class QAPhraseGenerator {
 				}
 				// then put it as an answer candidate
 				if (termNPtree != null) {
-					qaList.addAll(setupQuesTypePhrase(inWord, ansPhrase, termNPtree, ansTerm));
+					ArrayList<QAPhrasePair> list = setupQuesTypePhrase(inWord, ansPhrase, termNPtree, ansTerm);
+					if (list != null) {
+						qaList.addAll(list);
+					}
 				}
 			}
 		}
@@ -270,9 +274,9 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEweekday")) {
 				qType = "WHEN";
 				qPhrase = "which day";
-			} else if (neType.equals("NEyear")) {
-				qType = "WHEN";
-				qPhrase = "which year";
+//			} else if (neType.equals("NEyear")) {
+//				qType = "WHEN";
+//				qPhrase = "which year";
 			} else if (neType.equals("NEzipcode")) {
 				qType = "WHAT";
 				qPhrase = "what zipcode";
@@ -466,9 +470,9 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEministry")) {
 				qType = "WHAT";
 				qPhrase = "what ministry";
-			} else if (neType.equals("NEmonth")) {
-				qType = "WHICH";
-				qPhrase = "what month";
+//			} else if (neType.equals("NEmonth")) {
+//				qType = "WHICH";
+//				qPhrase = "what month";
 			} else if (neType.equals("NEmountain")) {
 				qType = "WHAT";
 				qPhrase = "what mountain";
@@ -605,8 +609,9 @@ public class QAPhraseGenerator {
 				qType = "WHAT";
 				qPhrase = "what zodiacSign";
 			} else {
-				qType = "WHAT";
-				qPhrase = "what";
+//				qType = "WHAT";
+//				qPhrase = "what";
+				return null;
 			}
 			QAPhrasePair p = new QAPhrasePair(qType, qPhrase, inWord, ansPhrase, termTree, t);
 			if (!list.contains(p)) {
