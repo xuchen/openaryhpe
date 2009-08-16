@@ -21,6 +21,8 @@ import java.util.Iterator;
  * 
  * @author Nico Schlaefer
  * @version 2007-02-06
+ * 
+ * X. Yao. 2009-8-15. Modified to be case-sensitive and not stemmed. and not fully tested...
  */
 public class HashDictionary implements Dictionary {
 	/** <code>HashSet</code> used to store the words. **/
@@ -29,6 +31,8 @@ public class HashDictionary implements Dictionary {
 	private HashSet<String> tokens;
 	/** Maximum number of tokens of a word in the dictionary. */
 	private int maxTokens = 1;
+	/** Whether strings should be stored in lower-case and compared in a case-insensitive way */
+	private boolean caseInsensitive = false;
 	
 	/**
 	 * Creates an empty <code>HashDictionary</code>.
@@ -57,8 +61,17 @@ public class HashDictionary implements Dictionary {
 				String word = in.readLine().trim();
 				if (word.startsWith("//")) continue;  // skip comments
 				if (word.startsWith("#")) continue;  // skip comments
-				word = NETagger.tokenizeWithSpaces(word.toLowerCase());
-				word = SnowballStemmer.stemAllTokens(word);
+				if (word.startsWith("CASEINSENSITIVE")) {
+					this.caseInsensitive = true;  // skip comments
+					continue;
+				}
+//				word = NETagger.tokenizeWithSpaces(word.toLowerCase());
+//				word = SnowballStemmer.stemAllTokens(word);
+				word = NETagger.tokenizeWithSpaces(word);
+				
+				if (this.caseInsensitive) {
+					word = word.toLowerCase();
+				}
 				
 				// add whole word
 				if (word.length() > 0) words.add(word);
@@ -81,8 +94,13 @@ public class HashDictionary implements Dictionary {
 	 */
 	public void add(String word) {
 		if (word != null) {
-			word = NETagger.tokenizeWithSpaces(word.trim().toLowerCase());
-			word = SnowballStemmer.stemAllTokens(word);
+//			word = NETagger.tokenizeWithSpaces(word.trim().toLowerCase());
+//			word = SnowballStemmer.stemAllTokens(word);
+			word = NETagger.tokenizeWithSpaces(word);
+			
+			if (this.caseInsensitive) {
+				word = word.toLowerCase();
+			}
 			
 			// add whole word
 			if (word.length() > 0) words.add(word);
@@ -102,9 +120,12 @@ public class HashDictionary implements Dictionary {
 	 * @return <code>true</code> iff the word was found
 	 */
 	public boolean contains(String word) {
-		word = NETagger.tokenizeWithSpaces(word.trim().toLowerCase());
-		word = SnowballStemmer.stemAllTokens(word);
-		
+//		word = NETagger.tokenizeWithSpaces(word.trim().toLowerCase());
+//		word = SnowballStemmer.stemAllTokens(word);
+		word = NETagger.tokenizeWithSpaces(word);
+		if (this.caseInsensitive) {
+			word = word.toLowerCase();
+		}
 		return words.contains(word);
 	}
 	
@@ -115,8 +136,10 @@ public class HashDictionary implements Dictionary {
 	 * @return <code>true</code> iff a word in the dictionary contains the token
 	 */
 	public boolean containsToken(String token) {
-		token = SnowballStemmer.stem(token.trim().toLowerCase());
-		
+//		token = SnowballStemmer.stem(token.trim().toLowerCase());
+		if (this.caseInsensitive) {
+			token = token.toLowerCase();
+		}
 		return tokens.contains(token);
 	}
 	
@@ -131,8 +154,12 @@ public class HashDictionary implements Dictionary {
 	 * @return <code>true</code> iff the word was found
 	 */
 	public boolean fuzzyContains(String word, int maxDistance) {
-		word = NETagger.tokenizeWithSpaces(word.trim().toLowerCase());
-		word = SnowballStemmer.stemAllTokens(word);
+//		word = NETagger.tokenizeWithSpaces(word.trim().toLowerCase());
+//		word = SnowballStemmer.stemAllTokens(word);
+		word = NETagger.tokenizeWithSpaces(word);
+		if (this.caseInsensitive) {
+			word = word.toLowerCase();
+		}
 		
 		if (maxDistance == 0) return this.words.contains(word);
 		else if (this.words.contains(word)) return true;
@@ -155,8 +182,11 @@ public class HashDictionary implements Dictionary {
 	 * @return <code>true</code> iff a word in the dictionary contains the token
 	 */
 	public boolean fuzzyContainsToken(String token, int maxDistance) {
-		token = SnowballStemmer.stem(token.trim().toLowerCase());
-		
+//		token = SnowballStemmer.stem(token.trim().toLowerCase());
+		token = token.trim();
+		if (this.caseInsensitive) {
+			token= token.toLowerCase();
+		}
 		if (maxDistance == 0) return this.tokens.contains(token);
 		else if (this.tokens.contains(token)) return true;
 		

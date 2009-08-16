@@ -536,9 +536,9 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEprofession")) {
 				qType = "WHAT";
 				qPhrase = "what profession";
-			} else if (neType.equals("NEprovince")) {
-				qType = "WHAT";
-				qPhrase = "what province";
+//			} else if (neType.equals("NEprovince")) {
+//				qType = "WHAT";
+//				qPhrase = "what province";
 			} else if (neType.equals("NEradioStation")) {
 				qType = "WHAT";
 				qPhrase = "what radio station";
@@ -575,9 +575,9 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEstadium")) {
 				qType = "WHAT";
 				qPhrase = "what stadium";
-			} else if (neType.equals("NEstate")) {
-				qType = "WHAT";
-				qPhrase = "what state";
+//			} else if (neType.equals("NEstate")) {
+//				qType = "WHAT";
+//				qPhrase = "what state";
 			} else if (neType.equals("NEstone")) {
 				qType = "WHAT";
 				qPhrase = "what stone";
