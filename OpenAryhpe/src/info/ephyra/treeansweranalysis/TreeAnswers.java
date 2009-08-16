@@ -34,6 +34,7 @@ public class TreeAnswers {
 	private Tree[] trees;
 	//private ArrayList<String>[] to;
 	private Term[][] terms;
+	private boolean[] firstCapitalize;
 
 	// Heavy constructor;-)
 	public TreeAnswers(String answers) {
@@ -44,6 +45,8 @@ public class TreeAnswers {
 		//this.parses = new String[this.countOfSents];
 		this.trees = new Tree[this.countOfSents];
 		this.sentences = new String[this.countOfSents];
+		this.firstCapitalize = new boolean[this.countOfSents];
+		String firstWord="";
 		for (int i = 0; i < this.countOfSents; i++) {
 			tokens[i] = NETagger.tokenize(this.originalSentences[i]);
 			//parses[i] = StanfordParser.parse(this.originalSentences[i]);
@@ -51,6 +54,7 @@ public class TreeAnswers {
 			//give every leave a unique index
 			trees[i] = TreeUtil.indexLeaves(trees[i]);
 			sentences[i] = StringUtils.concatWithSpaces(this.tokens[i]);
+			this.firstCapitalize[i] = false;
 		}
 		this.terms = new Term[this.countOfSents][];
 		// extract named entities
@@ -63,8 +67,36 @@ public class TreeAnswers {
 				String verbMod = (QuestionNormalizer.handleAuxiliaries(ansNormalized))[0];
 				this.terms[i] = TermExtractor.getTerms(verbMod, "", this.nes[i],
 						AnswerAnalyzer.getDictionaries());
+				
+				// check whether the first letter of the first word of the sentence should be capitalized
+				// when the first word is moving to a non-initial position.
+				firstWord = tokens[i][0];
+				for (Term term:this.terms[i]) {
+					if (term.getNeTypes().length > 0 && term.getText().equals(firstWord)) {
+						this.firstCapitalize[i] = true;
+						break;
+					}
+				}
+				// IBM
+				if (StringUtils.isAllUppercase(firstWord)) {
+					this.firstCapitalize[i] = true;
+				}
+				
+				if (! this.firstCapitalize[i]) {
+					sentences[i] = sentences[i].replaceFirst(firstWord, StringUtils.lowercaseFirst(firstWord));
+					originalSentences[i] = originalSentences[i].replaceFirst(firstWord, StringUtils.lowercaseFirst(firstWord));
+					tokens[i][0] = firstWord;
+				}
+				
 			}
 
+		}
+
+		// parse trees
+		for (int i = 0; i < this.countOfSents; i++) {
+			trees[i] = StanfordParser.parseTree(this.originalSentences[i]);
+			//give every leave a unique index
+			trees[i] = TreeUtil.indexLeaves(trees[i]);
 		}
 	}
 	

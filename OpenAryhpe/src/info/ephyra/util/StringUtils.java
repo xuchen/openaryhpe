@@ -400,4 +400,25 @@ public class StringUtils {
 		
 		return input.substring(0,1).toUpperCase() + input.substring(1);
 	}
+	
+	/**
+	 * Check whether all letters in a string are in upper case.
+	 * 
+	 */
+	public static boolean isAllUppercase(String input) {
+		if (input == null) return false;
+		String cap = input.toUpperCase();
+		if (cap.equals(input)) return true;
+		else return false;
+	}
+	
+	/**
+	 * Make the first letter of <code>input</code> lower case and return the new string.
+	 * 
+	 */
+	public static String lowercaseFirst(String input) {
+		if (input == null) return null;
+		
+		return input.substring(0,1).toLowerCase() + input.substring(1);
+	}
 }

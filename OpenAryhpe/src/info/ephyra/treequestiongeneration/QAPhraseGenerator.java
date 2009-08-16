@@ -93,7 +93,9 @@ public class QAPhraseGenerator {
 				}
 				// then put it as an answer candidate
 				if (termNPtree != null) {
-					qaList.addAll(setupQuesTypePhrase("", ansPhrase, termNPtree, ansTerm));
+					ArrayList<QAPhrasePair> list = setupQuesTypePhrase("", ansPhrase, termNPtree, ansTerm);
+					if (list != null)
+						qaList.addAll(list);
 				}
 			}
 
