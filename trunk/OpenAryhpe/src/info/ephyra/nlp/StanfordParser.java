@@ -171,11 +171,17 @@ public class StanfordParser
 	// https://mailman.stanford.edu/pipermail/parser-user/2009-July/000246.html
 	// let's not be dead sure...
 	public static String getSubject(Tree parse) {
-		GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
-		Collection<TypedDependency> tdl = gs.typedDependenciesCollapsed();
-		Iterator<TypedDependency> ite = tdl.iterator();
 		TypedDependency t;
 		String sub=null;
+		Collection<TypedDependency> tdl;
+		Iterator<TypedDependency> ite;
+		GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
+		try {
+			tdl = gs.typedDependenciesCollapsed();
+			ite = tdl.iterator();
+		} catch (java.lang.NoSuchMethodError e) {
+			return sub;
+		}
 		while (ite.hasNext()) {
 			t = ite.next();
 			// two cases here: nsubjpass and nsubj.

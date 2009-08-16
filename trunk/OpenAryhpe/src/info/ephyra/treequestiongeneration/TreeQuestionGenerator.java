@@ -42,7 +42,7 @@ public class TreeQuestionGenerator {
 				// here we use "contains", not "equals" to include the following case:
 				// In "The New York Times wrote that.", the subject is "Times-4",
 				// but the answer phrase is "The-1 New-2 York-3 Times-4".
-				if (ansPhrase.contains(subject)) {
+				if (subject != null && ansPhrase.contains(subject)) {
 					// answer phrase is the subject
 					quesSent = idxSent.replaceFirst(ansPhrase, quesPhrase);
 				} else {
