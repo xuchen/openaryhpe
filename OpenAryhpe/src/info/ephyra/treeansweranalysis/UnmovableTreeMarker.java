@@ -87,24 +87,28 @@ public class UnmovableTreeMarker {
 			tregexPattern = tregexPatternIter.next();
 		
 			tregexMatcher = tregexPattern.matcher(outTree); 
-			while (tregexMatcher.find()) {
-				log.debug("UNMV: "+tregexPattern.toString()+"\n");
-				Tree matchedTreeWithName = tregexMatcher.getNode("unmv");
-				// get the matched root label
-				lab = matchedTreeWithName.label().toString();
-				//lab = matchedTreeWithName.nodeString().replaceAll(" \\[[\\S]+\\]","");
-				newlab = "UNMV-"+lab;
-				// using setValue(newlab) here secretly changes outTree
-				matchedTreeWithName.label().setValue(newlab);
-				// reset() invokes recursive mathcing, still needs test here.
-				tregexMatcher.reset();
-				log.debug(outTree.pennString());
-				// in cases NP|PP=unwm, a Tsurgeon operation will rename every 
-				// match with UNMV-NP or UNMV-PP, so we can't use it.
-				//operation = "relabel unmv "+newlab;
-				//tsurgeonPattern = Tsurgeon.parseOperation(operation);
-				//outTree = Tsurgeon.processPattern(tregexPattern, tsurgeonPattern, outTree);
-				//Tsurgeon.processPattern(tregexPattern, tsurgeonPattern, matchedTreeWithName);
+			try {
+				while (tregexMatcher.find()) {
+					log.debug("UNMV: "+tregexPattern.toString()+"\n");
+					Tree matchedTreeWithName = tregexMatcher.getNode("unmv");
+					// get the matched root label
+					lab = matchedTreeWithName.label().toString();
+					//lab = matchedTreeWithName.nodeString().replaceAll(" \\[[\\S]+\\]","");
+					newlab = "UNMV-"+lab;
+					// using setValue(newlab) here secretly changes outTree
+					matchedTreeWithName.label().setValue(newlab);
+					// reset() invokes recursive mathcing, still needs test here.
+					tregexMatcher.reset();
+					log.debug(outTree.pennString());
+					// in cases NP|PP=unwm, a Tsurgeon operation will rename every 
+					// match with UNMV-NP or UNMV-PP, so we can't use it.
+					//operation = "relabel unmv "+newlab;
+					//tsurgeonPattern = Tsurgeon.parseOperation(operation);
+					//outTree = Tsurgeon.processPattern(tregexPattern, tsurgeonPattern, outTree);
+					//Tsurgeon.processPattern(tregexPattern, tsurgeonPattern, matchedTreeWithName);
+				}
+			} catch (java.lang.NullPointerException e) {
+				return outTree;
 			}
 		}
 		log.debug("After UNMV: "+outTree.pennString());

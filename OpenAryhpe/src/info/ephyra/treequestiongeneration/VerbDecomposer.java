@@ -239,7 +239,7 @@ public class VerbDecomposer {
 		}
 
 		if (vpTree == null || vbTree == null) {
-			log.warn("No verb found here, returning null.");
+			log.debug("No verb found here, returning null.");
 			log.debug("Tree: "+auxiliarizedTree.pennString());
 			return null;
 		}

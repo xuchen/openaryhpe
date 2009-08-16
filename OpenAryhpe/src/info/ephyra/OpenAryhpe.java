@@ -58,8 +58,14 @@ import info.ephyra.treeansweranalysis.UnmovableTreeMarker;
 import info.ephyra.treequestiongeneration.TreeQuestionGenerator;
 import info.ephyra.treequestiongeneration.VerbDecomposer;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 import org.apache.log4j.PropertyConfigurator;
 
@@ -416,11 +422,21 @@ public class OpenAryhpe {
 				results = askList(question, LIST_REL_THRESH);
 				Logger.logResults(results);
 				Logger.logListEnd();
+			} else if (question.startsWith("FILE: ")||question.startsWith("file: ")) {
+				// when input is the following format:
+				// FILE: in.txt out.txt
+				// read text from in.txt and output to out.txt
+				String fileLine = question.substring(6).trim();
+				String[] files = fileLine.split("\\s+");
+				if (files.length != 2) {
+					MsgPrinter.printErrorMsg("FILE field must only contain two valid files. e.g.:");
+					MsgPrinter.printErrorMsg("FILE: input.txt output.txt");
+					continue;
+				}
+
+				processFiles(files[0], files[1]);
+				
 			} else {
-				//Logger.logFactoidStart(question);
-//				results = askFactoid(question, FACTOID_MAX_ANSWERS,
-//									 FACTOID_ABS_THRESH);
-				//AnalyzedQuestion aq = QuestionAnalysis.analyze(question);
 				question = TreeBreaker.doBreak(question);
 				TreeAnswers treeAnswers = new TreeAnswers(question);
 				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(treeAnswers);
@@ -433,17 +449,84 @@ public class OpenAryhpe {
 				
 				Answers answers = new Answers(question);
 				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
-				//ArrayList<QuestionAnswerPair> qaPairList = QuestionGenerator.makeQApairs(ansList);
-				//ArrayList<QuestionAnswerPair> lessList = QuestionGenerator.shrinkByTo(qaPairList);
 				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
 				QuestionGenerator.printQAlist(qaPairList);
-				//QuestionGenerator.generate(ansList);
-				//Logger.logResults(results);
-				//Logger.logFactoidEnd();
 			}
 			
-			// print answers
-			//MsgPrinter.printAnswers(results);
+		}
+	}
+	
+	/**
+	 * Generate questions from the text of <code>inFile</code> and output to <code>outFile</code>.
+	 * 
+	 */
+	public void processFiles (String inFile, String outFile) {
+		if (inFile == null || outFile == null) {
+			return;
+		}
+		
+		int paragraphCounter=0, wordCounter=0;
+		int oriSentCounter=0, actualSentCounter=0, quesCounter=0;
+		
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(new File(inFile)));
+			BufferedWriter out = new BufferedWriter(new FileWriter(outFile));
+			while (in.ready()) {
+				String paragraph = in.readLine().trim();
+				if (paragraph.length() == 0 || paragraph.startsWith("//"))
+					continue;
+				
+				paragraphCounter++;
+				MsgPrinter.printStatusMsg("processing paragraph "+paragraphCounter+"...");
+				out.write("Paragraph "+paragraphCounter+": ");
+				out.newLine();
+				out.write(paragraph);
+				out.newLine();
+				
+				// break the paragraph
+				String[] sentences = OpenNLP.sentDetect(paragraph); 
+				oriSentCounter += sentences.length;
+				for (String sent:sentences) {
+					wordCounter += (new StringTokenizer(sent)).countTokens();
+				}
+				paragraph = TreeBreaker.doBreak(paragraph);
+				actualSentCounter += OpenNLP.sentDetect(paragraph).length;
+				
+				// generate questions
+				TreeAnswers treeAnswers = new TreeAnswers(paragraph);
+				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(treeAnswers);
+				Iterator<TreeAnswer> tAnsIter = treeAnsList.iterator();
+				while (tAnsIter.hasNext()) {
+					TreeAnswer treeAnswer = tAnsIter.next();
+					TreeQuestionGenerator.generate(treeAnswer);
+				}
+				quesCounter += treeAnsList.size();
+				
+				// print formatted questions for evaluation
+				TreeQuestionGenerator.printForEvaluation(treeAnsList, out);
+				
+				
+//				Answers answers = new Answers(paragraph);
+//				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
+//				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
+//				QuestionGenerator.printQAlist(qaPairList);
+			
+			}
+			in.close();
+			
+			out.write("Summary:");
+			out.newLine();
+			out.write("Paragraph: "+paragraphCounter
+					+". Original Sentences: "+oriSentCounter
+					+". Actural Sentences: "+actualSentCounter
+					+". Words: "+wordCounter
+					+". Questions: "+quesCounter+".");
+			out.newLine();
+			out.newLine();
+			
+			out.close();
+		} catch (java.io.IOException e) {
+			System.err.println(e);
 		}
 	}
 	

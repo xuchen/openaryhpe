@@ -1,5 +1,6 @@
 package info.ephyra.treequestiongeneration;
 
+import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -91,6 +92,40 @@ public class TreeQuestionGenerator {
 				MsgPrinter.printStatusMsg("\t\tAnswer: "+pPair.getAnsPhrase().replaceAll("-\\d+\\b", ""));
 			}
 			
+		}
+	}
+	
+	public static void printForEvaluation(ArrayList<TreeAnswer> treeAnswerList, BufferedWriter out) {
+		Iterator<TreeAnswer> tAnsIter = treeAnswerList.iterator();
+		TreeAnswer treeAnswer;
+		ArrayList<QAPhrasePair> qaPhraseList;
+		Iterator<QAPhrasePair> pPairIter;
+		QAPhrasePair pPair;
+		int sentCount=0, quesCount=0;
+		try {
+			while (tAnsIter.hasNext()) {
+				sentCount++;
+				quesCount=0;
+				treeAnswer = tAnsIter.next();
+				out.write(sentCount+". "+treeAnswer.getSentence());
+				out.newLine();
+				qaPhraseList = treeAnswer.getQAPhraseList();
+				pPairIter = qaPhraseList.iterator();
+				while (pPairIter.hasNext()) {
+					quesCount++;
+					pPair = pPairIter.next();
+					out.write("\t"+quesCount+". Question: "+pPair.getQuesSentence());
+					out.newLine();
+					out.write("\t\tPossible answer: "+pPair.getAnsPhrase().replaceAll("-\\d+\\b", ""));
+					out.newLine();
+					out.write("\t\tYour judgement: [Acceptable] [Ungram] [No sense] [Vague] [Obvious] [Missing] [Wrong WH] [Format] Other:");
+					out.newLine();
+				}
+				out.newLine();
+				
+			}
+		} catch (java.io.IOException e) {
+			System.err.println(e);
 		}
 	}
 }
