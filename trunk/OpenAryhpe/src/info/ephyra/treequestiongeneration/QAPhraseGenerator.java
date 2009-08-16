@@ -536,8 +536,8 @@ public class QAPhraseGenerator {
 				qType = "WHAT";
 				qPhrase = "what political party";
 			} else if (neType.equals("NEprofession")) {
-				qType = "WHAT";
-				qPhrase = "what profession";
+				qType = "WHO";
+				qPhrase = "who";
 //			} else if (neType.equals("NEprovince")) {
 //				qType = "WHAT";
 //				qPhrase = "what province";
@@ -569,8 +569,8 @@ public class QAPhraseGenerator {
 				qType = "WHAT";
 				qPhrase = "what show type";
 			} else if (neType.equals("NEsocialTitle")) {
-				qType = "WHAT";
-				qPhrase = "what social title";
+				qType = "WHO";
+				qPhrase = "who";
 			} else if (neType.equals("NEsport")) {
 				qType = "WHAT";
 				qPhrase = "what sport";

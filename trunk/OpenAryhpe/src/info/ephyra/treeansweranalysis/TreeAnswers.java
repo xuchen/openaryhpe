@@ -70,6 +70,7 @@ public class TreeAnswers {
 				
 				// check whether the first letter of the first word of the sentence should be capitalized
 				// when the first word is moving to a non-initial position.
+				// "She plays basketball." -> "Does she play basketball?"
 				firstWord = tokens[i][0];
 				for (Term term:this.terms[i]) {
 					if (term.getNeTypes().length > 0 && term.getText().equals(firstWord)) {
@@ -80,6 +81,11 @@ public class TreeAnswers {
 				// IBM
 				if (StringUtils.isAllUppercase(firstWord)) {
 					this.firstCapitalize[i] = true;
+				}
+				
+				// exception
+				if (firstWord.equals("A")) {
+					this.firstCapitalize[i] = false;
 				}
 				
 				if (! this.firstCapitalize[i]) {

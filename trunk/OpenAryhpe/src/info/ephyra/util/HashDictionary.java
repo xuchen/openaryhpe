@@ -55,7 +55,7 @@ public class HashDictionary implements Dictionary {
 			File file = new File(fileName);
 			BufferedReader in = new BufferedReader(new FileReader(file));
 			// potential BUG here: this constructor is also used to load
-			// irregular verbs, functionwords, etc. these words shouldn't be stemmed.
+			// irregular verbs, function words, etc. these words shouldn't be stemmed.
 			while (in.ready()) {
 				// read and normalize word
 				String word = in.readLine().trim();
