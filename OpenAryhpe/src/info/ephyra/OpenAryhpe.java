@@ -55,8 +55,10 @@ import info.ephyra.treeansweranalysis.TreeAnswers;
 import info.ephyra.treeansweranalysis.TreeBreaker;
 import info.ephyra.treeansweranalysis.TreeCompressor;
 import info.ephyra.treeansweranalysis.UnmovableTreeMarker;
+import info.ephyra.treequestiongeneration.QAPhrasePair;
 import info.ephyra.treequestiongeneration.TreeQuestionGenerator;
 import info.ephyra.treequestiongeneration.VerbDecomposer;
+import info.ephyra.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -64,6 +66,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
@@ -84,6 +87,8 @@ public class OpenAryhpe {
 	protected static final float LIST_REL_THRESH = 0.1f;
 	/** Apache logger */
 	private static org.apache.log4j.Logger log;
+	/** Whether to load pattern matching to generate questions */
+	private boolean patternMatching = false;
 	
 	/** Serialized classifier for score normalization. */
 	public static final String NORMALIZER =
@@ -229,34 +234,25 @@ public class OpenAryhpe {
 		if (!WordFrequencies.loadIndex(dir + "res/indices/wordfrequencies"))
 			MsgPrinter.printErrorMsg("Could not load word frequencies.");
 		
-		// load query reformulators
-		MsgPrinter.printStatusMsg("Loading query reformulators...");
-		if (!QuestionReformulationG.loadReformulators(dir +
-				"res/reformulations/"))
-			MsgPrinter.printErrorMsg("Could not load query reformulators.");
-		
-		// load answer types
-//		MsgPrinter.printStatusMsg("Loading answer types...");
-//		if (!AnswerTypeTester.loadAnswerTypes(dir +
-//				"res/answertypes/patterns/answertypepatterns"))
-//			MsgPrinter.printErrorMsg("Could not load answer types.");
-		
-		// load question patterns
-		MsgPrinter.printStatusMsg("Loading question patterns...");
-		if (!QuestionGenerator.loadPatterns(dir +
-				"res/patternlearning/questionpatternsTest/"))
-			MsgPrinter.printErrorMsg("Could not load question patterns.");
-		
-//		MsgPrinter.printStatusMsg("Loading question patterns...");
-//		if (!QuestionInterpreter.loadPatterns(dir +
-//				"res/patternlearning/questionpatternsTest/"))
-//			MsgPrinter.printErrorMsg("Could not load question patterns.");		
-		
-		// load answer patterns
-		MsgPrinter.printStatusMsg("Loading answer patterns...");
-		if (!AnswerAnalyzer.loadPatterns(dir +
-				"res/patternlearning/answerpatternsTest/"))
-			MsgPrinter.printErrorMsg("Could not load answer patterns.");
+		if (patternMatching) {
+			// load query reformulators
+			MsgPrinter.printStatusMsg("Loading query reformulators...");
+			if (!QuestionReformulationG.loadReformulators(dir +
+					"res/reformulations/"))
+				MsgPrinter.printErrorMsg("Could not load query reformulators.");
+			
+			// load question patterns
+			MsgPrinter.printStatusMsg("Loading question patterns...");
+			if (!QuestionGenerator.loadPatterns(dir +
+					"res/patternlearning/questionpatternsTest/"))
+				MsgPrinter.printErrorMsg("Could not load question patterns.");
+			
+			// load answer patterns
+			MsgPrinter.printStatusMsg("Loading answer patterns...");
+			if (!AnswerAnalyzer.loadPatterns(dir +
+					"res/patternlearning/answerpatternsTest/"))
+				MsgPrinter.printErrorMsg("Could not load answer patterns.");
+		}
 		
 		// load Tregex patterns for unmovable phrases 
 		MsgPrinter.printStatusMsg("Loading Tregex patterns for unmovable phrases...");
@@ -289,6 +285,8 @@ public class OpenAryhpe {
 		}
 		else
 			MsgPrinter.printStatusMsg("Done");
+		
+		MsgPrinter.printUsage();
 	}
 	
 	/**
@@ -416,6 +414,7 @@ public class OpenAryhpe {
 			
 			// ask the question
 			Result[] results = new Result[0];
+			// LIST: is used for QA TREC task, don't use it in QG.
 			if (question.startsWith("LIST:")) {
 				question = question.substring(5).trim();
 				Logger.logListStart(question);
@@ -451,10 +450,12 @@ public class OpenAryhpe {
 				}
 				TreeQuestionGenerator.print(treeAnsList);
 				
-				Answers answers = new Answers(question);
-				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
-				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
-				QuestionGenerator.printQAlist(qaPairList);
+				if (patternMatching) {
+					Answers answers = new Answers(question);
+					ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
+					ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
+					QuestionGenerator.printQAlist(qaPairList);
+				}
 			}
 			
 		}
@@ -504,18 +505,12 @@ public class OpenAryhpe {
 				while (tAnsIter.hasNext()) {
 					TreeAnswer treeAnswer = tAnsIter.next();
 					TreeQuestionGenerator.generate(treeAnswer);
+					quesCounter += treeAnswer.size();
 				}
-				quesCounter += treeAnsList.size();
 				
 				// print formatted questions for evaluation
 				TreeQuestionGenerator.printForICTevaluation(treeAnsList, out);
 				
-				
-//				Answers answers = new Answers(paragraph);
-//				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
-//				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
-//				QuestionGenerator.printQAlist(qaPairList);
-			
 			}
 			in.close();
 			
@@ -537,13 +532,18 @@ public class OpenAryhpe {
 	
 	/**
 	 * Generate questions from the text of <code>inFile</code> and output to <code>outFile</code> 
-	 * in XML format.
+	 * in XML format (used by plist).
 	 * 
 	 */
 	public void processXmlFiles (String inFile, String outFile) {
 		if (inFile == null || outFile == null) {
 			return;
 		}
+		
+		Hashtable<String, Integer> ansSentHash = new Hashtable<String, Integer>();
+		Hashtable<String, Integer> ansPhraseHash = new Hashtable<String, Integer>();
+		Integer sentIDcount = new Integer(0);
+		Integer phraseIDcount = new Integer(0);
 		
 		int paragraphCounter=0, wordCounter=0;
 		int oriSentCounter=0, actualSentCounter=0, quesCounter=0;
@@ -559,7 +559,6 @@ public class OpenAryhpe {
 			out.write("\t\t<Cell><Data ss:Type=\"String\">ID</Data></Cell>\n");
 			out.write("\t</Row>\n");
 
-			int sentCount=0;
 			while (in.ready()) {
 				String paragraph = in.readLine().trim();
 				if (paragraph.length() == 0 || paragraph.startsWith("//"))
@@ -585,28 +584,94 @@ public class OpenAryhpe {
 					TreeAnswer treeAnswer = tAnsIter.next();
 					TreeQuestionGenerator.generate(treeAnswer);
 				}
-				quesCounter += treeAnsList.size();
 				
-				// print formatted questions for evaluation
-				sentCount = TreeQuestionGenerator.printForXML(treeAnsList, out, sentCount);
-				
-				
-//				Answers answers = new Answers(paragraph);
-//				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
-//				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
-//				QuestionGenerator.printQAlist(qaPairList);
-			
+				// print formatted questions to XML files with unique IDs for sentences and answer phrases
+
+				// Entries in treeAnsList are based on sentences
+				// Every sentence has an entry in treeAnsList
+				tAnsIter = treeAnsList.iterator();
+				TreeAnswer treeAnswer;
+				ArrayList<QAPhrasePair> qaPhraseList;
+				Iterator<QAPhrasePair> pPairIter;
+				QAPhrasePair pPair;
+				String question="", ansSent="", ansPhrase="";
+				String sentID="", phraseID="";
+
+				try {
+					while (tAnsIter.hasNext()) {
+						treeAnswer = tAnsIter.next();
+						// don't output y/s questions
+						// if only contains 1 q-a pair, it must be a y/n question
+						if(treeAnswer.size() == 1) continue;
+
+						ansSent = treeAnswer.getSentence();
+						ansSent = StringUtils.removeXMLspecials(ansSent);
+						if (!ansSentHash.containsKey(ansSent)) {
+							sentIDcount++;
+							ansSentHash.put(ansSent, sentIDcount);
+						} else {
+							sentIDcount = ansSentHash.get(ansSent);
+						}
+
+						// For every sentence, there is a list of q-a pairs
+						qaPhraseList = treeAnswer.getQAPhraseList();
+						pPairIter = qaPhraseList.iterator();
+						while (pPairIter.hasNext()) {
+							pPair = pPairIter.next();
+							
+							// skip y/n questions
+							if (pPair.getQuesType().equals("Y/N")) continue;
+							
+							question = pPair.getQuesSentence();
+							ansPhrase = pPair.getAnsPhrase().replaceAll("-\\d+\\b", "");
+							question = StringUtils.removeXMLspecials(question);
+							ansPhrase = StringUtils.removeXMLspecials(ansPhrase);
+							
+							// for every ansPhrase, we output 1 question-ansSent pair and 1 question-ansPhrase pair
+							quesCounter += 2;
+							if (!ansPhraseHash.containsKey(ansPhrase)) {
+								phraseIDcount = ansPhraseHash.size()+1;
+								ansPhraseHash.put(ansPhrase, phraseIDcount);
+							} else {
+								phraseIDcount = ansPhraseHash.get(ansPhrase);
+							}
+							
+							// S1-S2: the 2nd q-a pair for sentence 1. the answer is a sentence. 
+							// S1-P2: the 2nd q-a pair for sentence 1. the answer is a phrase.
+							sentID = "S"+sentIDcount;
+							phraseID = "P"+phraseIDcount;
+							
+							out.write("\t<Row>\n");
+							out.write("\t\t<Cell><Data ss:Type=\"String\">"+question+"</Data></Cell>\n");
+							out.write("\t\t<Cell><Data ss:Type=\"String\">"+ansSent+"</Data></Cell>\n");
+							out.write("\t\t<Cell><Data ss:Type=\"String\">"+sentID+"</Data></Cell>\n");
+							out.write("\t</Row>\n");
+							
+							out.write("\t<Row>\n");
+							out.write("\t\t<Cell><Data ss:Type=\"String\">"+question+"</Data></Cell>\n");
+							out.write("\t\t<Cell><Data ss:Type=\"String\">"+ansPhrase+"</Data></Cell>\n");
+							out.write("\t\t<Cell><Data ss:Type=\"String\">"+phraseID+"</Data></Cell>\n");
+							out.write("\t</Row>\n");
+							
+						}
+					}
+				} catch (java.io.IOException e) {
+					System.err.println(e);
+				}
 			}
 			in.close();
-			
-			System.out.println("Summary:");
-			System.out.println("Paragraph: "+paragraphCounter
-					+". Original Sentences: "+oriSentCounter
-					+". Actual Sentences: "+actualSentCounter
-					+". Words: "+wordCounter
-					+". Questions: "+quesCounter+".");
 			out.write("</Workbook>");
 			out.close();
+			
+			int line = quesCounter*5+8;
+			MsgPrinter.printStatusMsg("Summary (without y/n questions):");
+			MsgPrinter.printStatusMsg("Paragraph: "+paragraphCounter
+					+". Original Sentences: "+oriSentCounter
+					+". Words: "+wordCounter
+					+". Actual Sentences: "+ansSentHash.size()
+					+". Answer phrases: "+ansPhraseHash.size()
+					+". Questions: "+quesCounter
+					+". XML lines: "+line+".");
 		} catch (java.io.IOException e) {
 			System.err.println(e);
 		}

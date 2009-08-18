@@ -172,6 +172,7 @@ public class TreeQuestionGenerator {
 		}
 	}
 	
+	// not used anymore
 	public static int printForXML(ArrayList<TreeAnswer> treeAnswerList, BufferedWriter out, int sentCountBase) {
 		Iterator<TreeAnswer> tAnsIter = treeAnswerList.iterator();
 		TreeAnswer treeAnswer;
