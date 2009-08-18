@@ -38,7 +38,7 @@ public class QAPhraseGenerator {
 		
 		log.debug("Terms: "+Arrays.toString(terms));
 		// first deal with NP who's not under a PP
-		String tregex = "NP !> PP ?< DT=det";
+		String tregex = "NP !>> PP ?< DT=det";
 		TregexPattern tPattern = null;
 		// TODO: consider SemanticHeadFinder
 		CollinsHeadFinder headFinder = new CollinsHeadFinder();
@@ -59,6 +59,11 @@ public class QAPhraseGenerator {
 			// unmovable phrases can't construct WH-movement
 			String checkUnmv = npTree.labels().toString();
 			if (checkUnmv.contains("UNMV-")) {
+				continue;
+			}
+			
+			// don't generate questions regarding pronouns
+			if (npTree.labels().toString().contains("PRP")) {
 				continue;
 			}
 			
@@ -98,10 +103,55 @@ public class QAPhraseGenerator {
 						qaList.addAll(list);
 				}
 			}
+		}
+		
+		
+		
+		// then deal with top level NP who's not under a NP and who's not a term
+		tregex = "NP !>> NP";
+
+		try {
+			tPattern = TregexPattern.compile(tregex);
+		} catch (edu.stanford.nlp.trees.tregex.ParseException e) {
+			MsgPrinter.printErrorMsg("Error parsing regex pattern.");
+		}
+		tregexMatcher = tPattern.matcher(tree);
+		while (tregexMatcher.find()) {
+			Tree npTree = tregexMatcher.getMatch();
+			
+			// don't generate questions regarding pronouns
+			if (npTree.labels().toString().contains("PRP")) {
+				continue;
+			}
+			
+			// find out the lexical labels
+			String npWord = TreeUtil.getTightLabelNoIndex(npTree);
+			
+			String ansPhrase = "";
+			boolean npIsTerm = false;
+
+			for (Term term:terms) {
+				if (term.getNeTypes().length == 0) continue;
+				String termStr = term.getText().replaceAll("\\s+", "");
+				if(termStr.equals(npWord)) {
+					npIsTerm = true;
+					break;
+				}
+			}
+			if (npIsTerm == false) {
+				// put it as a candidate anyway since this is "over-generating"
+				String[] neTypes = {"NEnp"};
+				Term npTerm = new Term(TreeUtil.getLabelNoIndex(npTree), "NP", neTypes, "");
+				ansPhrase = TreeUtil.getLabel(npTree);
+				ArrayList<QAPhrasePair> list = setupQuesTypePhrase("", ansPhrase, npTree, npTerm);
+				if (list != null)
+					qaList.addAll(list);
+			}
 
 		}
 		
-		// then deal with PP whose child is a NP
+		
+		// at last deal with PP whose child is a NP
 		tregex = "PP=pp < IN=in < (NP=np ?< DT=det)";
 
 		try {
@@ -123,6 +173,11 @@ public class QAPhraseGenerator {
 			// unmovable phrases can't construct WH-movement
 			String checkUnmv = ppTree.labels().toString();
 			if (checkUnmv.contains("UNMV-")) {
+				continue;
+			}
+			
+			// don't generate questions regarding pronouns
+			if (ppTree.labels().toString().contains("PRP")) {
 				continue;
 			}
 			
@@ -610,6 +665,9 @@ public class QAPhraseGenerator {
 			} else if (neType.equals("NEzodiacSign")) {
 				qType = "WHAT";
 				qPhrase = "what zodiacSign";
+			} else if (neType.equals("NEnp")) {
+				qType = "WHAT";
+				qPhrase = "what";
 			} else {
 //				qType = "WHAT";
 //				qPhrase = "what";
@@ -618,6 +676,14 @@ public class QAPhraseGenerator {
 			QAPhrasePair p = new QAPhrasePair(qType, qPhrase, inWord, ansPhrase, termTree, t);
 			if (!list.contains(p)) {
 				list.add(p);
+			}
+			// add another phrase with IN(preposition) in a PP
+			if (inWord.length() != 0) {
+				qPhrase = inWord+" "+qPhrase;
+				p = new QAPhrasePair(qType, qPhrase, inWord, ansPhrase, termTree, t);
+				if (!list.contains(p)) {
+					list.add(p);
+				}
 			}
 		}
 		return list;

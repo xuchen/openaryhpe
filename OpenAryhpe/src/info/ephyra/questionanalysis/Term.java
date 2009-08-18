@@ -72,6 +72,7 @@ public class Term implements Serializable {
 		this.pos = pos;
 		
 		// derive the lemma
+		// warning: this could be extremely slow when text is a long string
 		generateLemma();
 	}
 	
@@ -85,6 +86,13 @@ public class Term implements Serializable {
 	public Term(String text, String pos, String[] neTypes) {
 		this(text, pos);
 		this.neTypes = neTypes;
+	}
+	
+	public Term(String text, String pos, String[] neTypes, String lemma) {
+		this.text = text;
+		this.pos = pos;
+		this.neTypes = neTypes;
+		this.lemma= lemma;
 	}
 	
 	/**

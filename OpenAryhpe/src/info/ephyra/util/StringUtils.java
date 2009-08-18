@@ -421,4 +421,18 @@ public class StringUtils {
 		
 		return input.substring(0,1).toLowerCase() + input.substring(1);
 	}
+	
+	/**
+	 * replace XML-specific symbols:
+	 * <           ->     &lt;
+	 * &           ->     &amps;
+	 * >           ->     &gt;
+	 * "           ->     &quot;
+	 * '           ->     &apos;
+	 */
+	public static String removeXMLspecials (String input) {
+		if (input == null) return null;
+		return input.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+		.replaceAll("\"", "&quot;").replaceAll("\'", "&apos;");
+	}
 }
