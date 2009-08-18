@@ -118,6 +118,13 @@ public class TreeAnswer {
 		this.subject = sub;
 	}
 	
+	/**
+	 * How many entries are there in <code>qaPairList</code>.
+	 */
+	public int size() {
+		return this.qaPhraseList.size();
+	}
+	
 	// return the sentence the tree contains, concatenate with spaces
 	// I know it's weird to put this method here...
 	public static String getSentFromTree(Tree tree) {

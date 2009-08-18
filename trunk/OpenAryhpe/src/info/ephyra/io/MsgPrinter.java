@@ -464,4 +464,19 @@ public class MsgPrinter {
 	public static void flushErr() {
 		System.err.flush();
 	}
+	
+	/** print usage information
+	 */
+	public static void printUsage() {
+		MsgPrinter.printStatusMsg("\nUsage:");
+		MsgPrinter.printStatusMsg("\t1. Input question strings at prompt, OpenAryhpe will output generated questions to stdout.");
+		MsgPrinter.printStatusMsg("\t2. Input the following line:");
+		MsgPrinter.printStatusMsg("\t\tfile: input.txt output.txt");
+		MsgPrinter.printStatusMsg("\t\tThe sentences are in input.txt and generated questions will be formatted and output to output.txt for evaluation.");
+		MsgPrinter.printStatusMsg("\t3. Input the following line:");
+		MsgPrinter.printStatusMsg("\t\tfile: input.txt output.xml");
+		MsgPrinter.printStatusMsg("\t\tThe sentences are in input.txt and generated questions will be formatted and output to output.xml for plist.");
+		MsgPrinter.printStatusMsg("\t\tNote that output.xml must end with .xml or .XML");
+		MsgPrinter.printStatusMsg("");
+	}
 }
