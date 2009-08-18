@@ -43,3 +43,6 @@ S < (NP=unmv $ NP|UNMV-NP)
 
 # Existential there noun phrases. This ensures against spurious questions such as "What was a dog in the park?" being generated from There was a dog in the park.
 NP=unmv < EX
+
+# Any NP under a ()
+NP=unmv >> PRN

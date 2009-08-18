@@ -434,7 +434,11 @@ public class OpenAryhpe {
 					continue;
 				}
 
-				processFiles(files[0], files[1]);
+				if (files[1].endsWith("xml") || files[1].endsWith("XML")) {
+					processXmlFiles(files[0], files[1]);
+				} else {
+					processTxtFiles(files[0], files[1]);
+				}
 				
 			} else {
 				question = TreeBreaker.doBreak(question);
@@ -457,10 +461,11 @@ public class OpenAryhpe {
 	}
 	
 	/**
-	 * Generate questions from the text of <code>inFile</code> and output to <code>outFile</code>.
+	 * Generate questions from the text of <code>inFile</code> and output to <code>outFile</code> 
+	 * in evaluation format.
 	 * 
 	 */
-	public void processFiles (String inFile, String outFile) {
+	public void processTxtFiles (String inFile, String outFile) {
 		if (inFile == null || outFile == null) {
 			return;
 		}
@@ -503,7 +508,7 @@ public class OpenAryhpe {
 				quesCounter += treeAnsList.size();
 				
 				// print formatted questions for evaluation
-				TreeQuestionGenerator.printForEvaluation(treeAnsList, out);
+				TreeQuestionGenerator.printForICTevaluation(treeAnsList, out);
 				
 				
 //				Answers answers = new Answers(paragraph);
@@ -518,12 +523,89 @@ public class OpenAryhpe {
 			out.newLine();
 			out.write("Paragraph: "+paragraphCounter
 					+". Original Sentences: "+oriSentCounter
-					+". Actural Sentences: "+actualSentCounter
+					+". Actual Sentences: "+actualSentCounter
 					+". Words: "+wordCounter
 					+". Questions: "+quesCounter+".");
 			out.newLine();
 			out.newLine();
 			
+			out.close();
+		} catch (java.io.IOException e) {
+			System.err.println(e);
+		}
+	}
+	
+	/**
+	 * Generate questions from the text of <code>inFile</code> and output to <code>outFile</code> 
+	 * in XML format.
+	 * 
+	 */
+	public void processXmlFiles (String inFile, String outFile) {
+		if (inFile == null || outFile == null) {
+			return;
+		}
+		
+		int paragraphCounter=0, wordCounter=0;
+		int oriSentCounter=0, actualSentCounter=0, quesCounter=0;
+		
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(new File(inFile)));
+			BufferedWriter out = new BufferedWriter(new FileWriter(outFile));
+			out.write("<?xml version=\"1.0\"?>\n");
+			out.write("<Workbook>\n");
+			out.write("\t<Row>\n");
+			out.write("\t\t<Cell><Data ss:Type=\"String\">question</Data></Cell>\n");
+			out.write("\t\t<Cell><Data ss:Type=\"String\">text</Data></Cell>\n");
+			out.write("\t\t<Cell><Data ss:Type=\"String\">ID</Data></Cell>\n");
+			out.write("\t</Row>\n");
+
+			int sentCount=0;
+			while (in.ready()) {
+				String paragraph = in.readLine().trim();
+				if (paragraph.length() == 0 || paragraph.startsWith("//"))
+					continue;
+				
+				paragraphCounter++;
+				MsgPrinter.printStatusMsg("processing paragraph "+paragraphCounter+"...");
+				
+				// break the paragraph
+				String[] sentences = OpenNLP.sentDetect(paragraph); 
+				oriSentCounter += sentences.length;
+				for (String sent:sentences) {
+					wordCounter += (new StringTokenizer(sent)).countTokens();
+				}
+				paragraph = TreeBreaker.doBreak(paragraph);
+				actualSentCounter += OpenNLP.sentDetect(paragraph).length;
+				
+				// generate questions
+				TreeAnswers treeAnswers = new TreeAnswers(paragraph);
+				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(treeAnswers);
+				Iterator<TreeAnswer> tAnsIter = treeAnsList.iterator();
+				while (tAnsIter.hasNext()) {
+					TreeAnswer treeAnswer = tAnsIter.next();
+					TreeQuestionGenerator.generate(treeAnswer);
+				}
+				quesCounter += treeAnsList.size();
+				
+				// print formatted questions for evaluation
+				sentCount = TreeQuestionGenerator.printForXML(treeAnsList, out, sentCount);
+				
+				
+//				Answers answers = new Answers(paragraph);
+//				ArrayList<Answer> ansList = AnswerAnalyzer.analyze(answers);
+//				ArrayList<QAPair> qaPairList = QuestionGenerator.makeQApair(ansList);
+//				QuestionGenerator.printQAlist(qaPairList);
+			
+			}
+			in.close();
+			
+			System.out.println("Summary:");
+			System.out.println("Paragraph: "+paragraphCounter
+					+". Original Sentences: "+oriSentCounter
+					+". Actual Sentences: "+actualSentCounter
+					+". Words: "+wordCounter
+					+". Questions: "+quesCounter+".");
+			out.write("</Workbook>");
 			out.close();
 		} catch (java.io.IOException e) {
 			System.err.println(e);

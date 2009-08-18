@@ -11,6 +11,7 @@ import info.ephyra.nlp.OpenNLP;
 import info.ephyra.nlp.TreeUtil;
 import info.ephyra.questionanalysis.Term;
 import info.ephyra.treeansweranalysis.TreeAnswer;
+import info.ephyra.util.StringUtils;
 
 public class TreeQuestionGenerator {
 	
@@ -36,6 +37,9 @@ public class TreeQuestionGenerator {
 			ansTerm = pPair.getAnsTerm();
 			//ansPhrase = OpenNLP.tokenizeWithSpaces(pPair.getAnsPhrase());
 			ansPhrase = pPair.getAnsPhrase();
+			// Java's weird regular expressions
+			// replace "(" with "\\(" and ")" with "\\)"
+			ansPhrase = ansPhrase.replaceAll("\\(", "\\\\(").replaceAll("\\)", "\\\\)");;
 			quesPhrase = pPair.getQuesPhrase();
 			if (pPair.getQuesType().equals("Y/N")) {
 				quesSent = invSent.replaceFirst("<quesPhrase>", "");;
@@ -95,7 +99,7 @@ public class TreeQuestionGenerator {
 		}
 	}
 	
-	public static void printForEvaluation(ArrayList<TreeAnswer> treeAnswerList, BufferedWriter out) {
+	public static void printForCMUevaluation(ArrayList<TreeAnswer> treeAnswerList, BufferedWriter out) {
 		Iterator<TreeAnswer> tAnsIter = treeAnswerList.iterator();
 		TreeAnswer treeAnswer;
 		ArrayList<QAPhrasePair> qaPhraseList;
@@ -128,4 +132,98 @@ public class TreeQuestionGenerator {
 			System.err.println(e);
 		}
 	}
+	
+	public static void printForICTevaluation(ArrayList<TreeAnswer> treeAnswerList, BufferedWriter out) {
+		Iterator<TreeAnswer> tAnsIter = treeAnswerList.iterator();
+		TreeAnswer treeAnswer;
+		ArrayList<QAPhrasePair> qaPhraseList;
+		Iterator<QAPhrasePair> pPairIter;
+		QAPhrasePair pPair;
+		int sentCount=0, quesCount=0;
+		try {
+			while (tAnsIter.hasNext()) {
+				sentCount++;
+				quesCount=0;
+				treeAnswer = tAnsIter.next();
+				out.write(sentCount+". "+treeAnswer.getSentence());
+				out.newLine();
+				qaPhraseList = treeAnswer.getQAPhraseList();
+				pPairIter = qaPhraseList.iterator();
+				while (pPairIter.hasNext()) {
+					quesCount++;
+					pPair = pPairIter.next();
+					out.write("\t"+quesCount+". Question: "+pPair.getQuesSentence());
+					out.newLine();
+					out.write("\t   Possible answer: "+pPair.getAnsPhrase().replaceAll("-\\d+\\b", ""));
+					out.newLine();
+					out.write("\t       Your judgments:\n");
+					out.write("\t       [  ]  The question is understandable\n");
+					out.write("\t           [  ]  The question is grammatical\n");
+					out.write("\t           [  ]  The question requires context\n");
+					out.write("\t       [  ]  The answer is relevant\n");
+					out.write("\t           [  ]  The answer is grammatical\n");
+					out.write("\t           [  ]  The answer requires context\n");
+					out.newLine();
+				}
+				out.newLine();
+			}
+		} catch (java.io.IOException e) {
+			System.err.println(e);
+		}
+	}
+	
+	public static int printForXML(ArrayList<TreeAnswer> treeAnswerList, BufferedWriter out, int sentCountBase) {
+		Iterator<TreeAnswer> tAnsIter = treeAnswerList.iterator();
+		TreeAnswer treeAnswer;
+		ArrayList<QAPhrasePair> qaPhraseList;
+		Iterator<QAPhrasePair> pPairIter;
+		QAPhrasePair pPair;
+		String question="", ansSent="", ansPhrase="";
+		String sentID="", phraseID="";
+
+		int sentCount=sentCountBase, quesCount=0;
+		try {
+			while (tAnsIter.hasNext()) {
+				sentCount++;
+				quesCount=0;
+				treeAnswer = tAnsIter.next();
+
+				ansSent = treeAnswer.getSentence();
+				ansSent = StringUtils.removeXMLspecials(ansSent);
+
+				qaPhraseList = treeAnswer.getQAPhraseList();
+				pPairIter = qaPhraseList.iterator();
+				while (pPairIter.hasNext()) {
+					quesCount++;
+					pPair = pPairIter.next();
+					
+					question = pPair.getQuesSentence();
+					ansPhrase = pPair.getAnsPhrase().replaceAll("-\\d+\\b", "");
+					question = StringUtils.removeXMLspecials(question);
+					ansPhrase = StringUtils.removeXMLspecials(ansPhrase);
+					// S1-S2: the 2nd q-a pair for sentence 1. the answer is a sentence. 
+					// S1-P2: the 2nd q-a pair for sentence 1. the answer is a phrase.
+					sentID = "S"+sentCount+"-S"+quesCount;
+					phraseID = "S"+sentCount+"-P"+quesCount;
+					
+					out.write("\t<Row>\n");
+					out.write("\t\t<Cell><Data ss:Type=\"String\">"+question+"</Data></Cell>\n");
+					out.write("\t\t<Cell><Data ss:Type=\"String\">"+ansSent+"</Data></Cell>\n");
+					out.write("\t\t<Cell><Data ss:Type=\"String\">"+sentID+"</Data></Cell>\n");
+					out.write("\t</Row>\n");
+					
+					out.write("\t<Row>\n");
+					out.write("\t\t<Cell><Data ss:Type=\"String\">"+question+"</Data></Cell>\n");
+					out.write("\t\t<Cell><Data ss:Type=\"String\">"+ansPhrase+"</Data></Cell>\n");
+					out.write("\t\t<Cell><Data ss:Type=\"String\">"+phraseID+"</Data></Cell>\n");
+					out.write("\t</Row>\n");
+					
+				}
+			}
+		} catch (java.io.IOException e) {
+			System.err.println(e);
+		}
+		return sentCount;
+	}
+
 }
