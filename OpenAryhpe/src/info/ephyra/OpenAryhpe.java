@@ -436,7 +436,7 @@ public class OpenAryhpe {
 				if (files[1].endsWith("xml") || files[1].endsWith("XML")) {
 					processXmlFiles(files[0], files[1]);
 				} else {
-					processTxtFiles(files[0], files[1]);
+					processForQultricsSurvey(files[0], files[1]);
 				}
 				
 			} else {
@@ -605,9 +605,9 @@ public class OpenAryhpe {
 						if(treeAnswer.size() == 1) continue;
 
 						ansSent = treeAnswer.getSentence();
-						ansSent = StringUtils.removeXMLspecials(ansSent);
+						ansSent = StringUtils.replaceXMLspecials(ansSent);
 						if (!ansSentHash.containsKey(ansSent)) {
-							sentIDcount++;
+							sentIDcount = ansSentHash.size()+1;
 							ansSentHash.put(ansSent, sentIDcount);
 						} else {
 							sentIDcount = ansSentHash.get(ansSent);
@@ -624,8 +624,8 @@ public class OpenAryhpe {
 							
 							question = pPair.getQuesSentence();
 							ansPhrase = pPair.getAnsPhrase().replaceAll("-\\d+\\b", "");
-							question = StringUtils.removeXMLspecials(question);
-							ansPhrase = StringUtils.removeXMLspecials(ansPhrase);
+							question = StringUtils.replaceXMLspecials(question);
+							ansPhrase = StringUtils.replaceXMLspecials(ansPhrase);
 							
 							// for every ansPhrase, we output 1 question-ansSent pair and 1 question-ansPhrase pair
 							quesCounter += 2;
@@ -636,8 +636,6 @@ public class OpenAryhpe {
 								phraseIDcount = ansPhraseHash.get(ansPhrase);
 							}
 							
-							// S1-S2: the 2nd q-a pair for sentence 1. the answer is a sentence. 
-							// S1-P2: the 2nd q-a pair for sentence 1. the answer is a phrase.
 							sentID = "S"+sentIDcount;
 							phraseID = "P"+phraseIDcount;
 							
@@ -739,4 +737,130 @@ public class OpenAryhpe {
 		
 		return confident.toArray(new Result[confident.size()]);
 	}
+	
+	
+	/**
+	 * Generate questions from the text of <code>inFile</code> and output to <code>outFile</code> 
+	 * in Qultrics survey format.
+	 * http://www.qualtrics.com/wiki/index.php/Import/Export_Survey_and_Questions
+	 * 
+	 */
+	public void processForQultricsSurvey (String inFile, String outFile) {
+		if (inFile == null || outFile == null) {
+			return;
+		}
+		
+		Hashtable<String, Integer> ansSentHash = new Hashtable<String, Integer>();
+		Hashtable<String, Integer> ansPhraseHash = new Hashtable<String, Integer>();
+		Integer sentIDcount = new Integer(0);
+		Integer phraseIDcount = new Integer(0);
+		String checkOptions = "[[MultipleAnswer]]\n\n" +
+		"The question is understandable\n" +
+		"The answer is relevant\n\n" +
+		"Grammatical\n" +
+		"Requires Context\n" +
+		"None of Them\n\n";
+		
+		int paragraphCounter=0, wordCounter=0;
+		int oriSentCounter=0, actualSentCounter=0, quesCounter=0;
+		
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(new File(inFile)));
+			BufferedWriter out = new BufferedWriter(new FileWriter(outFile));
+
+			while (in.ready()) {
+				String paragraph = in.readLine().trim();
+				if (paragraph.length() == 0 || paragraph.startsWith("//"))
+					continue;
+				
+				paragraphCounter++;
+				MsgPrinter.printStatusMsg("processing paragraph "+paragraphCounter+"...");
+				
+				// break the paragraph
+				String[] sentences = OpenNLP.sentDetect(paragraph); 
+				oriSentCounter += sentences.length;
+				for (String sent:sentences) {
+					wordCounter += (new StringTokenizer(sent)).countTokens();
+				}
+				paragraph = TreeBreaker.doBreak(paragraph);
+				actualSentCounter += OpenNLP.sentDetect(paragraph).length;
+				
+				// generate questions
+				TreeAnswers treeAnswers = new TreeAnswers(paragraph);
+				ArrayList<TreeAnswer> treeAnsList = TreeAnswerAnalyzer.analyze(treeAnswers);
+				Iterator<TreeAnswer> tAnsIter = treeAnsList.iterator();
+				while (tAnsIter.hasNext()) {
+					TreeAnswer treeAnswer = tAnsIter.next();
+					TreeQuestionGenerator.generate(treeAnswer);
+				}
+				
+
+				// Entries in treeAnsList are based on sentences
+				// Every sentence has an entry in treeAnsList
+				tAnsIter = treeAnsList.iterator();
+				TreeAnswer treeAnswer;
+				ArrayList<QAPhrasePair> qaPhraseList;
+				Iterator<QAPhrasePair> pPairIter;
+				QAPhrasePair pPair;
+				String question="", ansSent="", ansPhrase="";
+
+				try {
+					while (tAnsIter.hasNext()) {
+						treeAnswer = tAnsIter.next();
+						
+						ansSent = treeAnswer.getSentence();
+						if (!ansSentHash.containsKey(ansSent)) {
+							sentIDcount = ansSentHash.size()+1;
+							ansSentHash.put(ansSent, sentIDcount);
+						} else {
+							sentIDcount = ansSentHash.get(ansSent);
+						}
+						
+						// For every sentence, there is a list of q-a pairs
+						qaPhraseList = treeAnswer.getQAPhraseList();
+						pPairIter = qaPhraseList.iterator();
+						while (pPairIter.hasNext()) {
+							pPair = pPairIter.next();
+							
+							
+							question = pPair.getQuesSentence();
+							ansPhrase = pPair.getAnsPhrase().replaceAll("-\\d+\\b", "");
+							
+							quesCounter += 1;
+							if (!ansPhraseHash.containsKey(ansPhrase)) {
+								phraseIDcount = ansPhraseHash.size()+1;
+								ansPhraseHash.put(ansPhrase, phraseIDcount);
+							} else {
+								phraseIDcount = ansPhraseHash.get(ansPhrase);
+							}
+							
+							out.write(quesCounter+". Sentence: "+ansSent+"<br>\n");
+							out.write("Question: "+question+"<br>\n");
+							out.write("Answer: "+ansPhrase+"<br>\n");
+							out.write(checkOptions);
+							
+						}
+						
+						// every sentence takes a page.
+						out.write("[[PageBreak]]\n\n");
+					}
+				} catch (java.io.IOException e) {
+					System.err.println(e);
+				}
+			}
+			in.close();
+			out.close();
+			
+			MsgPrinter.printStatusMsg("Summary:");
+			MsgPrinter.printStatusMsg("Paragraph: "+paragraphCounter
+					+". Original Sentences: "+oriSentCounter
+					+". Words: "+wordCounter
+					+". Actual Sentences: "+ansSentHash.size()
+					+". Answer phrases: "+ansPhraseHash.size()
+					+". Questions: "+quesCounter);
+		} catch (java.io.IOException e) {
+			System.err.println(e);
+		}
+	}
+	
 }
