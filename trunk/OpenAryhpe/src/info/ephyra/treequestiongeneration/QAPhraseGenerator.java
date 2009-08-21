@@ -679,6 +679,11 @@ public class QAPhraseGenerator {
 			}
 			// add another phrase with IN(preposition) in a PP
 			if (inWord.length() != 0) {
+				if (qPhrase.equals("when")) {
+					qPhrase = "which day";
+				} else if (qPhrase.equals("where")) {
+					qPhrase = "which location";
+				}
 				qPhrase = inWord+" "+qPhrase;
 				p = new QAPhrasePair(qType, qPhrase, inWord, ansPhrase, termTree, t);
 				if (!list.contains(p)) {

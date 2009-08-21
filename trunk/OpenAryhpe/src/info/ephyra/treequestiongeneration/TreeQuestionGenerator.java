@@ -190,7 +190,7 @@ public class TreeQuestionGenerator {
 				treeAnswer = tAnsIter.next();
 
 				ansSent = treeAnswer.getSentence();
-				ansSent = StringUtils.removeXMLspecials(ansSent);
+				ansSent = StringUtils.replaceXMLspecials(ansSent);
 
 				qaPhraseList = treeAnswer.getQAPhraseList();
 				pPairIter = qaPhraseList.iterator();
@@ -200,8 +200,8 @@ public class TreeQuestionGenerator {
 					
 					question = pPair.getQuesSentence();
 					ansPhrase = pPair.getAnsPhrase().replaceAll("-\\d+\\b", "");
-					question = StringUtils.removeXMLspecials(question);
-					ansPhrase = StringUtils.removeXMLspecials(ansPhrase);
+					question = StringUtils.replaceXMLspecials(question);
+					ansPhrase = StringUtils.replaceXMLspecials(ansPhrase);
 					// S1-S2: the 2nd q-a pair for sentence 1. the answer is a sentence. 
 					// S1-P2: the 2nd q-a pair for sentence 1. the answer is a phrase.
 					sentID = "S"+sentCount+"-S"+quesCount;
@@ -226,5 +226,51 @@ public class TreeQuestionGenerator {
 		}
 		return sentCount;
 	}
+	
+	public static void printForQultricsSurvey(ArrayList<TreeAnswer> treeAnswerList, BufferedWriter out) {
+		Iterator<TreeAnswer> tAnsIter = treeAnswerList.iterator();
+		TreeAnswer treeAnswer;
+		ArrayList<QAPhrasePair> qaPhraseList;
+		Iterator<QAPhrasePair> pPairIter;
+		QAPhrasePair pPair;
+		int sentCount=0, quesCount=0;
+		String checkOptions = "[[MultipleAnswer]]\n\n" +
+			"The question is understandable\n" +
+			"The answer is relevant\n\n" +
+			"Grammatical\n" +
+			"Requires Context\n" +
+			"None of Them\n";
+		try {
+			while (tAnsIter.hasNext()) {
+				sentCount++;
+				quesCount=0;
+				treeAnswer = tAnsIter.next();
+				out.write(sentCount+". "+treeAnswer.getSentence());
+				out.newLine();
+				qaPhraseList = treeAnswer.getQAPhraseList();
+				pPairIter = qaPhraseList.iterator();
+				while (pPairIter.hasNext()) {
+					quesCount++;
+					pPair = pPairIter.next();
+					out.write("\t"+quesCount+". Question: "+pPair.getQuesSentence());
+					out.newLine();
+					out.write("\t   Possible answer: "+pPair.getAnsPhrase().replaceAll("-\\d+\\b", ""));
+					out.newLine();
+					out.write("\t       Your judgments:\n");
+					out.write("\t       [  ]  The question is understandable\n");
+					out.write("\t           [  ]  The question is grammatical\n");
+					out.write("\t           [  ]  The question requires context\n");
+					out.write("\t       [  ]  The answer is relevant\n");
+					out.write("\t           [  ]  The answer is grammatical\n");
+					out.write("\t           [  ]  The answer requires context\n");
+					out.newLine();
+				}
+				out.write("[[PageBreak]]\n\n");
+			}
+		} catch (java.io.IOException e) {
+			System.err.println(e);
+		}
+	}
+	
 
 }

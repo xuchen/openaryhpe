@@ -430,7 +430,7 @@ public class StringUtils {
 	 * "           ->     &quot;
 	 * '           ->     &apos;
 	 */
-	public static String removeXMLspecials (String input) {
+	public static String replaceXMLspecials (String input) {
 		if (input == null) return null;
 		return input.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 		.replaceAll("\"", "&quot;").replaceAll("\'", "&apos;");
