@@ -754,12 +754,20 @@ public class OpenAryhpe {
 		Hashtable<String, Integer> ansPhraseHash = new Hashtable<String, Integer>();
 		Integer sentIDcount = new Integer(0);
 		Integer phraseIDcount = new Integer(0);
-		String checkOptions = "[[MultipleAnswer]]\n\n" +
-		"The question is understandable\n" +
-		"The answer is relevant\n\n" +
-		"Grammatical\n" +
-		"Requires Context\n" +
-		"None of Them\n\n";
+
+		String firstQ = "001. Is the question understandable?\n\n" +
+			"Understandable as is\n"+
+			"Understandable only when knowing topic context\n"+
+			"None of the above\n\n";
+		String secondQ = "002. Is the question grammatical?\n\n" +
+			"Yes\n" + "No\n\n";
+		String thirdQ = "003. Is the answer relevant?\n\n" +
+			"Relevant as is\n" +
+			"Relevant only when knowing the topic context\n" +
+			"None of the above\n\n";
+		String fourthQ = "004.  If the answer is relevant, is the answer grammatical? (click \"No\" when you answered \"none of the above \" in the last question.)\n\n" +
+			"Yes\n"+"No\n\n"; 
+		String pageBreak = "[[PageBreak]]\n\n";
 		
 		int paragraphCounter=0, wordCounter=0;
 		int oriSentCounter=0, actualSentCounter=0, quesCounter=0;
@@ -775,6 +783,11 @@ public class OpenAryhpe {
 				
 				paragraphCounter++;
 				MsgPrinter.printStatusMsg("processing paragraph "+paragraphCounter+"...");
+				
+				//out.write("[[Block: Paragraph "+paragraphCounter+"]]\n\n");
+				out.write(paragraphCounter+". Paragraph "+paragraphCounter+":<br>\n");
+				out.write(paragraph+"\n\n");
+				out.write(pageBreak);
 				
 				// break the paragraph
 				String[] sentences = OpenNLP.sentDetect(paragraph); 
@@ -834,15 +847,18 @@ public class OpenAryhpe {
 								phraseIDcount = ansPhraseHash.get(ansPhrase);
 							}
 							
-							out.write(quesCounter+". Sentence: "+ansSent+"<br>\n");
-							out.write("Question: "+question+"<br>\n");
-							out.write("Answer: "+ansPhrase+"<br>\n");
-							out.write(checkOptions);
+							//out.write("[[Block: Question "+quesCounter+"]]\n\n");
+							out.write(quesCounter+"005. [Sentence]: "+ansSent+"<br>\n");
+							out.write("[Question]: "+question+"\n\n");
+							out.write(quesCounter+firstQ);
+							out.write(quesCounter+secondQ);
+							out.write(quesCounter+"006. [Answer]: "+ansPhrase+"\n\n");
+							out.write(quesCounter+thirdQ);
+							out.write(quesCounter+fourthQ);
+							out.write(pageBreak);
 							
 						}
 						
-						// every sentence takes a page.
-						out.write("[[PageBreak]]\n\n");
 					}
 				} catch (java.io.IOException e) {
 					System.err.println(e);
