@@ -1,9 +1,15 @@
 OpenAryhpe is an open framework for syntax-based question generation(QG), developed
 from the OpenEphyra question answering system. See OpenAryhpe webpage for more
-information. Below is an inclusion of the original README of OpenEphyra.
+information.
+
+To compile, simple type "ant".
+
+To run, execute OpenAryhpe.sh (Linux&Mac) or OpenAryhpe.bat (Windows)
 
 Xuchen Yao
 2010-08-20
+
+Below is an inclusion of the original README of OpenEphyra.
 
 ================================================================================
                       OpenEphyra Question Answering System
