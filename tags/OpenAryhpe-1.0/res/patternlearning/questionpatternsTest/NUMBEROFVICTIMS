@@ -1,0 +1,8 @@
+QUESTION_TEMPLATE: what is the final death toll of <TO>
+ANSWER_TEMPLATE: Number: <PO>
+ANSWER_CONSTRAINT: NEnumber
+
+how many <CO> be (kill|lose|wound) in <TO>
+what be the final death toll of <TO> 
+how many <CO> die when <TO> 
+how many <CO> do <TO> (kill|murder)

@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: How long is <TO>?
+ANSWER_TEMPLATE: Length: <PO>
+ANSWER_CONSTRAINT: NElength_NEmiles_NErange
+
+how long be <TO>
+what be the length of <TO>
+what be <TO>'s length

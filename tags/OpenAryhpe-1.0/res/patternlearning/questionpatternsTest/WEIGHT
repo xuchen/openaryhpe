@@ -1,0 +1,5 @@
+QUESTION_TEMPLATE: How heavy is <TO>?
+ANSWER_TEMPLATE: weight: <PO>
+ANSWER_CONSTRAINT: NEweight_NEtons_NEpounds_NEounces_NEgrams
+
+how heavy is <TO>

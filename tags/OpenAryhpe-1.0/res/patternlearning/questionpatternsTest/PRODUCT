@@ -1,0 +1,6 @@
+QUESTION_TEMPLATE: What is the product of <TO>?
+ANSWER_TEMPLATE: Product: <PO>
+
+what (do|have) <TO> (design|make|manufacture|produce)
+<TO> be best known for making what
+(identify|list|name) products (design|make|manufacture|produce) by <TO>

@@ -1,0 +1,9 @@
+QUESTION_TEMPLATE: Which school did <TO> graduate from?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: School: <PO>
+ANSWER_CONSTRAINT: NEorganization_NEeducationalInstitution
+
+<TO> be an alumnus of (what|which) (school|university)
+(what|which) (school|university) do <TO> graduate( from)?
+where be <TO> educate
+what (school|university) do <TO> attend

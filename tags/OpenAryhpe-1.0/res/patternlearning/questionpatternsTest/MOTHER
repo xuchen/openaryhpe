@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: Who is mother of <TO>?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Mother: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+who be <TO>'s mother
+who be (a|the) mother of <TO>

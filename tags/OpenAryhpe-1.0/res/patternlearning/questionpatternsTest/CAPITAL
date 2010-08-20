@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: What is the capital of <TO>?
+QUESTION_CONSTRAINT: NElocation
+ANSWER_TEMPLATE: Capital: <PO>
+ANSWER_CONSTRAINT: NElocation_NEcapital
+
+what be <TO>'s capital
+what be the capital of <TO>

@@ -1,0 +1,9 @@
+QUESTION_TEMPLATE: When was <TO> born?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Birthday: <PO>
+ANSWER_CONSTRAINT: NEdate_NEhour_NEmonth_NEday_NEyear
+
+((what|which) (century|date|day|decade|hour|month|time|year)|when) be <TO> bear
+((what|which) (century|date|day|decade|hour|month|time|year)|when) be <TO>'s .*(birthday|birth)
+<TO> be bear .*((what|which) (century|date|day|decade|hour|month|time|year)|when)
+<TO>'s .*(birthday|birth) be .*((what|which) (century|date|day|decade|hour|month|time|year)|when)

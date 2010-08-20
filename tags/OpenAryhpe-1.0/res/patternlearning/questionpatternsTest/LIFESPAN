@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: How long did <TO> live?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName_NEanimal_NEflower_NEbird_NEbacteria_NEfruit_NEvirus
+ANSWER_TEMPLATE: Lifespan: <PO>
+ANSWER_CONSTRAINT: NEduration_NEyears_NEdays_NErange_NEtime
+
+what be the (life expectancy|livespan) (for|of) <TO>
+how long do <TO> live

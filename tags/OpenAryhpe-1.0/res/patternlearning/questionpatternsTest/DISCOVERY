@@ -1,0 +1,6 @@
+QUESTION_TEMPLATE: What did <TO> discover?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Discovery: <PO>
+
+what do <TO> (discover|find)
+what be (the |a )?discovery of <TO>

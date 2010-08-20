@@ -1,0 +1,6 @@
+QUESTION_TEMPLATE: When did <TO> live?
+ANSWER_TEMPLATE: Lived in: <PO>
+ANSWER_CONSTRAINT: NEdate_NEhour_NEmonth_NEday_NEyear
+
+((what|which) (century|date|day|decade|hour|month|time|year)|when) do <TO> live
+<TO> live .*((what|which) (century|date|day|decade|hour|month|time|year)|when)

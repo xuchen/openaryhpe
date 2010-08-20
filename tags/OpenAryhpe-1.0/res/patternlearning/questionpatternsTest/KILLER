@@ -1,0 +1,9 @@
+QUESTION_TEMPLATE: Who killed <TO>?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Killed by: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+who (assassinate|execute|gun down|kill|murder|poison|shoot|stab) <TO>
+who be (the |a )?(assassin|killer|murderer|slayer) of <TO>
+who be <TO>'s (assassin|killer|murderer|slayer)
+what be find to kill <TO>

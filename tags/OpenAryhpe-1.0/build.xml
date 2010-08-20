@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: modifed from Eclipse auto-generated file,
+		      Don't overwrite it!
+-->
+<project basedir="." default="jar" name="OpenAryhpe">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+	<property name="main-class"  value="info.ephyra.OpenAryhpe"/>
+    <path id="OpenAryhpe.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/ml/maxent.jar"/>
+        <pathelement location="lib/ml/minorthird.jar"/>
+        <pathelement location="lib/nlp/jwnl.jar"/>
+        <pathelement location="lib/nlp/lingpipe.jar"/>
+        <pathelement location="lib/nlp/opennlp-tools.jar"/>
+        <pathelement location="lib/nlp/plingstemmer.jar"/>
+        <pathelement location="lib/nlp/snowball.jar"/>
+        <pathelement location="lib/nlp/stanford-ner.jar"/>
+        <pathelement location="lib/nlp/stanford-postagger.jar"/>
+        <pathelement location="lib/qa/javelin.jar"/>
+        <pathelement location="lib/search/googleapi.jar"/>
+        <pathelement location="lib/search/indri.jar"/>
+        <pathelement location="lib/search/yahoosearch.jar"/>
+        <pathelement location="lib/util/commons-logging.jar"/>
+        <pathelement location="lib/util/htmlparser.jar"/>
+        <pathelement location="lib/util/log4j.jar"/>
+        <pathelement location="lib/util/trove.jar"/>
+        <pathelement location="lib/nlp/stanford-parser.jar"/>
+        <pathelement location="lib/nlp/stanford-tregex-2008-05-08.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="OpenAryhpe.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="OpenAryhpe">
+        <java classname="info.ephyra.OpenAryhpe" failonerror="true" fork="yes">
+            <classpath refid="OpenAryhpe.classpath"/>
+        </java>
+    </target>
+	<target name="jar" depends="build">
+		<jar destfile="${ant.project.name}.jar" basedir="bin">
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}"/>
+			</manifest>
+		</jar>
+	</target>
+	<target name="run" depends="jar">
+		<java fork="true" classname="${main-class}">
+            <jvmarg line="-Xmx1500m"/>
+            <classpath>
+                <path refid="${ant.project.name}.classpath"/>
+                <path location="${ant.project.name}.jar"/>
+            </classpath>
+        </java>
+	</target>
+</project>

@@ -1,0 +1,6 @@
+QUESTION_TEMPLATE: How many times do <TO> win?
+ANSWER_TEMPLATE: Number: <PO>
+ANSWER_CONSTRAINT: NEnumber
+
+how many (battle|fight|time) do <TO> win
+how many (battle|fight|time) do <TO> win <CO>

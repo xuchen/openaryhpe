@@ -1,0 +1,117 @@
+#passages: 11643
+
+<PO_NEperson> stands for <TO>
+#correct: 16
+#incorrect: 0
+
+<PO_NEorganization> stands for <TO>
+#correct: 8
+#incorrect: 3
+
+" <PO> stands [^<]*?<TO>
+#correct: 5
+#incorrect: 6
+
+<PO_NEacronym> means <TO>
+#correct: 5
+#incorrect: 1
+
+" <PO> stands for <TO>
+#correct: 5
+#incorrect: 6
+
+\? <PO> stands for <TO>
+#correct: 2
+#incorrect: 2
+
+\? <PO> stands [^<]*?<TO>
+#correct: 2
+#incorrect: 2
+
+<TO> , better known as <PO_NEacronym>
+#correct: 2
+#incorrect: 0
+
+<TO> ' \( <PO_NEorganization_NEacronym>
+#correct: 2
+#incorrect: 0
+
+\. <PO> is [^<]*?abbreviation [^<]*?<TO>
+#correct: 2
+#incorrect: 0
+
+<TO> \( <NEorganization_NEacronym> or <PO_NEacronym>
+#correct: 2
+#incorrect: 0
+
+<TO> [^<]*?or <PO> for
+#correct: 2
+#incorrect: 18
+
+<TO> [^<]*?the <PO> is
+#correct: 2
+#incorrect: 19
+
+: <PO> stands for <TO>
+#correct: 2
+#incorrect: 0
+
+<TO> \( <NEacronym> or <PO_NEacronym>
+#correct: 2
+#incorrect: 0
+
+\( <PO> , <NEacronym> \) <TO>
+#correct: 2
+#incorrect: 2
+
+<TO> [^<]*?as <PO> ,
+#correct: 2
+#incorrect: 12
+
+# <PO> in [^<]*?acronym [^<]*?<TO>
+#correct: 2
+#incorrect: 0
+
+<PO_NEacronym> , the <TO>
+#correct: 2
+#incorrect: 4
+
+<TO> / <PO_NEacronym>
+#correct: 2
+#incorrect: 0
+
+<PO_NEorganization_NEacronym> \) <NEacronym> <NEacronym> <TO>
+#correct: 2
+#incorrect: 0
+
+the <PO> , (?:<NEacronym> )?[^<]*?<TO>
+#correct: 2
+#incorrect: 181
+
+# <PO> basics [^<]*?<TO>
+#correct: 2
+#incorrect: 2
+
+<PO_NEacronym> is an international <TO>
+#correct: 2
+#incorrect: 0
+
+<TO> [^<]*?and <PO> \.
+#correct: 2
+#incorrect: 111
+
+<TO> - <PO> ,
+#correct: 2
+#incorrect: 15
+
+<TO> , better known as <PO_NEorganization_NEacronym>
+#correct: 2
+#incorrect: 0
+
+- <PO> \. (?:<NEprofession> )?(?:<NEprofession> )?[^<]*?<TO>
+#correct: 2
+#incorrect: 13
+
+to <PO> \. <TO>
+#correct: 2
+#incorrect: 1

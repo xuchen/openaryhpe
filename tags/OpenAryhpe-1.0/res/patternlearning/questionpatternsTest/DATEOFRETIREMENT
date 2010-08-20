@@ -1,0 +1,7 @@
+QUESTION_TEMPLATE: When did <TO> retire?
+QUESTION_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+ANSWER_TEMPLATE: Retired: <PO>
+ANSWER_CONSTRAINT: NEdate_NEhour_NEmonth_NEday_NEyear
+
+((what|which) (century|date|day|decade|hour|month|time|year)|when) do <TO> retire from <CO>
+((what|which) (century|date|day|decade|hour|month|time|year)|when) be <TO> remove from power

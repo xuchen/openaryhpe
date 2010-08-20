@@ -1,0 +1,6 @@
+QUESTION_TEMPLATE: Who is the ancestor of <TO>?
+ANSWER_TEMPLATE: Ancestor: <PO>
+ANSWER_CONSTRAINT: NEperson_NEusPresident_NEactor_NEauthor_NEfirstName
+
+(what|who) be (the |an )?ancestor of <TO>
+(what|whom?) be <TO> (the |a )?descendant of
